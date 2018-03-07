@@ -1,31 +1,22 @@
 {
   "name": "mvc_design",
   "version": "1.0.0",
-  "description": "Eat-Da-Burger",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Anne Rottler",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^2.0.1",
     "method-override": "^2.3.10",
-    "mysql": "^2.10.2",
+    "mysql": "^2.15.0",
     "npm-check-updates": "^2.14.1"
   },
   "devDependencies": {
     "handlebars-helper-css": "^0.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AR123456/Eat-Da-Burger.git"
-  },
-  "bugs": {
-    "url": "https://github.com/AR123456/Eat-Da-Burger/issues"
-  },
-  "homepage": "https://github.com/AR123456/Eat-Da-Burger#readme"
+  }
 }

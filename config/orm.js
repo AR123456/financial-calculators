@@ -63,6 +63,7 @@ var orm = {
       cb(result);
     });
   },
+  //insert method 
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
@@ -83,7 +84,7 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
+  // update method 
   update: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
@@ -101,6 +102,7 @@ var orm = {
       cb(result);
     });
   },
+  //delete method 
   delete: function(table, condition, cb) {
     var queryString = "DELETE FROM " + table;
     queryString += " WHERE ";
@@ -116,5 +118,5 @@ var orm = {
   }
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model (burger.js).
 module.exports = orm;

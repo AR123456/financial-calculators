@@ -1,5 +1,5 @@
-### Schema
 
+DROP DATABASE IF EXISTS ice_creamDB;
 CREATE DATABASE burgers_db;
 USE burgers_db;
 
@@ -8,6 +8,6 @@ CREATE TABLE burgers
 	id int NOT NULL AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
 	devoured BOOLEAN DEFAULT false,
-	DATE TIMESTAMP,
+	date DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );

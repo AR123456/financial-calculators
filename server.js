@@ -1,8 +1,13 @@
 var express = require("express");
+//https://www.npmjs.com/package/method-override
+//method overide middelwre 
+var methodOverride = require('method-override');
+// Handlebars.
+var exphbs = require("express-handlebars");
+//bodyparser middleware 
 var bodyParser = require("body-parser");
-//TODO 
-// var something handlebars = require("express-handlebars");
-// var something method overide = require("method-override");
+
+
 // var something mysql  = require("mysql");
 
 var port = process.env.PORT || 3000;
@@ -14,14 +19,13 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
+
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-var routes = require("./controllers/catsController.js");
+var routes = require("./controllers/burgers_Controller.js");
 
 app.use("/", routes);
 

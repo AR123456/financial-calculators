@@ -1,38 +1,40 @@
-<h1>Cats!</h1>
 
-<h2>Cats that are not sleepy!</h2>
+
+<h1>Burger immage here</h1>
+
+<h2>Eat-Da-Burger</h2>
 
 <ul>
-  {{#each cats}}
-    {{#unless sleepy}}
-      {{> cats/cat-block sleep=true}}
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> burgers/burger-block devoured=true}}
     {{/unless}}
   {{/each}}
 </ul>
 
-<h2>Cats that are sleepy!</h2>
+<h2>Eat -Da-Burger!</h2>
 
 <ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
+  {{#each burgers}}
+    {{#if devoured}}
+      {{> burgers/burger-block devoured=false}}
     {{/if}}
   {{/each}}
 </ul>
 
-<h2>Add a Cat</h2>
+<h2>Add a burger</h2>
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">Cat Name:</label>
+    <label for="ca">burger Name:</label>
     <input type="text" id="ca" name="name">
   </div>
 
   <div class="form-group">
-    <label for="slee">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
+    <label for="Devoured">Devoured?</label><br>
+    <input type="radio" name="Devoured" value="1" checked> Devoured!<br>
+    <input type="radio" name="Not Devoured" value="0"> Yum
   </div>
 
-  <button type="submit">Add Cat</button>
+  <button type="submit">Add Burger</button>
 </form>
