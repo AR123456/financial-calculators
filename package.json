@@ -1,10 +1,10 @@
 {
-  "name": "mvc_design",
+  "name": "eat-da-burger",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,10 +13,20 @@
     "express": "^4.16.2",
     "express-handlebars": "^2.0.1",
     "method-override": "^2.3.10",
+    "moment": "^2.21.0",
     "mysql": "^2.15.0",
     "npm-check-updates": "^2.14.1"
   },
   "devDependencies": {
     "handlebars-helper-css": "^0.1.0"
-  }
+  },
+  "description": "Eat-Da-Burger",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AR123456/Eat-Da-Burger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AR123456/Eat-Da-Burger/issues"
+  },
+  "homepage": "https://github.com/AR123456/Eat-Da-Burger#readme"
 }
