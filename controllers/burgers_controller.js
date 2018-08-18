@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var burgers = require("../models/burger.js");
+const express = require("express");
+const router = express.Router();
+const burgers = require("../models/burger.js");
 
 router.get("/", function(req, res) {
   res.redirect("/burgers");
@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
 
 router.get("/burgers", function(req, res) {
   burgers.all(function(data) {
-    var hbsObject = { burgers: data };
+    let hbsObject = { burgers: data };
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
@@ -21,7 +21,7 @@ router.post("/burgers/create", function(req, res) {
 });
 
 router.put("/burgers/update/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
+  let condition = "id = " + req.params.id;
 
   console.log("condition ", condition);
 
