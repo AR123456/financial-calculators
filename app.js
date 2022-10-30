@@ -7,3 +7,5 @@
 //IRR is calculated using the same concept as net present value (NPV), except it sets the NPV equal to zero.   IRR can help investors determine the investment return of various assets
 
 //JS Math metohds    https://www.w3schools.com/js/js_math.asp
+
+/// https://www.youtube.com/watch?v=LW-OOcEBZ7U   loan calculator
