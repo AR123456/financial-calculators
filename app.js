@@ -9,20 +9,43 @@
 //JS Math metohds    https://www.w3schools.com/js/js_math.asp
 
 /// https://www.youtube.com/watch?v=LW-OOcEBZ7U   loan calculator
-const loanAmountInput = document.getElementsByClassName("loan-amount");
-const interestRateInput = document.getElementsByClassName("interest=rate");
-const loanTenureInput = document.getElementsByClassName("loan-tenure");
-const loanEMIValue = document.getElementsByClassName("loan-emi");
-const totalInterestValue = document.getElementsByClassName("total-interest");
-const totalAmountValue = document.getElementsByClassName("total-amount");
-const calculate = document.getElementByClassName("calculate-btn");
+const loanAmountInput = document.querySelector(".loan-amount");
+const interestRateInput = document.querySelector(".interest-rate");
+const loanTenureInput = document.querySelector(".loan-tenure");
+const loanEMIValue = document.querySelector(".loan-emi .value");
+const totalInterestValue = document.querySelector(".total-interest .value");
+const totalAmountValue = document.querySelector(".total-amount .value");
+const calculate = document.querySelector(".calculate-btn");
 
 let loanAmount = parseFloat(loanAmountInput.value);
 let interestRate = parseFloat(interestRateInput.value);
 let loanTenure = parseFloat(loanTenureInput.value);
-let monthlyInterestRate = interestRate / 12 / 100;
-let numeratorOfEq = 1 + monthlyInterestRate ** loanTenure;
-let denominatorOfEq = numeratorOfEq - 1;
+// calculating the monthly interest rate
+let interest = interestRate / 12 / 100;
+// calculate the monthly P&I  or EMI
+const calculatedEMI = () => {
+  let emi =
+    loanAmount *
+    interest *
+    (Math.pow(1 + interest, loanTenure) /
+      (Math.pow(1 + interest, loanTenure) - 1));
+  return emi;
+};
+// function to update the values in the calculator
+const updateData = (emi) => {
+  // update based on emi
+  loanEMIValue.innerHTML = Math.round(emi);
+  //
+  let totalAmount = Math.round(loanTenure * emi);
+  totalAmountValue.innerHTML = totalAmount;
+  // total amount less the loan amount is the amount of interest
+  let totalInterestPayable = Math.round(totalAmount - loanAmount);
+  totalInterestValue.innerHTML = totalInterestPayable;
+};
 
-let loanEMICalculated =
-  loanAmount * monthlyInterestRate * (numeratorOfEq / denominatorOfEq);
+// function to call calcula and update dom
+const init = () => {
+  let emi = calculatedEMI();
+  updateData(emi);
+};
+init();
