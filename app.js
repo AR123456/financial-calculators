@@ -44,13 +44,6 @@ const updateData = (emi) => {
 
   totalInterestValue.innerHTML = totalInterestPayable;
 };
-
-// function to call calculatedEMI and update dom
-const init = () => {
-  let emi = calculatedEMI();
-  updateData(emi);
-};
-init();
 // detect and update input values
 const refreshInputValues = () => {
   loanAmount = parseFloat(loanAmountInput.value);
@@ -59,10 +52,13 @@ const refreshInputValues = () => {
   // calculating the monthly interest rate
   interest = interestRate / 12 / 100;
 };
-// wire up the calculate button
-calculateBtn.addEventListener("click", () => {
-  //
+// function to call calculatedEMI and update dom
+const init = () => {
   refreshInputValues();
   let emi = calculatedEMI();
   updateData(emi);
-});
+};
+init();
+
+// wire up the calculate button
+calculateBtn.addEventListener("click", init);
