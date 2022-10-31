@@ -20,3 +20,9 @@ const calculate = document.getElementByClassName("calculate-btn");
 let loanAmount = parseFloat(loanAmountInput.value);
 let interestRate = parseFloat(interestRateInput.value);
 let loanTenure = parseFloat(loanTenureInput.value);
+let monthlyInterestRate = interestRate / 12 / 100;
+let numeratorOfEq = 1 + monthlyInterestRate ** loanTenure;
+let denominatorOfEq = numeratorOfEq - 1;
+
+let loanEMICalculated =
+  loanAmount * monthlyInterestRate * (numeratorOfEq / denominatorOfEq);
