@@ -72,4 +72,16 @@
   margin: 24px;
 }
 @media (max-width: 650px) {
+  .loan-calculator {
+    width: 90%;
+    max-width: 500px;
+  }
+  .loan-calculator form {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .loan-calculator .result {
+    flex-direction: column;
+    text-align: center;
+  }
 }

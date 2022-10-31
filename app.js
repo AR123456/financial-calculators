@@ -9,3 +9,14 @@
 //JS Math metohds    https://www.w3schools.com/js/js_math.asp
 
 /// https://www.youtube.com/watch?v=LW-OOcEBZ7U   loan calculator
+const loanAmountInput = document.getElementsByClassName("loan-amount");
+const interestRateInput = document.getElementsByClassName("interest=rate");
+const loanTenureInput = document.getElementsByClassName("loan-tenure");
+const loanEMIValue = document.getElementsByClassName("loan-emi");
+const totalInterestValue = document.getElementsByClassName("total-interest");
+const totalAmountValue = document.getElementsByClassName("total-amount");
+const calculate = document.getElementByClassName("calculate-btn");
+
+let loanAmount = parseFloat(loanAmountInput.value);
+let interestRate = parseFloat(interestRateInput.value);
+let loanTenure = parseFloat(loanTenureInput.value);
