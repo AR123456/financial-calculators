@@ -15,7 +15,7 @@ const loanTenureInput = document.querySelector(".loan-tenure");
 const loanEMIValue = document.querySelector(".loan-emi .value");
 const totalInterestValue = document.querySelector(".total-interest .value");
 const totalAmountValue = document.querySelector(".total-amount .value");
-const calculate = document.querySelector(".calculate-btn");
+const calculateBtn = document.querySelector(".calculate-btn");
 
 let loanAmount = parseFloat(loanAmountInput.value);
 let interestRate = parseFloat(interestRateInput.value);
@@ -38,14 +38,31 @@ const updateData = (emi) => {
   //
   let totalAmount = Math.round(loanTenure * emi);
   totalAmountValue.innerHTML = totalAmount;
+
   // total amount less the loan amount is the amount of interest
   let totalInterestPayable = Math.round(totalAmount - loanAmount);
+
   totalInterestValue.innerHTML = totalInterestPayable;
 };
 
-// function to call calcula and update dom
+// function to call calculatedEMI and update dom
 const init = () => {
   let emi = calculatedEMI();
   updateData(emi);
 };
 init();
+// detect and update input values
+const refreshInputValues = () => {
+  loanAmount = parseFloat(loanAmountInput.value);
+  interestRate = parseFloat(interestRateInput.value);
+  loanTenure = parseFloat(loanTenureInput.value);
+  // calculating the monthly interest rate
+  interest = interestRate / 12 / 100;
+};
+// wire up the calculate button
+calculateBtn.addEventListener("click", () => {
+  //
+  refreshInputValues();
+  let emi = calculatedEMI();
+  updateData(emi);
+});
