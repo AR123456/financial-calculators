@@ -62,3 +62,4 @@ init();
 
 // wire up the calculate button
 calculateBtn.addEventListener("click", init);
+// using chart.js to create the chart
