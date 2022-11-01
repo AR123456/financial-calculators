@@ -8,7 +8,10 @@
 
 //JS Math metohds    https://www.w3schools.com/js/js_math.asp
 
-/// https://www.youtube.com/watch?v=LW-OOcEBZ7U   loan calculator
+/// https://www.youtube.com/watch?v=LW-OOcEBZ7U
+
+// number 4 https://www.youtube.com/watch?v=u68Ney3YdJc
+// loan calculator
 const loanAmountInput = document.querySelector(".loan-amount");
 const interestRateInput = document.querySelector(".interest-rate");
 const loanTenureInput = document.querySelector(".loan-tenure");
@@ -24,6 +27,17 @@ let loanTenure = parseFloat(loanTenureInput.value);
 let interest = interestRate / 12 / 100;
 // using chart.js to create the chart - get the boiler plate from chart.js
 let myChart;
+// validating user input
+const checkValues = () => {
+  let loanAmountValue = loanAmount.value;
+  let interestRateValue = interestRateInput.value;
+  let loanTenureValue = loanTenureInput.value;
+  // use some regex
+
+  let regexNumber = /^[0-9]+$/;
+};
+
+///
 const displayChart = (totalInterestPayableValue) => {
   const ctx = document.getElementById("myChart").getContext("2d");
   myChart = new Chart(ctx, {
