@@ -15,9 +15,11 @@
 const loanAmountInput = document.querySelector(".loan-amount");
 const interestRateInput = document.querySelector(".interest-rate");
 const loanTenureInput = document.querySelector(".loan-tenure");
+
 const loanEMIValue = document.querySelector(".loan-emi .value");
 const totalInterestValue = document.querySelector(".total-interest .value");
 const totalAmountValue = document.querySelector(".total-amount .value");
+
 const calculateBtn = document.querySelector(".calculate-btn");
 
 let loanAmount = parseFloat(loanAmountInput.value);
@@ -29,22 +31,23 @@ let interest = interestRate / 12 / 100;
 let myChart;
 // validating user input
 const checkValues = () => {
-  // get the input values and store in var
-  let loanAmountValue = loanAmountInput.value;
-  let interestRateValue = interestRateInput.value;
-  let loanTenureValue = loanTenureInput.value;
-  // use some regex to check if its a number
-  let regexNumber = /^[0-9]+$/;
-  if (!loanAmountValue.match(regexNumber)) {
-    loanAmountInput.value = "10000";
-  }
-  if (!loanTenureValue.match(regexNumber)) {
-    loanTenureInput.value = "12";
-  }
-  let regexDecimalNumber = /^(\d*\.)?\d+$/;
-  if (!interestRateValue.match(regexDecimalNumber)) {
-    interestRateInput.value = "7.5";
-  }
+  // // get the input values and store in var
+  // let loanAmountValue = loanAmountInput.value;
+  // let interestRateValue = interestRateInput.value;
+  // let loanTermValue = loanTermInput.value;
+  // // use some regex to check if its a number
+  // let regexNumber = /^[0-9]+$/;
+  // if (!loanAmountValue.match(regexNumber)) {
+  //   loanAmountInput.value = "10000";
+  // }
+  // if (!loanTermValue.match(regexNumber)) {
+  //   loanTermInput.value = "12";
+  // }
+  // let regexDecimalNumber = /^(\d*\.)?\d+$/;
+  // if (!interestRateValue.match(regexDecimalNumber)) {
+  //   interestRateInput.value = "7.5";
+  // }
+  console.log("checking values ");
 };
 
 ///
