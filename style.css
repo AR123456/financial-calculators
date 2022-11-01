@@ -88,3 +88,6 @@
     text-align: center;
   }
 }
+div .invalid-feedback::before {
+  content: "Enter value";
+}

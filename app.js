@@ -8,13 +8,10 @@
 
 //JS Math metohds    https://www.w3schools.com/js/js_math.asp
 
-/// https://www.youtube.com/watch?v=LW-OOcEBZ7U
-
-// number 4 https://www.youtube.com/watch?v=u68Ney3YdJc
-// loan calculator
+/// https://www.youtube.com/watch?v=LW-OOcEBZ7U   loan calculator
 const loanAmountInput = document.querySelector(".loan-amount");
 const interestRateInput = document.querySelector(".interest-rate");
-const loanTenureInput = document.querySelector(".loan-tenure");
+const loanTermInput = document.querySelector(".loan-term");
 const loanEMIValue = document.querySelector(".loan-emi .value");
 const totalInterestValue = document.querySelector(".total-interest .value");
 const totalAmountValue = document.querySelector(".total-amount .value");
@@ -22,22 +19,13 @@ const calculateBtn = document.querySelector(".calculate-btn");
 
 let loanAmount = parseFloat(loanAmountInput.value);
 let interestRate = parseFloat(interestRateInput.value);
-let loanTenure = parseFloat(loanTenureInput.value);
+let loanTerm = parseFloat(loanTermInput.value);
 // calculating the monthly interest rate
 let interest = interestRate / 12 / 100;
 // using chart.js to create the chart - get the boiler plate from chart.js
 let myChart;
-// validating user input
-const checkValues = () => {
-  let loanAmountValue = loanAmount.value;
-  let interestRateValue = interestRateInput.value;
-  let loanTenureValue = loanTenureInput.value;
-  // use some regex
+// check for number
 
-  let regexNumber = /^[0-9]+$/;
-};
-
-///
 const displayChart = (totalInterestPayableValue) => {
   const ctx = document.getElementById("myChart").getContext("2d");
   myChart = new Chart(ctx, {
@@ -66,8 +54,7 @@ const calculatedEMI = () => {
   let emi =
     loanAmount *
     interest *
-    (Math.pow(1 + interest, loanTenure) /
-      (Math.pow(1 + interest, loanTenure) - 1));
+    (Math.pow(1 + interest, loanTerm) / (Math.pow(1 + interest, loanTerm) - 1));
   return emi;
 };
 // function to update the values in the calculator
@@ -75,7 +62,7 @@ const updateData = (emi) => {
   // update based on emi
   loanEMIValue.innerHTML = Math.round(emi);
   //
-  let totalAmount = Math.round(loanTenure * emi);
+  let totalAmount = Math.round(loanTerm * emi);
   totalAmountValue.innerHTML = totalAmount;
 
   // total amount less the loan amount is the amount of interest
@@ -93,7 +80,7 @@ const updateData = (emi) => {
 const refreshInputValues = () => {
   loanAmount = parseFloat(loanAmountInput.value);
   interestRate = parseFloat(interestRateInput.value);
-  loanTenure = parseFloat(loanTenureInput.value);
+  loanTerm = parseFloat(loanTermInput.value);
   // calculating the monthly interest rate
   interest = interestRate / 12 / 100;
 };
