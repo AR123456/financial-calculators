@@ -8,7 +8,10 @@
 
 //JS Math metohds    https://www.w3schools.com/js/js_math.asp
 
-/// https://www.youtube.com/watch?v=LW-OOcEBZ7U   loan calculator
+/// https://www.youtube.com/watch?v=LW-OOcEBZ7U
+
+// number 4 https://www.youtube.com/watch?v=u68Ney3YdJc
+// loan calculator
 const loanAmountInput = document.querySelector(".loan-amount");
 const interestRateInput = document.querySelector(".interest-rate");
 const loanTenureInput = document.querySelector(".loan-tenure");
@@ -22,6 +25,42 @@ let interestRate = parseFloat(interestRateInput.value);
 let loanTenure = parseFloat(loanTenureInput.value);
 // calculating the monthly interest rate
 let interest = interestRate / 12 / 100;
+// using chart.js to create the chart - get the boiler plate from chart.js
+let myChart;
+// validating user input
+const checkValues = () => {
+  let loanAmountValue = loanAmount.value;
+  let interestRateValue = interestRateInput.value;
+  let loanTenureValue = loanTenureInput.value;
+  // use some regex
+
+  let regexNumber = /^[0-9]+$/;
+};
+
+///
+const displayChart = (totalInterestPayableValue) => {
+  const ctx = document.getElementById("myChart").getContext("2d");
+  myChart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: ["Total Interest", "Original Loan Amount"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [totalInterestPayableValue, loanAmount],
+          backgroundColor: ["#e63946", "#14213d"],
+
+          borderWidth: 0,
+        },
+      ],
+    },
+  });
+};
+const updateChart = (totalInterestPayableValue) => {
+  myChart.data.datasets[0].data[0] = totalInterestPayableValue;
+  myChart.data.datasets[0].data[1] = loanAmount;
+  myChart.update();
+};
 // calculate the monthly P&I  or EMI
 const calculatedEMI = () => {
   let emi =
@@ -43,6 +82,12 @@ const updateData = (emi) => {
   let totalInterestPayable = Math.round(totalAmount - loanAmount);
 
   totalInterestValue.innerHTML = totalInterestPayable;
+  // display the chart for the first time or display the updated chart
+  if (myChart) {
+    updateChart(totalInterestPayable);
+  } else {
+    displayChart(totalInterestPayable, loanAmount);
+  }
 };
 // detect and update input values
 const refreshInputValues = () => {
@@ -62,4 +107,3 @@ init();
 
 // wire up the calculate button
 calculateBtn.addEventListener("click", init);
-// using chart.js to create the chart
