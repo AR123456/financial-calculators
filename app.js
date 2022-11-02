@@ -58,6 +58,8 @@ const checkValues = () => {
     interestRateInput.value = "7.5";
   }
   console.log("checking values ");
+  //  regex for positive number decimal ok
+  //   /^(?![.]+$)\d+(\.\d{1,})?$|^(\.\d{1,})?$/
 };
 
 ///
