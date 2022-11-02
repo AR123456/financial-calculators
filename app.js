@@ -40,12 +40,12 @@ const checkValues = () => {
   if (!loanAmountValue.match(regexNumber)) {
     document.querySelector(".amount-invalid-feedback").style.visibility =
       "visible";
+    loanAmountInput.value = "Invalid input";
     setTimeout(() => {
       document.querySelector(".amount-invalid-feedback").style.visibility =
         "hidden";
+      loanAmountInput.value = "10000";
     }, 2000);
-
-    loanAmountInput.value = "Invalid input";
   } else {
     document.querySelector(".amount-invalid-feedback").style.visibility =
       "hidden";

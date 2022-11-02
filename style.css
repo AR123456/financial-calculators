@@ -88,7 +88,9 @@
     text-align: center;
   }
 }
-.amount-invalid-feedback {
+.amount-invalid-feedback,
+.rate-invalid-feedback,
+.term-invalid-feedback {
   visibility: hidden;
   color: red;
 }
