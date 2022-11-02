@@ -36,7 +36,7 @@ const checkValues = () => {
   let interestRateValue = interestRateInput.value;
   let loanTermValue = loanTermInput.value;
   // use some regex to check if its a number
-  let regexNumber = /^[0-9]+$/;
+  let regexNumber = /^(?![.]+$)\d+(\.\d{1,})?$|^(\.\d{1,})?$/;
   if (!loanAmountValue.match(regexNumber)) {
     document.querySelector(".amount-invalid-feedback").style.visibility =
       "visible";
