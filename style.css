@@ -88,3 +88,7 @@
     text-align: center;
   }
 }
+.amount-invalid-feedback {
+  visibility: hidden;
+  color: red;
+}
