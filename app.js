@@ -50,8 +50,12 @@ const checkValues = () => {
     document.querySelector(".amount-invalid-feedback").style.visibility =
       "hidden";
   }
+  // check that loan term is a number
   if (!loanTermValue.match(regexNumber)) {
-    loanTermInput.value = "12";
+    document.querySelector(".term-invalid-feedback").style.visibility =
+      "visible";
+    loanTermInput.value = "Invalid input ";
+    // TODO set time out and else statemant 
   }
   let regexDecimalNumber = /^(\d*\.)?\d+$/;
   if (!interestRateValue.match(regexDecimalNumber)) {
