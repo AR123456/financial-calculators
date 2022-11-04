@@ -93,7 +93,7 @@ const refreshInputValues = () => {
   interest = interestRate / 12 / 100;
 };
 // calculate the monthly P&I  or EMI
-const calculatedEMI = () => {
+const calcMoPandI = () => {
   checkValues();
   refreshInputValues();
   let emi =
@@ -122,9 +122,9 @@ const updateData = (emi) => {
   }
 };
 
-// function to call calculatedEMI and update dom
+// function to call calcMoPandI and update dom
 const init = () => {
-  let emi = calculatedEMI();
+  let emi = calcMoPandI();
   updateData(emi);
 };
 init();
