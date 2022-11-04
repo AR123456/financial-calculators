@@ -66,7 +66,7 @@ const checkValues = () => {
   if (!interestRateValue.match(regexNumber)) {
     document.querySelector(".rate-invalid-feedback").style.visibility =
       "visible";
-    interestRateInput.value = "7.5";
+    interestRateInput.value = "Invalid input";
     setTimeout(() => {
       document.querySelector(".rate-invalid-feedback").style.visibility =
         "hidden";
