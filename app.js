@@ -54,8 +54,13 @@ const checkValues = () => {
   if (!loanTermValue.match(regexNumber)) {
     document.querySelector(".term-invalid-feedback").style.visibility =
       "visible";
-    loanTermInput.value = "Invalid input ";
-    // TODO set time out and else statemant 
+    loanTermInput.value = "Invalid input";
+    // TODO set time out and else statemant
+    setTimeout(() => {
+      document.querySelector(".term-invalid-feedback").style.visibility =
+        "hidden";
+      loanTermInput.value = "Term";
+    }, 2000);
   }
   let regexDecimalNumber = /^(\d*\.)?\d+$/;
   if (!interestRateValue.match(regexDecimalNumber)) {
