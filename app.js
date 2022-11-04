@@ -62,13 +62,10 @@ const checkValues = () => {
       loanTermInput.value = "Term";
     }, 2000);
   }
-  let regexDecimalNumber = /^(\d*\.)?\d+$/;
-  if (!interestRateValue.match(regexDecimalNumber)) {
+
+  if (!interestRateValue.match(regexNumber)) {
     interestRateInput.value = "7.5";
   }
-  console.log("checking values ");
-  //  regex for positive number decimal ok
-  //   /^(?![.]+$)\d+(\.\d{1,})?$|^(\.\d{1,})?$/
 };
 
 ///
