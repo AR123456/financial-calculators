@@ -64,7 +64,14 @@ const checkValues = () => {
   }
 
   if (!interestRateValue.match(regexNumber)) {
+    document.querySelector(".rate-invalid-feedback").style.visibility =
+      "visible";
     interestRateInput.value = "7.5";
+    setTimeout(() => {
+      document.querySelector(".rate-invalid-feedback").style.visibility =
+        "hidden";
+      interestRateInput.value = "Rate";
+    }, 2000);
   }
 };
 
