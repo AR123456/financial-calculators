@@ -130,12 +130,15 @@
       <div class="card">
         <div class="card-body">
           This is a graph with dollars on left and years along bottom
+          <div class="right">
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </div>
         </div>
       </div>
       <!-- Content here -->
     </div>
 
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
@@ -146,5 +149,7 @@
       integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
       crossorigin="anonymous"
     ></script>
+
+    <script src="app.js"></script>
   </body>
 </html>
