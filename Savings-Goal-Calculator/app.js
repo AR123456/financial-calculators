@@ -3,8 +3,6 @@
 // use an assumed IRR of 8% then make that dynamic
 //
 
-///
-const ctx = document.getElementById("myChart");
 const savingsRange = document.getElementById("savingsRange");
 const savingsGoal = document.getElementById("savingsGoal");
 savingsGoal.innerHTML = savingsRange.value; // Display the default slider value
@@ -14,12 +12,13 @@ savingsGoal.innerHTML = savingsRange.value; // Display the default slider value
 savingsRange.oninput = function () {
   savingsGoal.innerHTML = this.value;
 };
+
 // CHART BOILER PLATE
 
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 const ctx = document.getElementById("myChart");
-export const myChart = new Chart(ctx, {
+const myChart = new Chart(ctx, {
   type: "bar",
   data: {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
