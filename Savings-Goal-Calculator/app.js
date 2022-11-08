@@ -16,26 +16,67 @@ const currentAmountSaved = document.getElementById("currentAmountSaved");
 
 const monthlySavingsRange = document.getElementById("monthlySavingsRange");
 const monthlySavingsGoal = document.getElementById("monthlySavingsGoal");
+
+const expectedRateReturn = document.getElementById("expectedRateReturn");
+const expectedRateReturnRange = document.getElementById(
+  "expectedRateReturnRange"
+);
+const expectedRateInflation = document.getElementById("expectedRateInflation");
+const expectedRateInflationRange = document.getElementById(
+  "expectedRateInflationRange"
+);
+// Buttons
+
+const calculateButton = document.getElementById("calculate");
+const viewReportButton = document.getElementById("viewReport");
 // Display the default slider values when page loads
 savingsGoal.innerHTML = savingsRange.value;
 yearsGoal.innerHTML = yearsRange.value;
 currentAmountSaved.innerHTML = currentAmountSavedRange.value;
 monthlySavingsGoal.innerHTML = monthlySavingsRange.value;
+expectedRateReturn.innerHTML = expectedRateReturnRange.value;
+expectedRateInflation.innerHTML = expectedRateInflationRange.value;
 // getting and displaying input value
 // Update the current slider value (each time you drag the slider handle)
 //TODO update the value based on slider or typing in text box
 savingsRange.oninput = function () {
-  savingsGoal.innerHTML = this.value;
+  goal = this.value;
+  savingsGoal.innerHTML = goal;
 };
 yearsRange.oninput = function () {
-  yearsGoal.innerHTML = this.value;
+  years = this.value;
+  yearsGoal.innerHTML = years;
 };
 currentAmountSavedRange.oninput = function () {
-  currentAmountSaved.innerHTML = this.value;
+  currentSaved = this.value;
+  currentAmountSaved.innerHTML = currentSaved;
 };
 monthlySavingsRange.oninput = function () {
-  monthlySavingsGoal.innerHTML = this.value;
+  monthlySaved = this.value;
+  monthlySavingsGoal.innerHTML = monthlySaved;
 };
+expectedRateReturnRange.oninput = function () {
+  expectedReturn = this.value;
+  expectedRateReturn.innerHTML = expectedReturn;
+};
+expectedRateInflationRange.oninput = function () {
+  expectedInflation = this.value;
+  expectedRateInflation.innerHTML = expectedInflation;
+};
+
+// calculate  function
+const calculate = () => {
+  console.log(goal);
+  console.log(years);
+  console.log(currentSaved);
+  console.log(monthlySaved);
+  console.log(expectedReturn);
+  console.log(expectedInflation);
+};
+calculateButton.onclick = function () {
+  calculate();
+};
+
 // CHART BOILER PLATE
 
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
