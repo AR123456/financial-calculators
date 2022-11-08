@@ -1,18 +1,24 @@
 // TODO create a app that will take in a dollar amount goal an years goal
 // the app will calculate how much needs to be saved per month to achive the goal
-// use an assumed IRR of 8% then make that dynamic
-//
 
+// getting elements from DOM
+// Slider inputs
 const savingsRange = document.getElementById("savingsRange");
 const savingsGoal = document.getElementById("savingsGoal");
 savingsGoal.innerHTML = savingsRange.value; // Display the default slider value
+const yearsRange = document.getElementById("yearsRange");
+const yearsGoal = document.getElementById("yearsGoal");
+yearsGoal.innerHTML = yearsRange.value;
 
+// getting and displaying input value
 // Update the current slider value (each time you drag the slider handle)
-// TODO update the value based on slider or typing in text box
+//TODO update the value based on slider or typing in text box
 savingsRange.oninput = function () {
   savingsGoal.innerHTML = this.value;
 };
-
+yearsRange.oninput = function () {
+  yearsGoal.innerHTML = this.value;
+};
 // CHART BOILER PLATE
 
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
