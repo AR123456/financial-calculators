@@ -13,11 +13,14 @@ const currentAmountSavedRange = document.getElementById(
   "currentAmountSavedRange"
 );
 const currentAmountSaved = document.getElementById("currentAmountSaved");
+
+const monthlySavingsRange = document.getElementById("monthlySavingsRange");
+const monthlySavingsGoal = document.getElementById("monthlySavingsGoal");
 // Display the default slider values when page loads
 savingsGoal.innerHTML = savingsRange.value;
 yearsGoal.innerHTML = yearsRange.value;
 currentAmountSaved.innerHTML = currentAmountSavedRange.value;
-
+monthlySavingsGoal.innerHTML = monthlySavingsRange.value;
 // getting and displaying input value
 // Update the current slider value (each time you drag the slider handle)
 //TODO update the value based on slider or typing in text box
@@ -29,6 +32,9 @@ yearsRange.oninput = function () {
 };
 currentAmountSavedRange.oninput = function () {
   currentAmountSaved.innerHTML = this.value;
+};
+monthlySavingsRange.oninput = function () {
+  monthlySavingsGoal.innerHTML = this.value;
 };
 // CHART BOILER PLATE
 
