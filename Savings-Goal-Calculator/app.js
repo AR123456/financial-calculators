@@ -16,7 +16,7 @@ const currentAmountSaved = document.getElementById("currentAmountSaved");
 // Display the default slider values when page loads
 savingsGoal.innerHTML = savingsRange.value;
 yearsGoal.innerHTML = yearsRange.value;
-currentAmountSaved.innerHTML = currentAmountSaved.value;
+currentAmountSaved.innerHTML = currentAmountSavedRange.value;
 
 // getting and displaying input value
 // Update the current slider value (each time you drag the slider handle)
