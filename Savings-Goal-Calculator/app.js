@@ -75,15 +75,14 @@ const calculate = () => {
   // console.log(expectedReturn);
   // console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
-  let realInt = expectedReturn - expectedInflation;
+  let realInt = (expectedReturn - expectedInflation) / 100;
   calcTime =
-    currentSaved +
-    (monthlySaved * ((1 + (realInt / years) * 12) * (12 * years) - 1)) /
-      (realInt / (years * 12));
+    (Math.E * (1 + (goal / (monthlySaved * (1 + realInt))) * realInt)) /
+    (Math.E * (1 + realInt));
   console.log(calcTime);
-  actualTime.innerHTML = calcTime
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // actualTime.innerHTML = calcTime
+  //   .toString()
+  //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 calculateButton.onclick = function () {
   calculate();
