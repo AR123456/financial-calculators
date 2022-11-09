@@ -81,7 +81,9 @@ const calculate = () => {
     (monthlySaved * ((1 + (realInt / years) * 12) * (12 * years) - 1)) /
       (realInt / (years * 12));
   console.log(calcTime);
-  actualTime.innerHTML = calcTime;
+  actualTime.innerHTML = calcTime
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 calculateButton.onclick = function () {
   calculate();
