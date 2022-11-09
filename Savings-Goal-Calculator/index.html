@@ -29,9 +29,9 @@
             <div class="input-group-text">
               Savings Goal $
               <label for="savingsGoal"></label>
-              <input type="number" id="" name="" min="" max="" />
+              <input type="number" id="savingsRange" name="" />
               <div class="input-group-text" id="savingsGoal">0.00</div>
-              <input
+              <!-- <input
                 type="range"
                 class="form-range slider"
                 min="0"
@@ -39,14 +39,14 @@
                 step="50"
                 id="savingsRange"
                 value="100000"
-              />
+              /> -->
             </div>
             <div class="input-group-text">
               Years to save:
               <label for="yearsGoal"></label>
-              <input type="number" id="" name="" min="" max="" />
+              <input type="number" id="yearsRange" name="yearsRange" />
               <div class="input-group-text" id="yearsGoal">0</div>
-              <input
+              <!-- <input
                 type="range"
                 class="form-range slider"
                 min="0"
@@ -54,14 +54,20 @@
                 step="1"
                 id="yearsRange"
                 value="5"
-              />
+              /> -->
             </div>
             <div class="input-group-text">
               Current Amount Saved $:
               <label for="currentAmountSaved"></label>
-              <input type="number" id="" name="" min="" max="" />
-              <div class="input-group-text" id="currentAmountSaved">0</div>
               <input
+                type="number"
+                id="currentAmountSavedRange"
+                name="currentAmountSavedRange"
+                min=""
+                max=""
+              />
+              <div class="input-group-text" id="currentAmountSaved">0</div>
+              <!-- <input
                 type="range"
                 class="form-range slider"
                 min="0"
@@ -69,14 +75,18 @@
                 step="10"
                 id="currentAmountSavedRange"
                 value="0"
-              />
+              /> -->
             </div>
             <div class="input-group-text">
               Monthly Savings $:
               <label for="monthlySavings"></label>
-              <input type="number" id="" name="" min="" max="" />
-              <div class="input-group-text" id="monthlySavingsGoal">0</div>
               <input
+                type="number"
+                id="monthlySavingsRange"
+                name="monthlySavingsRange"
+              />
+              <div class="input-group-text" id="monthlySavingsGoal">0</div>
+              <!-- <input
                 type="range"
                 class="form-range slider"
                 min="0"
@@ -84,14 +94,18 @@
                 step="10"
                 id="monthlySavingsRange"
                 value="1050"
-              />
+              /> -->
             </div>
             <div class="input-group-text">
               Expected Rate of Return %:
               <label for="expectedRateReturn"></label>
-              <input type="number" id="" name="" min="" max="" />
-              <div class="input-group-text" id="expectedRateReturn">0</div>
               <input
+                type="number"
+                id="expectedRateReturnRange"
+                name="expectedRateReturnRange"
+              />
+              <div class="input-group-text" id="expectedRateReturn">0</div>
+              <!-- <input
                 type="range"
                 class="form-range slider"
                 min="0"
@@ -99,14 +113,18 @@
                 step="0.25"
                 id="expectedRateReturnRange"
                 value="0.25"
-              />
+              /> -->
             </div>
             <div class="input-group-text">
               Expected Rate of Inflation %:
               <label for="expectedRateInflation"></label>
-              <input type="number" id="" name="" min="" max="" />
-              <div class="input-group-text" id="expectedRateInflation">0</div>
               <input
+                type="number"
+                id="expectedRateInflationRange"
+                name="expectedRateInflationRange"
+              />
+              <div class="input-group-text" id="expectedRateInflation">0</div>
+              <!-- <input
                 type="range"
                 class="form-range slider"
                 min="0"
@@ -114,7 +132,7 @@
                 step="0.025"
                 id="expectedRateInflationRange"
                 value="2.9"
-              />
+              /> -->
             </div>
           </div>
         </div>

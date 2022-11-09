@@ -68,18 +68,19 @@ expectedRateInflationRange.oninput = function () {
 
 // calculate  function
 const calculate = () => {
-  // console.log(goal);
-  // console.log(years);
-  // console.log(currentSaved);
-  // console.log(monthlySaved);
-  // console.log(expectedReturn);
-  // console.log(expectedInflation);
+  console.log(goal);
+  console.log(years);
+  console.log(currentSaved);
+  console.log(monthlySaved);
+  console.log(expectedReturn);
+  console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
-  let realInt = (expectedReturn - expectedInflation) / 100;
-  calcTime =
-    (Math.E * (1 + (goal / (monthlySaved * (1 + realInt))) * realInt)) /
-    (Math.E * (1 + realInt));
-  console.log(calcTime);
+  // This formula is close but not quite
+  // let realInt = (expectedReturn - expectedInflation) / 100;
+  // calcTime =
+  //   (Math.E * (1 + (goal / (monthlySaved * (1 + realInt))) * realInt)) /
+  //   (Math.E * (1 + realInt));
+  // console.log(calcTime);
   // actualTime.innerHTML = calcTime
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
