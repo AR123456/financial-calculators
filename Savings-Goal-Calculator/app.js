@@ -25,6 +25,8 @@ const expectedRateInflation = document.getElementById("expectedRateInflation");
 const expectedRateInflationRange = document.getElementById(
   "expectedRateInflationRange"
 );
+
+const actualTime = document.getElementById("actualTime");
 // Buttons
 
 const calculateButton = document.getElementById("calculate");
@@ -66,12 +68,20 @@ expectedRateInflationRange.oninput = function () {
 
 // calculate  function
 const calculate = () => {
-  console.log(goal);
-  console.log(years);
-  console.log(currentSaved);
-  console.log(monthlySaved);
-  console.log(expectedReturn);
-  console.log(expectedInflation);
+  // console.log(goal);
+  // console.log(years);
+  // console.log(currentSaved);
+  // console.log(monthlySaved);
+  // console.log(expectedReturn);
+  // console.log(expectedInflation);
+  // real interest rate = interest rate - inflation rate
+  let realInt = expectedReturn - expectedInflation;
+  calcTime =
+    currentSaved +
+    (monthlySaved * ((1 + (realInt / years) * 12) * (12 * years) - 1)) /
+      (realInt / (years * 12));
+  console.log(calcTime);
+  actualTime.innerHTML = calcTime;
 };
 calculateButton.onclick = function () {
   calculate();
