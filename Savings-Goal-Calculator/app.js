@@ -85,9 +85,9 @@ const calculate = () => {
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
-// calculateButton.onclick = function () {
-//   calculate();
-// };
+calculateButton.onclick = function () {
+  calculate();
+};
 
 // CHART BOILER PLATE
 
