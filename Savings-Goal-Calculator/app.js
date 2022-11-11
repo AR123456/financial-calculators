@@ -12,9 +12,7 @@ const currentAmountSavedRange = document.getElementById(
 );
 
 const monthlySavingsRange = document.getElementById("monthlySavingsRange");
-const monthlySavingsGoal = document.getElementById("monthlySavingsGoal");
 
-const expectedRateReturn = document.getElementById("expectedRateReturn");
 const expectedRateReturnRange = document.getElementById(
   "expectedRateReturnRange"
 );
@@ -42,11 +40,9 @@ currentAmountSavedRange.oninput = function () {
 };
 monthlySavingsRange.oninput = function () {
   monthlySaved = this.value;
-  // monthlySavingsGoal.innerHTML = monthlySaved;
 };
 expectedRateReturnRange.oninput = function () {
   expectedReturn = this.value;
-  // expectedRateReturn.innerHTML = expectedReturn;
 };
 expectedRateInflationRange.oninput = function () {
   expectedInflation = this.value;
