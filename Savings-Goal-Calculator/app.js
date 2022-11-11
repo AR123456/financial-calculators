@@ -4,7 +4,6 @@
 // getting elements from DOM
 // Slider inputs
 const savingsRange = document.getElementById("savingsRange");
-const savingsGoal = document.getElementById("savingsGoal");
 
 const yearsRange = document.getElementById("yearsRange");
 const yearsGoal = document.getElementById("yearsGoal");
@@ -31,39 +30,31 @@ const actualTime = document.getElementById("actualTime");
 
 const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
-// Display the default slider values when page loads
-savingsGoal.innerHTML = savingsRange.value;
-yearsGoal.innerHTML = yearsRange.value;
-currentAmountSaved.innerHTML = currentAmountSavedRange.value;
-monthlySavingsGoal.innerHTML = monthlySavingsRange.value;
-expectedRateReturn.innerHTML = expectedRateReturnRange.value;
-expectedRateInflation.innerHTML = expectedRateInflationRange.value;
-// getting and displaying input value
+
 // Update the current slider value (each time you drag the slider handle)
 //TODO update the value based on slider or typing in text box
 savingsRange.oninput = function () {
   goal = this.value;
-  savingsGoal.innerHTML = goal;
 };
 yearsRange.oninput = function () {
   years = this.value;
-  yearsGoal.innerHTML = years;
+  // yearsGoal.innerHTML = years;
 };
 currentAmountSavedRange.oninput = function () {
   currentSaved = this.value;
-  currentAmountSaved.innerHTML = currentSaved;
+  // currentAmountSaved.innerHTML = currentSaved;
 };
 monthlySavingsRange.oninput = function () {
   monthlySaved = this.value;
-  monthlySavingsGoal.innerHTML = monthlySaved;
+  // monthlySavingsGoal.innerHTML = monthlySaved;
 };
 expectedRateReturnRange.oninput = function () {
   expectedReturn = this.value;
-  expectedRateReturn.innerHTML = expectedReturn;
+  // expectedRateReturn.innerHTML = expectedReturn;
 };
 expectedRateInflationRange.oninput = function () {
   expectedInflation = this.value;
-  expectedRateInflation.innerHTML = expectedInflation;
+  // expectedRateInflation.innerHTML = expectedInflation;
 };
 
 // calculate  function
