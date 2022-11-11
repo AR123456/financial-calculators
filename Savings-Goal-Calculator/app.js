@@ -16,7 +16,7 @@ const monthlySavingsRange = document.getElementById("monthlySavingsRange");
 const expectedRateReturnRange = document.getElementById(
   "expectedRateReturnRange"
 );
-const expectedRateInflation = document.getElementById("expectedRateInflation");
+
 const expectedRateInflationRange = document.getElementById(
   "expectedRateInflationRange"
 );
@@ -46,7 +46,6 @@ expectedRateReturnRange.oninput = function () {
 };
 expectedRateInflationRange.oninput = function () {
   expectedInflation = this.value;
-  // expectedRateInflation.innerHTML = expectedInflation;
 };
 
 // calculate  function
@@ -59,11 +58,12 @@ const calculate = () => {
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
   // This formula is close but not quite
-  // let realInt = (expectedReturn - expectedInflation) / 100;
-  // calcTime =
-  //   (Math.E * (1 + (goal / (monthlySaved * (1 + realInt))) * realInt)) /
-  //   (Math.E * (1 + realInt));
-  // console.log(calcTime);
+  let realInt = (expectedReturn - expectedInflation) / 100;
+  calcTime =
+    (Math.E * (1 + (goal * realInt) / monthlySaved)) / (Math.E * (1 + realInt));
+ 
+     
+  console.log(calcTime);
   // actualTime.innerHTML = calcTime
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
