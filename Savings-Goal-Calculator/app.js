@@ -10,7 +10,6 @@ const yearsRange = document.getElementById("yearsRange");
 const currentAmountSavedRange = document.getElementById(
   "currentAmountSavedRange"
 );
-const currentAmountSaved = document.getElementById("currentAmountSaved");
 
 const monthlySavingsRange = document.getElementById("monthlySavingsRange");
 const monthlySavingsGoal = document.getElementById("monthlySavingsGoal");
@@ -40,7 +39,6 @@ yearsRange.oninput = function () {
 };
 currentAmountSavedRange.oninput = function () {
   currentSaved = this.value;
-  // currentAmountSaved.innerHTML = currentSaved;
 };
 monthlySavingsRange.oninput = function () {
   monthlySaved = this.value;
