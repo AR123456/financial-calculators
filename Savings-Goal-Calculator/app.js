@@ -59,11 +59,19 @@ const calculate = () => {
   // real interest rate = interest rate - inflation rate
   // This formula is close but not quite
   let realInt = (expectedReturn - expectedInflation) / 100;
+  console.log(realInt);
+  console.log(Math.E);
+  console.log(Math.LOG10E);
+
+  calcTime2 =
+    (Math.E * (1 + goal / (monthlySaved * (1 + realInt)))) /
+    (Math.E * (1 + realInt));
   calcTime =
-    (Math.E * (1 + (goal * realInt) / monthlySaved)) / (Math.E * (1 + realInt));
- 
-     
+    (Math.LOG10E * (1 + goal / (monthlySaved * (1 + realInt)))) /
+    (Math.LOG10E * (1 + realInt));
+
   console.log(calcTime);
+  console.log(calcTime2);
   // actualTime.innerHTML = calcTime
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
