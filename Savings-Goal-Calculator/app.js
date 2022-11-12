@@ -76,17 +76,22 @@ const calculate = () => {
   // calcTime2 =
   //   (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
   //   (2.71828182845 * (1 + realInt));
-  formNumerator1 = 0.4342922819 * (1 + goal / (monthlySaved * (1 + realInt)));
-  formDenomenator1 = 0.4342922819 * (1 + realInt);
-  calcTime1 =
-    (0.4342922819 * (1 + goal / (monthlySaved * (1 + realInt)))) /
-    (0.4342922819 * (1 + realInt));
-  calcTime2 =
-    (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
-    (2.71828182845 * (1 + realInt));
 
-  console.log(calcTime1);
-  console.log(calcTime2);
+  // calcTime =
+  //   (0.4342922819 * (1 + goal / monthlySavedTimesRealPlusOne)) /
+  //   (0.4342922819 * (1 + realInt));
+
+  // calcTime2 =
+  //   (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
+  //   (2.71828182845 * (1 + realInt));
+  calcNumerator =
+    Math.E * (1 + (goal / monthlySaved) * (1 + realInt) * realInt);
+
+  calcDenom = Math.E * (1 + realInt);
+  calcTime = calcNumerator / (Math.E * (1 + realInt));
+
+  console.log(calcTime);
+
   // actualTime.innerHTML = calcTime
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
