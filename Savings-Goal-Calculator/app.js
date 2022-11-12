@@ -61,12 +61,30 @@ const calculate = () => {
   let realInt = (expectedReturn - expectedInflation) / 100;
   console.log(realInt);
   console.log(Math.E);
+  console.log(Math.LOG10E);
 
+  // calcTime =
+  //   (Math.LOG10E * (1 + goal / (monthlySaved * (1 + realInt)))) /
+  //   (Math.LOG10E * (1 + realInt));
+  // calcTime2 =
+  //   (Math.E * (1 + goal / (monthlySaved * (1 + realInt)))) /
+  //   (Math.E * (1 + realInt));
+
+  // calcTime =
+  //   (0.4342922819 * (1 + goal / (monthlySaved * (1 + realInt)))) /
+  //   (0.4342922819 * (1 + realInt));
+  // calcTime2 =
+  //   (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
+  //   (2.71828182845 * (1 + realInt));
   calcTime =
-    (Math.E * (1 + goal / (monthlySaved * (1 + realInt)))) /
-    (Math.E * (1 + realInt));
+    (0.4342922819 * (1 + goal / (monthlySaved * (1 + realInt)))) /
+    (0.4342922819 * (1 + realInt));
+  calcTime2 =
+    (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
+    (2.71828182845 * (1 + realInt));
 
   console.log(calcTime);
+  console.log(calcTime2);
   // actualTime.innerHTML = calcTime
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
