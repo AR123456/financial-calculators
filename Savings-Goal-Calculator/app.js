@@ -63,32 +63,9 @@ const calculate = () => {
   console.log(Math.E);
   console.log(Math.LOG10E);
 
-  // calcTime =
-  //   (Math.LOG10E * (1 + goal / (monthlySaved * (1 + realInt)))) /
-  //   (Math.LOG10E * (1 + realInt));
-  // calcTime2 =
-  //   (Math.E * (1 + goal / (monthlySaved * (1 + realInt)))) /
-  //   (Math.E * (1 + realInt));
-
-  // calcTime =
-  //   (0.4342922819 * (1 + goal / (monthlySaved * (1 + realInt)))) /
-  //   (0.4342922819 * (1 + realInt));
-  // calcTime2 =
-  //   (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
-  //   (2.71828182845 * (1 + realInt));
-
-  // calcTime =
-  //   (0.4342922819 * (1 + goal / monthlySavedTimesRealPlusOne)) /
-  //   (0.4342922819 * (1 + realInt));
-
-  // calcTime2 =
-  //   (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
-  //   (2.71828182845 * (1 + realInt));
-  numeratorDenom = monthlySaved * (1 + realInt);
-  calcNumerator = Math.LOG10E * (1 + (goal / numeratorDenom) * realInt);
-
-  calcDenom = Math.LOG10E * (1 + realInt);
-  calcTime = calcNumerator / calcDenom;
+  calcTime =
+    (Math.E * (1 + ((goal / (monthlySaved * (1 + realInt) )* realInt) /
+    (Math.E * (1 + realInt));
 
   console.log(calcTime);
 
