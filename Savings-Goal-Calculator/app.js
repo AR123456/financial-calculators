@@ -63,10 +63,12 @@ const calculate = () => {
   console.log(Math.E);
   console.log(Math.LOG10E);
 
-  calcTime =
-    (Math.E * (1 + ((goal / (monthlySaved * (1 + realInt) )* realInt) /
-    (Math.E * (1 + realInt));
+  anotherThingDenom = monthlySaved * (1 + realInt);
+  anotherThing = (goal / anotherThingDenom) * realInt;
 
+  something = 1 + anotherThing;
+  // calcTime = (Math.E * something) / (Math.E * (1 + realInt));
+  calcTime = (Math.LOG10E * something) / (Math.LOG10E * (1 + realInt));
   console.log(calcTime);
 
   // actualTime.innerHTML = calcTime
