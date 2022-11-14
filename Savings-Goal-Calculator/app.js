@@ -84,11 +84,11 @@ const calculate = () => {
   // calcTime2 =
   //   (2.71828182845 * (1 + goal / (monthlySaved * (1 + realInt)))) /
   //   (2.71828182845 * (1 + realInt));
-  calcNumerator =
-    Math.E * (1 + (goal / monthlySaved) * (1 + realInt) * realInt);
+  numeratorDenom = monthlySaved * (1 + realInt);
+  calcNumerator = Math.LOG10E * (1 + (goal / numeratorDenom) * realInt);
 
-  calcDenom = Math.E * (1 + realInt);
-  calcTime = calcNumerator / (Math.E * (1 + realInt));
+  calcDenom = Math.LOG10E * (1 + realInt);
+  calcTime = calcNumerator / calcDenom;
 
   console.log(calcTime);
 
