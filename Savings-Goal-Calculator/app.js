@@ -55,6 +55,7 @@ const calculate = () => {
   console.log(currentSaved);
   console.log(monthlySaved);
   console.log(typeof expectedReturn);
+  console.log(expectedReturn);
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
   // This formula is close but not quite
