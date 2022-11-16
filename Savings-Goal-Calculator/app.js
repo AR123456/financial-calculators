@@ -42,7 +42,7 @@ monthlySavingsRange.oninput = function () {
   monthlySaved = this.value;
 };
 expectedRateReturnRange.oninput = function () {
-  expectedReturn = this.value;
+  expectedReturn = parseFloat(this.value);
 };
 expectedRateInflationRange.oninput = function () {
   expectedInflation = this.value;
@@ -54,19 +54,22 @@ const calculate = () => {
   console.log(years);
   console.log(currentSaved);
   console.log(monthlySaved);
-  console.log(expectedReturn);
+  console.log(typeof expectedReturn);
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
   // This formula is close but not quite
-  let realInt = (expectedReturn - expectedInflation) / 100;
-  console.log(realInt);
+  // let realInt = (expectedReturn - expectedInflation) / 100;
+  // console.log(realInt);
 
   // This formula is close    calcTime is number of months
-  calcTime =
-    Math.log(1 + (goal / monthlySaved) * (1 + realInt) * realInt) /
-    Math.log(1 + realInt);
+  // calcTime =
+  //   Math.log(1 + (goal / monthlySaved) * (1 + realInt) * realInt) /
+  //   Math.log(1 + realInt);
 
-  console.log(calcTime);
+  // calcTime =
+  //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
+
+  // console.log(calcTime);
 
   // actualTime.innerHTML = calcTime
   //   .toString()
