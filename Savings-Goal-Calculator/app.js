@@ -73,7 +73,7 @@ const calculate = () => {
 
   console.log(calcTime);
 
-  // actualTime.innerHTML = calcTime
+  actualTime.innerHTML = calcTime;
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
