@@ -30,22 +30,22 @@ const viewReportButton = document.getElementById("viewReport");
 // Update the current slider value (each time you drag the slider handle)
 //TODO update the value based on slider or typing in text box
 savingsRange.oninput = function () {
-  goal = this.value;
+  goal = parseFloat(this.value);
 };
 yearsRange.oninput = function () {
-  years = this.value;
+  years = parseFloat(this.value);
 };
 currentAmountSavedRange.oninput = function () {
-  currentSaved = this.value;
+  currentSaved = parseFloat(this.value);
 };
 monthlySavingsRange.oninput = function () {
-  monthlySaved = this.value;
+  monthlySaved = parseFloat(this.value);
 };
 expectedRateReturnRange.oninput = function () {
   expectedReturn = parseFloat(this.value);
 };
 expectedRateInflationRange.oninput = function () {
-  expectedInflation = this.value;
+  expectedInflation = parseFloat(this.value);
 };
 
 // calculate  function
@@ -58,19 +58,19 @@ const calculate = () => {
   console.log(expectedReturn);
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
-  // This formula is close but not quite
-  // let realInt = (expectedReturn - expectedInflation) / 100;
-  // console.log(realInt);
+
+  let realInt = (expectedReturn - expectedInflation) / 100;
+  console.log(realInt);
 
   // This formula is close    calcTime is number of months
   // calcTime =
   //   Math.log(1 + (goal / monthlySaved) * (1 + realInt) * realInt) /
   //   Math.log(1 + realInt);
 
-  // calcTime =
-  //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
+  calcTime =
+    Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
 
-  // console.log(calcTime);
+  console.log(calcTime);
 
   // actualTime.innerHTML = calcTime
   //   .toString()
