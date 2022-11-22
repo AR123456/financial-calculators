@@ -58,32 +58,27 @@ const calculate = () => {
   console.log(expectedReturn);
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
-
   let realInt = (expectedReturn - expectedInflation) / 100;
-
   console.log(realInt);
-
-  // This formula is close    calcTime is number of months
-  // calcTime =
-  //   Math.log(1 + (goal / monthlySaved) * (1 + realInt) * realInt) /
-  //   Math.log(1 + realInt);
-
   // calcTime =
   //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
   //adding in current saved
   calcTime =
     Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
     Math.log(1 + realInt);
-
   console.log(calcTime);
-  // actualTime.innerHTML = calcTime;
+  // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
+  let actYears = Math.floor(calcTime / 12);
+  let actMonths = Math.ceil(calcTime % 12);
+
+  /////
   if (calcTime < years * 12) {
-    actualTime.innerHTML = `<span>You will reach your goal in <span>${calcTime}</span> months.</span>
+    // to do change this to __ years and __ months
+    actualTime.innerHTML = `<span>You will reach your goal in ${actYears} years ${actMonths} months.</span>
   </span>`;
   } else {
-    actualTime.innerHTML = ` <span
-    >You will need <span></span> ${calcTime} months to reach your goal.</span>
-  </span>`;
+    actualTime.innerHTML = `<span
+    >You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
   }
 
   //   .toString()
