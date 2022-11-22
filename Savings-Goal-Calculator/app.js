@@ -59,8 +59,8 @@ const calculate = () => {
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
 
-  // let realInt = (expectedReturn - expectedInflation) / 100;
-  let realInt = expectedReturn / 100;
+  let realInt = (expectedReturn - expectedInflation) / 100;
+
   console.log(realInt);
 
   // This formula is close    calcTime is number of months
@@ -68,8 +68,12 @@ const calculate = () => {
   //   Math.log(1 + (goal / monthlySaved) * (1 + realInt) * realInt) /
   //   Math.log(1 + realInt);
 
+  // calcTime =
+  //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
+  //adding in current saved
   calcTime =
-    Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
+    Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
+    Math.log(1 + realInt);
 
   console.log(calcTime);
 
