@@ -76,8 +76,16 @@ const calculate = () => {
     Math.log(1 + realInt);
 
   console.log(calcTime);
+  // actualTime.innerHTML = calcTime;
+  if (calcTime < years * 12) {
+    actualTime.innerHTML = `<span>You will reach your goal in <span>${calcTime}</span> months.</span>
+  </span>`;
+  } else {
+    actualTime.innerHTML = ` <span
+    >You will need <span></span> ${calcTime} months to reach your goal.</span>
+  </span>`;
+  }
 
-  actualTime.innerHTML = calcTime;
   //   .toString()
   //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
