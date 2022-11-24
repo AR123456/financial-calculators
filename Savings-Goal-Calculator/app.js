@@ -1,5 +1,5 @@
-// TODO create a app that will take in a dollar amount goal an years goal
-// the app will calculate how much needs to be saved per month to achive the goal
+// TODO create a app that will take in a dollar amount goal and years goal
+// the app will calculate how much needs to be saved per month to achieve  the goal
 
 // getting elements from DOM
 // Slider inputs
@@ -28,7 +28,8 @@ const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
 
 // Update the current slider value (each time you drag the slider handle)
-//TODO update the value based on slider or typing in text box
+//TODO update the value based on slider or typing in text box - is oninput the best choice here?
+// vars for calculations
 savingsRange.oninput = function () {
   goal = parseFloat(this.value);
 };
@@ -54,7 +55,6 @@ const calculate = () => {
   console.log(years);
   console.log(currentSaved);
   console.log(monthlySaved);
-  console.log(typeof expectedReturn);
   console.log(expectedReturn);
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
@@ -81,12 +81,19 @@ const calculate = () => {
     >You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
   }
 
-  //   .toString()
-  //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //  TODO need a calculation to figure out given the savings goal, and years goal how much needs to be saved each month
+  // TODO solve for Monthly savings
+  // calcMonthly =( goal*realInt)/( (1+realInt) to the power of years*12)-1)
+  // Math.pow(1 + realInt,years*12)
+  calcMonthly = (goal * realInt) / (Math.pow(1 + realInt, years * 12) - 1);
+  console.log(calcMonthly);
+  //
 };
+
 calculateButton.onclick = function () {
   calculate();
 };
+// TODO for the chart will to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
 
 // CHART BOILER PLATE
 
