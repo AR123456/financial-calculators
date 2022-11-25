@@ -21,7 +21,7 @@
               Savings Plan Inputs
               <div class="input-group-text">
                 <!-- the "for on the label puts matching ID into focus" -->
-                <label for="savingsRangeInput">Savings goal $ </label>
+                <label for="savingsInput">Savings goal $ </label>
                 <input
                   id="savingsRange"
                   type="range"
@@ -38,7 +38,12 @@
                   <option value="1000000" label="1000000"></option>
                 </datalist>
                 <div class="input-amount">
-                  <input id="savingsRangeInput" name="price" value="10000" />
+                  <input
+                    id="savingsInput"
+                    name="price"
+                    value="10000"
+                    type="number"
+                  />
                 </div>
               </div>
             </div>
