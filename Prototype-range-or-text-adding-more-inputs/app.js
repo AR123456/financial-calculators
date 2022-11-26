@@ -4,6 +4,10 @@ const calculateButton = document.getElementById("calculate");
 const sliderSavingsGoal = document.getElementById("savingsRange");
 //input box
 const inputGoal = document.getElementById("savingsInput");
+// range slider
+const sliderYears = document.getElementById("yearsRange");
+//input box
+const inputYears = document.getElementById("yearsInput");
 
 //////////////////////////// method one
 
@@ -28,10 +32,11 @@ calculateButton.onclick = function () {
   // since the range and input box have been synced can just get the value from one of them, so using box
   // https://www.youtube.com/watch?v=iKo9pDKKHnc&t=25s 17:20 in
   goal = inputGoal.value;
+  years = inputYears.value;
   console.log(goal);
+  console.log(years);
   // setup();
   // calculate();
-  // syncSavingsGoal();
 };
 //
 
@@ -44,5 +49,12 @@ function syncSavingsGoal(e) {
   const value = e.target.value;
   inputGoal.value = value;
   sliderSavingsGoal.value = value;
+}
+inputYears.addEventListener("input", syncYears);
+sliderYears.addEventListener("input", syncYears);
+function syncYears(e) {
+  const value = e.target.value;
+  inputYears.value = value;
+  sliderYears.value = value;
 }
 // get the value from the inputs
