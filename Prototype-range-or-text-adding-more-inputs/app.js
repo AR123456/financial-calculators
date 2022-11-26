@@ -1,40 +1,44 @@
+// imports
+// import { setup } from "./syncUsingOneFunction.js";
+
 // vars
 const calculateButton = document.getElementById("calculate");
 // range slider
-const sliderSavingsGoal = document.getElementById("savingsRange");
+const sliderGoal = document.getElementById("savingsRange");
 //input box
 const inputGoal = document.getElementById("savingsInput");
-// range slider
-const sliderYears = document.getElementById("yearsRange");
-//input box
-const inputYears = document.getElementById("yearsInput");
+// // range slider
+// const sliderYears = document.getElementById("yearsRange");
+// //input box
+// const inputYears = document.getElementById("yearsInput");
 
 //////////////////////////// method one
 
 function setup() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
-
-  sliderSavingsGoal.addEventListener("input", function () {
+  ///////////// goal
+  sliderGoal.addEventListener("input", function () {
     inputGoal.value = this.value;
   });
   inputGoal.addEventListener("input", function () {
-    sliderSavingsGoal.value = this.value;
+    sliderGoal.value = this.value;
   });
-  goal = parseFloat(inputGoal.value);
-  console.log(sliderSavingsGoal.value);
+  goal = inputGoal.value;
+  console.log(sliderGoal.value);
   console.log(inputGoal.value);
   console.log(goal);
   //
-  sliderYears.addEventListener("input", function () {
-    inputYears.value = this.value;
-  });
-  inputYears.addEventListener("input", function () {
-    sliderYears.value = this.value;
-  });
-  years = parseFloat(inputYears.value);
-  console.log(sliderYears.value);
-  console.log(inputYears.value);
-  console.log(years);
+
+  // sliderYears.addEventListener("input", function () {
+  //   inputYears.value = this.value;
+  // });
+  // inputYears.addEventListener("input", function () {
+  //   sliderYears.value = this.value;
+  // });
+  // years = parseFloat(inputYears.value);
+  // console.log(sliderYears.value);
+  // console.log(inputYears.value);
+  // console.log(years);
 }
 
 setup();
@@ -42,10 +46,10 @@ setup();
 calculateButton.onclick = function () {
   // since the range and input box have been synced can just get the value from one of them, so using box
   // https://www.youtube.com/watch?v=iKo9pDKKHnc&t=25s 17:20 in
-  goal = inputGoal.value;
-  years = inputYears.value;
+  goal = parseFloat(inputGoal.value);
+  // years = inputYears.value;
   console.log(goal);
-  console.log(years);
+  // console.log(years);
   // setup();
   // calculate();
 };
