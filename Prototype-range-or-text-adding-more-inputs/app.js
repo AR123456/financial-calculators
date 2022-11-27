@@ -9,6 +9,10 @@ const sliderCurrentSaved = document.getElementById("currentSavedRange");
 const inputCurrentSaved = document.getElementById("currentSavedInput");
 const sliderMonthlySavings = document.getElementById("monthlySavingsRange");
 const inputMonthlySavings = document.getElementById("monthlySavingsInput");
+const sliderExpectedRate = document.getElementById("expectedRateRange");
+const inputExpectedRate = document.getElementById("expectedRateInput");
+const sliderInflationRate = document.getElementById("expectedInflationRange");
+const inputInflationRate = document.getElementById("expectedInflationInput");
 
 //////////////////////////// method one
 
@@ -39,6 +43,18 @@ function setup() {
   inputMonthlySavings.addEventListener("input", function () {
     sliderMonthlySavings.value = this.value;
   });
+  sliderExpectedRate.addEventListener("input", function () {
+    inputExpectedRate.value = this.value;
+  });
+  inputExpectedRate.addEventListener("input", function () {
+    sliderExpectedRate.value = this.value;
+  });
+  sliderInflationRate.addEventListener("input", function () {
+    inputInflationRate.value = this.value;
+  });
+  inputInflationRate.addEventListener("input", function () {
+    sliderInflationRate.value = this.value;
+  });
 }
 
 setup();
@@ -50,13 +66,16 @@ calculateButton.onclick = function () {
   years = parseFloat(inputYears.value);
   currentSaved = parseFloat(inputCurrentSaved.value);
   monthlySaved = parseFloat(inputMonthlySavings.value);
+  expectedReturn = parseFloat(inputExpectedRate.value);
+  expectedInflation = parseFloat(inputInflationRate.value);
   console.log(goal);
   console.log(years);
   console.log(currentSaved);
   console.log(monthlySaved);
+  console.log(expectedReturn);
+  console.log(expectedInflation);
   // setup();
   // calculate();
-  // syncSavingsGoal();
 };
 //
 

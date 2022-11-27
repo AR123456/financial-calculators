@@ -107,6 +107,55 @@
                   <input id="monthlySavingsInput" value="500" type="number" />
                 </div>
               </div>
+
+              <div class="input-group-text">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="expectedRateInput"
+                  >Expected Rate of Return %:
+                </label>
+                <input
+                  id="expectedRateRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="rateTickmarks"
+                  value="2"
+                />
+                <datalist id="rateTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="25"></option>
+                  <option value="50" label="50"></option>
+                  <option value="77" label="75"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
+                <div class="input-amount">
+                  <input id="expectedRateInput" value="2" type="number" />
+                </div>
+              </div>
+              <div class="input-group-text">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="expectedInflationInput">
+                  Expected Rate of Inflation %:
+                </label>
+                <input
+                  id="expectedInflationRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="inflationTickmarks"
+                  value="1"
+                />
+                <datalist id="inflationTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="25"></option>
+                  <option value="50" label="50"></option>
+                  <option value="77" label="75"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
+                <div class="input-amount">
+                  <input id="expectedInflationInput" value="1" type="number" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
