@@ -17,11 +17,17 @@
       <form action="">
         <div class="card">
           <div class="card-body">
-            <div>
-              Savings Plan Inputs
-              <div class="input-group-text">
+            Savings Plan Inputs
+            <div class="input-group-text">
+              <div>
                 <!-- the "for on the label puts matching ID into focus" -->
-                <label for="savingsInput">Savings goal $ </label>
+                <label for="savingsInput">Savings goal $: </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="savingsInput" name="price" value="10000" />
+              </div>
+              <div>
                 <input
                   id="savingsRange"
                   type="range"
@@ -37,13 +43,18 @@
                   <option value="750000" label="750000"></option>
                   <option value="1000000" label="1000000"></option>
                 </datalist>
-                <div class="input-amount">
-                  <input id="savingsInput" name="price" value="10000" />
-                </div>
               </div>
-              <div class="input-group-text">
+            </div>
+            <div class="input-group-text">
+              <div>
                 <!-- the "for on the label puts matching ID into focus" -->
                 <label for="yearsInput">Years to save </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="yearsInput" value="10" type="number" />
+              </div>
+              <div>
                 <input
                   id="yearsRange"
                   type="range"
@@ -59,13 +70,18 @@
                   <option value="75" label="7"></option>
                   <option value="100" label="10"></option>
                 </datalist>
-                <div class="input-amount">
-                  <input id="yearsInput" value="10" type="number" />
-                </div>
               </div>
-              <div class="input-group-text">
+            </div>
+            <div class="input-group-text">
+              <div>
                 <!-- the "for on the label puts matching ID into focus" -->
                 <label for="currentSavedInput">Current amount saved </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="currentSavedInput" value="1000" type="number" />
+              </div>
+              <div>
                 <input
                   id="currentSavedRange"
                   type="range"
@@ -81,13 +97,18 @@
                   <option value="750000" label="7"></option>
                   <option value="1000000" label="10"></option>
                 </datalist>
-                <div class="input-amount">
-                  <input id="currentSavedInput" value="1000" type="number" />
-                </div>
               </div>
-              <div class="input-group-text">
+            </div>
+            <div class="input-group-text">
+              <div>
                 <!-- the "for on the label puts matching ID into focus" -->
                 <label for="monthlySavingsInput">Monthly Savings $: </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="monthlySavingsInput" value="500" type="number" />
+              </div>
+              <div>
                 <input
                   id="monthlySavingsRange"
                   type="range"
@@ -103,16 +124,21 @@
                   <option value="750000" label="7"></option>
                   <option value="1000000" label="10"></option>
                 </datalist>
-                <div class="input-amount">
-                  <input id="monthlySavingsInput" value="500" type="number" />
-                </div>
               </div>
+            </div>
 
-              <div class="input-group-text">
+            <div class="input-group-text">
+              <div>
                 <!-- the "for on the label puts matching ID into focus" -->
                 <label for="expectedRateInput"
                   >Expected Rate of Return %:
                 </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="expectedRateInput" value="2" type="number" />
+              </div>
+              <div>
                 <input
                   id="expectedRateRange"
                   type="range"
@@ -128,15 +154,20 @@
                   <option value="77" label="75"></option>
                   <option value="100" label="100"></option>
                 </datalist>
-                <div class="input-amount">
-                  <input id="expectedRateInput" value="2" type="number" />
-                </div>
               </div>
-              <div class="input-group-text">
+            </div>
+            <div class="input-group-text">
+              <div>
                 <!-- the "for on the label puts matching ID into focus" -->
                 <label for="expectedInflationInput">
                   Expected Rate of Inflation %:
                 </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="expectedInflationInput" value="1" type="number" />
+              </div>
+              <div>
                 <input
                   id="expectedInflationRange"
                   type="range"
@@ -152,9 +183,6 @@
                   <option value="77" label="75"></option>
                   <option value="100" label="100"></option>
                 </datalist>
-                <div class="input-amount">
-                  <input id="expectedInflationInput" value="1" type="number" />
-                </div>
               </div>
             </div>
           </div>
