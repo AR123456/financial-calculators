@@ -1,9 +1,14 @@
 // vars
 const calculateButton = document.getElementById("calculate");
-// range slider
+// getting range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
-//input box
-const inputGoal = document.getElementById("savingsRangeInput");
+const inputGoal = document.getElementById("savingsInput");
+const sliderYears = document.getElementById("yearsRange");
+const inputYears = document.getElementById("yearsInput");
+const sliderCurrentSaved = document.getElementById("currentSavedRange");
+const inputCurrentSaved = document.getElementById("currentSavedInput");
+const sliderMonthlySavings = document.getElementById("monthlySavingsRange");
+const inputMonthlySavings = document.getElementById("monthlySavingsInput");
 
 //////////////////////////// method one
 
@@ -16,10 +21,24 @@ function setup() {
   inputGoal.addEventListener("input", function () {
     sliderGoal.value = this.value;
   });
-  goal = parseFloat(inputGoal.value);
-  console.log(sliderGoal.value);
-  console.log(inputGoal.value);
-  console.log(goal);
+  sliderYears.addEventListener("input", function () {
+    inputYears.value = this.value;
+  });
+  inputYears.addEventListener("input", function () {
+    sliderYears.value = this.value;
+  });
+  sliderCurrentSaved.addEventListener("input", function () {
+    inputCurrentSaved.value = this.value;
+  });
+  inputCurrentSaved.addEventListener("input", function () {
+    sliderCurrentSaved.value = this.value;
+  });
+  sliderMonthlySavings.addEventListener("input", function () {
+    inputMonthlySavings.value = this.value;
+  });
+  inputMonthlySavings.addEventListener("input", function () {
+    sliderMonthlySavings.value = this.value;
+  });
 }
 
 setup();
@@ -28,7 +47,13 @@ calculateButton.onclick = function () {
   // since the range and input box have been synced can just get the value from one of them, so using box
   // https://www.youtube.com/watch?v=iKo9pDKKHnc&t=25s 17:20 in
   goal = parseFloat(inputGoal.value);
+  years = parseFloat(inputYears.value);
+  currentSaved = parseFloat(inputCurrentSaved.value);
+  monthlySaved = parseFloat(inputMonthlySavings.value);
   console.log(goal);
+  console.log(years);
+  console.log(currentSaved);
+  console.log(monthlySaved);
   // setup();
   // calculate();
   // syncSavingsGoal();
