@@ -1,4 +1,4 @@
-// Consts
+// this function gets the input from the range slider of text box////
 const calculateButton = document.getElementById("calculate");
 // getting range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
@@ -74,5 +74,6 @@ calculateButton.onclick = function () {
   console.log(monthlySaved);
   console.log(expectedReturn);
   console.log(expectedInflation);
+  // setup();
+  // calculate();
 };
-//
