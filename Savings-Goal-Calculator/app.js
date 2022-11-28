@@ -48,7 +48,9 @@ expectedRateReturnRange.oninput = function () {
 expectedRateInflationRange.oninput = function () {
   expectedInflation = parseFloat(this.value);
 };
-
+// real interest rate = interest rate - inflation rate
+const realInt = (expectedReturn - expectedInflation) / 100;
+console.log(realInt);
 // calculate  function
 const calculate = () => {
   console.log(goal);
@@ -96,13 +98,13 @@ const calculate = () => {
     "what actually needs to be saved per month based on entered goal";
 };
 //  calculations for graph
-const updateGraph = (actYears) => {
-  // loop plan years
-  for (let i = 1; i < years + 1; i++) {
-    console.log(i);
-  }
-  // loop actYears
-  console.log(actYears);
+const updateGraph = () => {
+  console.log(goal);
+  console.log(years);
+  console.log(currentSaved);
+  console.log(monthlySaved);
+  console.log(expectedReturn);
+  console.log(expectedInflation);
 };
 calculateButton.onclick = function () {
   calculate();
