@@ -48,9 +48,7 @@ expectedRateReturnRange.oninput = function () {
 expectedRateInflationRange.oninput = function () {
   expectedInflation = parseFloat(this.value);
 };
-// real interest rate = interest rate - inflation rate
-const realInt = (expectedReturn - expectedInflation) / 100;
-console.log(realInt);
+
 // calculate  function
 const calculate = () => {
   console.log(goal);
@@ -78,10 +76,10 @@ const calculate = () => {
   /////
   if (calcTime < years * 12) {
     // to do change this to __ years and __ months
-    actualTime.innerHTML = `<span>You will reach your goal in ${actYears} years ${actMonths} months.</span>
+    actualTime.innerHTML = `<span>You will reach your savings goal in ${actYears} years ${actMonths} months.</span>
   </span>`;
   } else {
-    actualTime.innerHTML = `<span>You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
+    actualTime.innerHTML = `<span>${years} years is not enough time. You will need ${actYears} years ${actMonths} months to reach your savings goal. </span>`;
   }
 
   // calcMonthly is what actually needs to be saved per month to get to goal//////////
@@ -97,18 +95,61 @@ const calculate = () => {
   overTimePerYearNeeded =
     "what actually needs to be saved per month based on entered goal";
 };
-//  calculations for graph
-const updateGraph = () => {
-  console.log(goal);
-  console.log(years);
-  console.log(currentSaved);
-  console.log(monthlySaved);
-  console.log(expectedReturn);
-  console.log(expectedInflation);
-};
+
 calculateButton.onclick = function () {
   calculate();
-  updateGraph();
+
+  // addiing chart inside the calculate function
+  const ctx = document.getElementById("myChart");
+  const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      // labels: data.map((row) => row.year),
+      //  years for each year create a label
+
+      labels: [
+        "Actual by year 1",
+        "Needed for goal by year 1",
+        "Actual by year 2",
+        "Needed for goal by year 2",
+        "Purple",
+        "Orange",
+      ],
+      datasets: [
+        {
+          label: "you will have ",
+          // thousands of dollars scaled to goal
+          data: [5, 3, 3, 5, 2, 3],
+          backgroundColor: [
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+            "rgba(255, 99, 132, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 };
 // TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
 
@@ -117,52 +158,52 @@ calculateButton.onclick = function () {
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 const ctx = document.getElementById("myChart");
-const myChart = new Chart(ctx, {
-  type: "bar",
-  data: {
-    // labels: data.map((row) => row.year),
-    //  years for each year create a label
+// const myChart = new Chart(ctx, {
+//   type: "bar",
+//   data: {
+//     // labels: data.map((row) => row.year),
+//     //  years for each year create a label
 
-    labels: [
-      "Actual by year 1",
-      "Needed for goal by year 1",
-      "Actual by year 2",
-      "Needed for goal by year 2",
-      "Purple",
-      "Orange",
-    ],
-    datasets: [
-      {
-        label: "you will have ",
-        // thousands of dollars scaled to goal
-        data: [5, 3, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(255, 99, 132, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
-});
+//     labels: [
+//       "Actual by year 1",
+//       "Needed for goal by year 1",
+//       "Actual by year 2",
+//       "Needed for goal by year 2",
+//       "Purple",
+//       "Orange",
+//     ],
+//     datasets: [
+//       {
+//         label: "you will have ",
+//         // thousands of dollars scaled to goal
+//         data: [5, 3, 3, 5, 2, 3],
+//         backgroundColor: [
+//           "rgba(54, 162, 235, 0.2)",
+//           "rgba(75, 192, 192, 0.2)",
+//           "rgba(54, 162, 235, 0.2)",
+//           "rgba(75, 192, 192, 0.2)",
+//           "rgba(153, 102, 255, 0.2)",
+//           "rgba(255, 159, 64, 0.2)",
+//         ],
+//         borderColor: [
+//           "rgba(54, 162, 235, 1)",
+//           "rgba(75, 192, 192, 1)",
+//           "rgba(54, 162, 235, 1)",
+//           "rgba(75, 192, 192, 1)",
+//           "rgba(255, 206, 86, 1)",
+//           "rgba(153, 102, 255, 1)",
+//           "rgba(255, 159, 64, 1)",
+//           "rgba(255, 99, 132, 1)",
+//         ],
+//         borderWidth: 1,
+//       },
+//     ],
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//       },
+//     },
+//   },
+// });
