@@ -69,7 +69,8 @@ const calculate = () => {
   console.log(calcTime);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   let actYears = Math.floor(calcTime / 12);
-  let actMonths = Math.ceil(calcTime % 12);
+  // let actMonths = Math.ceil(calcTime % 12);
+  let actMonths = Math.round(calcTime % 12);
 
   /////
   if (calcTime < years * 12) {
