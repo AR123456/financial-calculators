@@ -58,7 +58,7 @@ const calculate = () => {
   console.log(expectedReturn);
   console.log(expectedInflation);
   // real interest rate = interest rate - inflation rate
-  let realInt = (expectedReturn - expectedInflation) / 100;
+  const realInt = (expectedReturn - expectedInflation) / 100;
   console.log(realInt);
   // calcTime =
   //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
@@ -69,9 +69,9 @@ const calculate = () => {
   console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
-  let actYears = Math.floor(calcTime / 12);
+  const actYears = Math.floor(calcTime / 12);
   // let actMonths = Math.ceil(calcTime % 12);
-  let actMonths = Math.round(calcTime % 12);
+  const actMonths = Math.round(calcTime % 12);
 
   /////
   if (calcTime < years * 12) {
@@ -79,8 +79,7 @@ const calculate = () => {
     actualTime.innerHTML = `<span>You will reach your goal in ${actYears} years ${actMonths} months.</span>
   </span>`;
   } else {
-    actualTime.innerHTML = `<span
-    >You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
+    actualTime.innerHTML = `<span>You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
   }
 
   // calcMonthly is what actually needs to be saved per month to get to goal//////////
@@ -96,11 +95,20 @@ const calculate = () => {
   overTimePerYearNeeded =
     "what actually needs to be saved per month based on entered goal";
 };
-
+//  calculations for graph
+const updateGraph = (actYears) => {
+  // loop plan years
+  for (let i = 1; i < years + 1; i++) {
+    console.log(i);
+  }
+  // loop actYears
+  console.log(actYears);
+};
 calculateButton.onclick = function () {
   calculate();
+  updateGraph();
 };
-// TODO for the chart will to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
+// TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
 
 // CHART BOILER PLATE
 
@@ -110,6 +118,9 @@ const ctx = document.getElementById("myChart");
 const myChart = new Chart(ctx, {
   type: "bar",
   data: {
+    // labels: data.map((row) => row.year),
+    //  years for each year create a label
+
     labels: [
       "Actual by year 1",
       "Needed for goal by year 1",
