@@ -62,12 +62,13 @@ const calculate = () => {
   console.log(realInt);
   // calcTime =
   //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
-  //calcTime is the actual amount of time needed to reach the savings goal
+  //calcTime is the actual amount of time needed to reach the savings goal////
   calcTime =
     Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
     Math.log(1 + realInt);
-  console.log(calcTime);
+  console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
+  // act Years and actMonths are for formatting year month style
   let actYears = Math.floor(calcTime / 12);
   // let actMonths = Math.ceil(calcTime % 12);
   let actMonths = Math.round(calcTime % 12);
@@ -82,13 +83,18 @@ const calculate = () => {
     >You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
   }
 
-  // calcMonthly is what actually needs to be saved per month to get to goal
+  // calcMonthly is what actually needs to be saved per month to get to goal//////////
   // calcMonthly =( goal*realInt)/( (1+realInt) to the power of years*12)-1)
   // Math.pow(1 + realInt,years*12)
   calcMonthly = (goal * realInt) / (Math.pow(1 + realInt, years * 12) - 1);
-  console.log(calcMonthly);
+  console.log(
+    `What actually needs to be saved monthly to get to goal in yeas specified ${calcMonthly}`
+  );
   //
   //TODO calculate the value of the annuity each year for the graph.  Will need the calculated values and monthly savings for the entered values and the calculated value for what is needed as an actual monthly deposit to meet the savings goal.
+  overTimePerYearActual = "actual value of annuity";
+  overTimePerYearNeeded =
+    "what actually needs to be saved per month based on entered goal";
 };
 
 calculateButton.onclick = function () {
