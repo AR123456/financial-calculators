@@ -62,7 +62,7 @@ const calculate = () => {
   console.log(realInt);
   // calcTime =
   //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
-  //adding in current saved
+  //calcTime is the actual amount of time needed to reach the savings goal
   calcTime =
     Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
     Math.log(1 + realInt);
@@ -82,13 +82,13 @@ const calculate = () => {
     >You will need ${actYears} years ${actMonths} months to reach your goal. </span>`;
   }
 
-  //  TODO need a calculation to figure out given the savings goal, and years goal how much needs to be saved each month
-  // TODO solve for Monthly savings
+  // calcMonthly is what actually needs to be saved per month to get to goal
   // calcMonthly =( goal*realInt)/( (1+realInt) to the power of years*12)-1)
   // Math.pow(1 + realInt,years*12)
   calcMonthly = (goal * realInt) / (Math.pow(1 + realInt, years * 12) - 1);
   console.log(calcMonthly);
   //
+  //TODO calculate the value of the annuity each year for the graph.  Will need the calculated values and monthly savings for the entered values and the calculated value for what is needed as an actual monthly deposit to meet the savings goal.
 };
 
 calculateButton.onclick = function () {
