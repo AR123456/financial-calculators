@@ -1,26 +1,5 @@
 // TODO create a app that will take in a dollar amount goal and years goal
 // the app will calculate how much needs to be saved per month to achieve  the goal
-
-// getting elements from DOM
-// // Slider inputs
-// const savingsRange = document.getElementById("savingsRange");
-
-// const yearsRange = document.getElementById("yearsRange");
-
-// const currentAmountSavedRange = document.getElementById(
-//   "currentAmountSavedRange"
-// );
-
-// const monthlySavingsRange = document.getElementById("monthlySavingsRange");
-
-// const expectedRateReturnRange = document.getElementById(
-//   "expectedRateReturnRange"
-// );
-
-// const expectedRateInflationRange = document.getElementById(
-//   "expectedRateInflationRange"
-// );
-// Costs
 // getting range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
 const inputGoal = document.getElementById("savingsInput");
@@ -36,32 +15,10 @@ const sliderInflationRate = document.getElementById("expectedInflationRange");
 const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
 // Buttons
-
 const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
 
-// Update the current slider value (each time you drag the slider handle)
-//TODO update the value based on slider or typing in text box - is oninput the best choice here?
-// vars for calculations
-// savingsRange.oninput = function () {
-//   goal = parseFloat(this.value);
-//   document.getElementById("savingsRangeInput").value = goal;
-// };
-// yearsRange.oninput = function () {
-//   years = parseFloat(this.value);
-// };
-// currentAmountSavedRange.oninput = function () {
-//   currentSaved = parseFloat(this.value);
-// };
-// monthlySavingsRange.oninput = function () {
-//   monthlySaved = parseFloat(this.value);
-// };
-// expectedRateReturnRange.oninput = function () {
-//   expectedReturn = parseFloat(this.value);
-// };
-// expectedRateInflationRange.oninput = function () {
-//   expectedInflation = parseFloat(this.value);
-// };
+// function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
 
