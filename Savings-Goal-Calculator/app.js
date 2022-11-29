@@ -1,4 +1,4 @@
-// TODO create a app that will take in a dollar amount goal and years goal
+//TODO create a app that will take in a dollar amount goal and years goal
 // the app will calculate how much needs to be saved per month to achieve  the goal
 // getting range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
@@ -116,5 +116,5 @@ const calculate = () => {
 calculateButton.onclick = function () {
   calculate();
 };
-
+//TODO work on formatting to match example site, look at DYI jumbotron
 // TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
