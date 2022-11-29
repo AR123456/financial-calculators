@@ -16,81 +16,175 @@
   </head>
   <body>
     <div class="container-fluid">
-      <form>
+      <form action="">
         <div class="card">
           <div class="card-body">
-            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
+            Savings Plan Inputs
+            <div class="input-group-text">
+              <div>
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="savingsInput">Savings goal $: </label>
+              </div>
 
-            <div>
-              Savings Plan Inputs
-
-              <div class="input-group-text">
-                <label for="savingsRange">Savings goal $ </label>
-
-                <input type="number" id="savingsRangeInput" />
+              <div class="input-amount">
+                <input id="savingsInput" name="price" value="10000" />
+              </div>
+              <div>
                 <input
-                  type="range"
                   id="savingsRange"
-                  name="savingsRange"
-                  class="form-control"
-                  required="required"
+                  type="range"
+                  min="0"
+                  max="1000000"
+                  list="goalTickmarks"
+                  value="10000"
                 />
+                <datalist id="goalTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="250000" label="250000"></option>
+                  <option value="500000" label="500000"></option>
+                  <option value="750000" label="750000"></option>
+                  <option value="1000000" label="1000000"></option>
+                </datalist>
               </div>
-              <div class="input-group-text">
-                <label for="yearsRange"> Years to save:</label>
+            </div>
+            <div class="input-group-text">
+              <div>
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="yearsInput">Years to save </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="yearsInput" value="10" type="number" />
+              </div>
+              <div>
                 <input
-                  type="number"
                   id="yearsRange"
-                  name="yearsRange"
-                  class="form-control"
-                  required="required"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="yearsTickmarks"
+                  value="10"
                 />
+                <datalist id="yearsTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="2"></option>
+                  <option value="50" label="5"></option>
+                  <option value="75" label="7"></option>
+                  <option value="100" label="10"></option>
+                </datalist>
               </div>
-              <div class="input-group-text">
-                <label for="currentAmountSavedRange">
-                  Current Amount Saved $:
-                </label>
+            </div>
+            <div class="input-group-text">
+              <div>
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="currentSavedInput">Current amount saved </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="currentSavedInput" value="1000" type="number" />
+              </div>
+              <div>
                 <input
-                  type="number"
-                  id="currentAmountSavedRange"
-                  name="currentAmountSavedRange"
-                  class="form-control"
-                  required="required"
+                  id="currentSavedRange"
+                  type="range"
+                  min="0"
+                  max="1000000"
+                  list="currentSavedTickmarks"
+                  value="1000"
                 />
+                <datalist id="currentSavedTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="250000" label="2"></option>
+                  <option value="500000" label="5"></option>
+                  <option value="750000" label="7"></option>
+                  <option value="1000000" label="10"></option>
+                </datalist>
               </div>
-              <div class="input-group-text">
-                <label for="monthlySavingsRange"> Monthly Savings $: </label>
+            </div>
+            <div class="input-group-text">
+              <div>
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="monthlySavingsInput">Monthly Savings $: </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="monthlySavingsInput" value="500" type="number" />
+              </div>
+              <div>
                 <input
-                  type="number"
                   id="monthlySavingsRange"
-                  name="monthlySavingsRange"
-                  class="form-control"
-                  required="required"
+                  type="range"
+                  min="0"
+                  max="1000000"
+                  list="monthlySavingsTickmarks"
+                  value="500"
                 />
+                <datalist id="monthlySavingsTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="250000" label="2"></option>
+                  <option value="500000" label="5"></option>
+                  <option value="750000" label="7"></option>
+                  <option value="1000000" label="10"></option>
+                </datalist>
               </div>
-              <div class="input-group-text">
-                <label for="expectedRateReturnRange">
-                  Expected Rate of Return %:
+            </div>
+
+            <div class="input-group-text">
+              <div>
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="expectedRateInput"
+                  >Expected Rate of Return %:
                 </label>
-                <input
-                  type="number"
-                  id="expectedRateReturnRange"
-                  name="expectedRateReturnRange"
-                  class="form-control"
-                  required="required"
-                />
               </div>
-              <div class="input-group-text">
-                <label for="expectedRateInflationRange">
+
+              <div class="input-amount">
+                <input id="expectedRateInput" value="2" type="number" />
+              </div>
+              <div>
+                <input
+                  id="expectedRateRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="rateTickmarks"
+                  value="2"
+                />
+                <datalist id="rateTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="25"></option>
+                  <option value="50" label="50"></option>
+                  <option value="77" label="75"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
+              </div>
+            </div>
+            <div class="input-group-text">
+              <div>
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="expectedInflationInput">
                   Expected Rate of Inflation %:
                 </label>
+              </div>
+
+              <div class="input-amount">
+                <input id="expectedInflationInput" value="1" type="number" />
+              </div>
+              <div>
                 <input
-                  type="number"
-                  id="expectedRateInflationRange"
-                  name="expectedRateInflationRange"
-                  class="form-control"
-                  required="required"
+                  id="expectedInflationRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="inflationTickmarks"
+                  value="1"
                 />
+                <datalist id="inflationTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="25"></option>
+                  <option value="50" label="50"></option>
+                  <option value="77" label="75"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
               </div>
             </div>
           </div>

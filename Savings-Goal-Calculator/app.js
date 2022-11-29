@@ -2,25 +2,38 @@
 // the app will calculate how much needs to be saved per month to achieve  the goal
 
 // getting elements from DOM
-// Slider inputs
-const savingsRange = document.getElementById("savingsRange");
+// // Slider inputs
+// const savingsRange = document.getElementById("savingsRange");
 
-const yearsRange = document.getElementById("yearsRange");
+// const yearsRange = document.getElementById("yearsRange");
 
-const currentAmountSavedRange = document.getElementById(
-  "currentAmountSavedRange"
-);
+// const currentAmountSavedRange = document.getElementById(
+//   "currentAmountSavedRange"
+// );
 
-const monthlySavingsRange = document.getElementById("monthlySavingsRange");
+// const monthlySavingsRange = document.getElementById("monthlySavingsRange");
 
-const expectedRateReturnRange = document.getElementById(
-  "expectedRateReturnRange"
-);
+// const expectedRateReturnRange = document.getElementById(
+//   "expectedRateReturnRange"
+// );
 
-const expectedRateInflationRange = document.getElementById(
-  "expectedRateInflationRange"
-);
-
+// const expectedRateInflationRange = document.getElementById(
+//   "expectedRateInflationRange"
+// );
+// Costs
+// getting range and text inputs
+const sliderGoal = document.getElementById("savingsRange");
+const inputGoal = document.getElementById("savingsInput");
+const sliderYears = document.getElementById("yearsRange");
+const inputYears = document.getElementById("yearsInput");
+const sliderCurrentSaved = document.getElementById("currentSavedRange");
+const inputCurrentSaved = document.getElementById("currentSavedInput");
+const sliderMonthlySavings = document.getElementById("monthlySavingsRange");
+const inputMonthlySavings = document.getElementById("monthlySavingsInput");
+const sliderExpectedRate = document.getElementById("expectedRateRange");
+const inputExpectedRate = document.getElementById("expectedRateInput");
+const sliderInflationRate = document.getElementById("expectedInflationRange");
+const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
 // Buttons
 
@@ -30,28 +43,74 @@ const viewReportButton = document.getElementById("viewReport");
 // Update the current slider value (each time you drag the slider handle)
 //TODO update the value based on slider or typing in text box - is oninput the best choice here?
 // vars for calculations
-savingsRange.oninput = function () {
-  goal = parseFloat(this.value);
-  document.getElementById("savingsRangeInput").value = goal;
-};
-yearsRange.oninput = function () {
-  years = parseFloat(this.value);
-};
-currentAmountSavedRange.oninput = function () {
-  currentSaved = parseFloat(this.value);
-};
-monthlySavingsRange.oninput = function () {
-  monthlySaved = parseFloat(this.value);
-};
-expectedRateReturnRange.oninput = function () {
-  expectedReturn = parseFloat(this.value);
-};
-expectedRateInflationRange.oninput = function () {
-  expectedInflation = parseFloat(this.value);
-};
+// savingsRange.oninput = function () {
+//   goal = parseFloat(this.value);
+//   document.getElementById("savingsRangeInput").value = goal;
+// };
+// yearsRange.oninput = function () {
+//   years = parseFloat(this.value);
+// };
+// currentAmountSavedRange.oninput = function () {
+//   currentSaved = parseFloat(this.value);
+// };
+// monthlySavingsRange.oninput = function () {
+//   monthlySaved = parseFloat(this.value);
+// };
+// expectedRateReturnRange.oninput = function () {
+//   expectedReturn = parseFloat(this.value);
+// };
+// expectedRateInflationRange.oninput = function () {
+//   expectedInflation = parseFloat(this.value);
+// };
+function syncInputs() {
+  // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
 
+  sliderGoal.addEventListener("input", function () {
+    inputGoal.value = this.value;
+  });
+  inputGoal.addEventListener("input", function () {
+    sliderGoal.value = this.value;
+  });
+  sliderYears.addEventListener("input", function () {
+    inputYears.value = this.value;
+  });
+  inputYears.addEventListener("input", function () {
+    sliderYears.value = this.value;
+  });
+  sliderCurrentSaved.addEventListener("input", function () {
+    inputCurrentSaved.value = this.value;
+  });
+  inputCurrentSaved.addEventListener("input", function () {
+    sliderCurrentSaved.value = this.value;
+  });
+  sliderMonthlySavings.addEventListener("input", function () {
+    inputMonthlySavings.value = this.value;
+  });
+  inputMonthlySavings.addEventListener("input", function () {
+    sliderMonthlySavings.value = this.value;
+  });
+  sliderExpectedRate.addEventListener("input", function () {
+    inputExpectedRate.value = this.value;
+  });
+  inputExpectedRate.addEventListener("input", function () {
+    sliderExpectedRate.value = this.value;
+  });
+  sliderInflationRate.addEventListener("input", function () {
+    inputInflationRate.value = this.value;
+  });
+  inputInflationRate.addEventListener("input", function () {
+    sliderInflationRate.value = this.value;
+  });
+}
+syncInputs();
 // calculate  function
 const calculate = () => {
+  goal = parseFloat(inputGoal.value);
+  years = parseFloat(inputYears.value);
+  currentSaved = parseFloat(inputCurrentSaved.value);
+  monthlySaved = parseFloat(inputMonthlySavings.value);
+  expectedReturn = parseFloat(inputExpectedRate.value);
+  expectedInflation = parseFloat(inputInflationRate.value);
   console.log(goal);
   console.log(years);
   console.log(currentSaved);
