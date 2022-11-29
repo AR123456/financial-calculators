@@ -32,6 +32,7 @@ const viewReportButton = document.getElementById("viewReport");
 // vars for calculations
 savingsRange.oninput = function () {
   goal = parseFloat(this.value);
+  innerHTML = goal;
 };
 yearsRange.oninput = function () {
   years = parseFloat(this.value);

@@ -27,11 +27,16 @@
               <div class="input-group-text">
                 <label for="savingsRange">Savings goal $ </label>
                 <input
-                  type="number"
+                  type="range"
+                  class="form-range slider"
+                  min="0"
+                  max="100000"
+                  step="50"
                   id="savingsRange"
                   name="savingsRange"
                   class="form-control"
                   required="required"
+                  for="savingsRange"
                 />
               </div>
               <div class="input-group-text">
