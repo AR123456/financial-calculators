@@ -1,19 +1,23 @@
-*::before,
-*::after,
 * {
   margin: 0;
   padding: 0;
   color: inherit;
   font: inherit;
 }
+
 html,
 body,
 form,
 form * {
   display: grid;
 }
+
 html {
   height: 100%;
+}
+
+.js {
+  --js: 1;
 }
 
 body,
@@ -28,11 +32,8 @@ body {
 form,
 option {
   place-items: center;
-  /* place-content: center; */
 }
-datalist {
-  grid-auto-flow: column;
-}
+
 form {
   --extra: 0;
   --large: 0;
@@ -65,6 +66,7 @@ form:focus-within,
 form:hover {
   --hl: 1;
 }
+
 label {
   font-size: 137.5%;
 }
@@ -72,11 +74,17 @@ label {
 [for] {
   font-weight: 700;
 }
+
 input {
   width: calc(var(--track-w) + 1.75em);
   background: linear-gradient(90deg, #15b190 25%, #f7c742 0 75%, #b1154c 0) 50% /
     var(--track-w) 0.375em no-repeat;
   cursor: pointer;
+}
+input::-webkit-slider-runnable-track,
+input::-webkit-slider-thumb,
+input {
+  -webkit-appearance: none;
 }
 input::-webkit-slider-thumb {
   margin-top: -0.35em;
@@ -115,6 +123,7 @@ input + output {
 input + output::after {
   content: counter(val);
 }
+
 datalist {
   --track-u: calc(var(--track-w) / var(--n));
   grid-auto-flow: column;
@@ -123,6 +132,7 @@ datalist {
   background: linear-gradient(90deg, currentcolor 1px, transparent 0) repeat-x;
   background-size: calc(var(--track-u) / 5) calc(var(--extra) * 0.5 * 0.875em);
 }
+
 option {
   --m: calc(var(--large));
   width: calc(var(--m) * var(--track-u));
