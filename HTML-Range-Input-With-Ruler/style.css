@@ -1,15 +1,14 @@
 *::before,
 *::after,
 * {
-  box-sizing: border-box;
-}
-body {
-  font-family: "Times New Roman", Times, serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
   margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+html,
+body,
+form,
+form * {
+  display: grid;
 }

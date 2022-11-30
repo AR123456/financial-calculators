@@ -9,11 +9,18 @@
   </head>
   <body>
     <h2>Range Ruler</h2>
+        <!-- setting default styles for the form from the CSS vars  -->
     <form style="--min: 0; --val: 38; --max: 100; --n: 10">
+        <!-- label is tied to the input by matching the for to the input id -->
         <label for="r">Price range</label>
         <input id="r" type="range" value="38" list="l" />
+       <!-- output will contain the slider value and is tied to the input by the input id matching the output "for" -->
         <output for="r"></output>
+        <!-- data list is tied to the input by matching list value in input to the data list id  -->
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist -->
         <datalist id="l">
+            <!-- the data list is what shows the tick marks  -->
+            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option -->
           <option>0</option>
           <option>10</option>
           <option>20</option>
