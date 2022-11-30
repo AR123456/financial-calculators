@@ -9,6 +9,23 @@
   </head>
   <body>
     <h2>Range Ruler</h2>
+    <form style="--min: 0; --val: 38; --max: 100; --n: 10">
+        <label for="r">Price range</label>
+        <input id="r" type="range" value="38" list="l" />
+        <output for="r"></output>
+        <datalist id="l">
+          <option>0</option>
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option class="mid">50</option>
+          <option>60</option>
+          <option>70</option>
+          <option>80</option>
+          <option>90</option>
+          <option>100</option>
+        </datalist>
     <script src="app.js"></script>
   </body>
 </html>
