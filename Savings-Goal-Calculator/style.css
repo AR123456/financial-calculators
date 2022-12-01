@@ -6,11 +6,15 @@
   justify-content: center;
   height: 100vh;
 } */
-/* datalist {
+datalist {
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   align-items: stretch;
   color: red;
   width: 100%;
-} */
+}
+option {
+  justify-content: space-evenly;
+  /* width: 100%; */
+}
