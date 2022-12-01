@@ -104,7 +104,7 @@ const calculate = () => {
   // Math.pow(1 + realInt,years*12)
   calcMonthly = (goal * realInt) / (Math.pow(1 + realInt, years * 12) - 1);
   console.log(
-    `What actually needs to be saved monthly to get to goal in yeas specified ${calcMonthly}`
+    `What actually needs to be saved monthly to get to goal in year specified ${calcMonthly}`
   );
   //
   //TODO calculate the value of the annuity each year for the graph.  Will need the calculated values and monthly savings for the entered values and the calculated value for what is needed as an actual monthly deposit to meet the savings goal.

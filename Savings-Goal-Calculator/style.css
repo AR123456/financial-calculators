@@ -6,3 +6,15 @@
   justify-content: center;
   height: 100vh;
 } */
+datalist {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: stretch;
+  color: red;
+  width: 100%;
+}
+option {
+  /* padding-left: 50%; */
+  width: 110%;
+}
