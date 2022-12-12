@@ -17,6 +17,43 @@
   <body>
     <div class="container-fluid">
       <form action="">
+        <!-- BUTTONS -->
+        <div class="card">
+          <div class="card-body">
+            <div class="container px-4">
+              <div class="row gx-5">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button
+                    class="p-3 border bg-light text-center"
+                    id="calculate"
+                    type="button"
+                  >
+                    Calculate
+                  </button>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button
+                    class="p-3 border bg-light text-center"
+                    id="viewReport"
+                    type="button"
+                  >
+                    View Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" id="actualTime">
+            <!-- <span
+              >You will reach your goal in <span id="actualTime"></span> months.</span>
+            </span> -->
+            <!-- <span
+              >You will need <span id="actualTime"></span> months to reach your goal.</span>
+            </span> -->
+          </div>
+        </div>
         <div class="card">
           <div class="card-body">
             Savings Plan Inputs
@@ -223,44 +260,7 @@
             </div>
           </div>
         </div>
-        <!-- BUTTONS -->
-        <div class="card">
-          <div class="card-body">
-            <div class="container px-4">
-              <div class="row gx-5">
-                <div class="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    class="p-3 border bg-light text-center"
-                    id="calculate"
-                    type="button"
-                  >
-                    Calculate
-                  </button>
-                </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    class="p-3 border bg-light text-center"
-                    id="viewReport"
-                    type="button"
-                  >
-                    View Report
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </form>
-      <div class="card">
-        <div class="card-body" id="actualTime">
-          <!-- <span
-            >You will reach your goal in <span id="actualTime"></span> months.</span>
-          </span> -->
-          <!-- <span
-            >You will need <span id="actualTime"></span> months to reach your goal.</span>
-          </span> -->
-        </div>
-      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
