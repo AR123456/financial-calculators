@@ -70,18 +70,18 @@
                 <output for="savingsInput"></output>
 
                 <datalist id="goalTickmarks">
-                  <option value="0" label="0"></option>
+                  <option value="0" label="$0"></option>
                   <!-- <option value="125000"></option> -->
-                  <option value="250000" label="25k"></option>
-                  <option value="500000" label="50k"></option>
-                  <option value="750000" label="75k"></option>
-                  <option value="1000000" label="1M"></option>
+                  <option value="25000" label="$25k"></option>
+                  <option value="50000" label="$50k"></option>
+                  <option value="75000" label="$75k"></option>
+                  <option value="100000" label="$100k"></option>
                 </datalist>
                 <input
                   id="savingsRange"
                   type="range"
                   min="0"
-                  max="1000000"
+                  max="100000"
                   list="goalTickmarks"
                   value="10000"
                   style="width: 100%"
@@ -97,6 +97,8 @@
               <div class="input-amount col-2 col-lg-2">
                 <input
                   id="yearsInput"
+                  min="0"
+                  max="100"
                   value="10"
                   type="number"
                   style="width: 85px"
@@ -104,11 +106,10 @@
               </div>
               <div class="col-sm-8 col-lg-8">
                 <datalist id="yearsTickmarks">
-                  <option value="0" label="0"></option>
-                  <option value="25" label="2"></option>
-                  <option value="50" label="5"></option>
-                  <option value="75" label="7"></option>
-                  <option value="100" label="10"></option>
+                  <option value="1" label="1"></option>
+                  <option value="34" label="34"></option>
+                  <option value="67" label="67"></option>
+                  <option value="100" label="100"></option>
                 </datalist>
                 <input
                   id="yearsRange"

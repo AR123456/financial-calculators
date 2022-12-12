@@ -1,11 +1,6 @@
-/* body {
-  font-family: "Courier New", Courier, monospace;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-} */
+body {
+  font-family: "Roboto", sans-serif;
+}
 option {
   display: flex;
 
@@ -16,6 +11,23 @@ datalist {
   justify-content: space-evenly;
   flex-direction: row;
   align-items: stretch;
-  color: green;
+  color: #2fa22f;
   width: 120%;
+}
+/* blue  #053E6A */
+/* green #2fa22f */
+/* background #ffffff */
+
+input {
+  color: black;
+}
+
+input[type="range"],
+input::-webkit-slider-runnable-track {
+  color: #2fa22f;
+}
+::-webkit-scrollbar-thumb,
+::-webkit-slider-thumb,
+::-ms-thumb {
+  color: #2fa22f;
 }
