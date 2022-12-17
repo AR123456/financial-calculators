@@ -100,11 +100,10 @@ const calculate = () => {
   // const realInt = (expectedReturn - expectedInflation) / 100;
   const realInt = expectedReturn / 100;
   console.log(realInt);
-  // TODO watch this video  https://www.youtube.com/watch?v=k659awIywBs
-  a = goal * realInt;
-
-  calcTime =
-    Math.log(1 + a / (monthlySaved + currentSaved)) / Math.log(1 + realInt);
+  // calcTime =
+  //   Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
+  //   Math.log(1 + realInt);
+  calcTime = Math.log(goal / currentSaved) / (12 * Math.log(1 + realInt / 12));
 
   console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
