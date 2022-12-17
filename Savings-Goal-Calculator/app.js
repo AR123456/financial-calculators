@@ -103,13 +103,10 @@ const calculate = () => {
   // calcTime =
   //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
   //calcTime is the actual amount of time needed to reach the savings goal////
-  // TODO this is still wrong
   calcTime =
     Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
     Math.log(1 + realInt);
 
-  console.log(`Months needed ${calcTime}`);
-  // doing some calculations from the PDF
   // Correct what componded value of current amount saved is in the given years to save
   FV = currentSaved * (1 + realInt * years);
   CV = currentSaved;
@@ -123,15 +120,8 @@ const calculate = () => {
       2
     )}`
   );
-  // Term of annuity due future value given - in this case FV is goal
-  // TODO this should be the time to reach goal but it is not
-  TermOfAnnuityDueGoalGiven =
-    Math.log(
-      1 + (goal * realInt) / ((currentSaved * A + monthlySaved) * 1 + realInt)
-    ) / Math.log(1 + realInt);
-  console.log(
-    `Term of annuity due with FV or goal given ${TermOfAnnuityDueGoalGiven}`
-  );
+
+  console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
   const actYears = Math.floor(calcTime / 12);
