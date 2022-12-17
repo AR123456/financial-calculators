@@ -21,16 +21,16 @@ const viewReportButton = document.getElementById("viewReport");
 // Function to format input boxes as currency
 // the initial values, any changes and slider inputs should all be formated
 // target values on page load or with a change call this function
-// function formatCurrency(num) {
-//   console.log(
-//     new Intl.NumberFormat("en-IN", {
-//       style: "currency",
-//       currency: "USD",
-//       minimumFractionDigits: 2,
-//     }).format(num)
-//   );
-// }
-// formatCurrency(inputGoal.value);
+function formatCurrency(num) {
+  console.log(
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+    }).format(num)
+  );
+}
+formatCurrency(inputGoal.value);
 // function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
@@ -100,26 +100,11 @@ const calculate = () => {
   // const realInt = (expectedReturn - expectedInflation) / 100;
   const realInt = expectedReturn / 100;
   console.log(realInt);
-  // calcTime =
-  //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
-  //calcTime is the actual amount of time needed to reach the savings goal////
-  calcTime =
-    Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
-    Math.log(1 + realInt);
+  // TODO watch this video  https://www.youtube.com/watch?v=k659awIywBs
+  a = goal * realInt;
 
-  // Correct what componded value of current amount saved is in the given years to save
-  FV = currentSaved * (1 + realInt * years);
-  CV = currentSaved;
-  console.log(`Value of currently saved after given number of years ${FV}`);
-  TermOfMaturity = (FV / CV - 1) / realInt;
-  console.log(`this should be years ${TermOfMaturity.toFixed(2)}`);
-  // payment of annuity based on the current value or current saved
-  A = (CV * realInt) / 1 - Math.pow(1 + realInt, -years);
-  console.log(
-    `Payment of annuity based on current saved or better stated the amount of interest earned each year for the number of years on the plan  ${A.toFixed(
-      2
-    )}`
-  );
+  calcTime =
+    Math.log(1 + a / (monthlySaved + currentSaved)) / Math.log(1 + realInt);
 
   console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
