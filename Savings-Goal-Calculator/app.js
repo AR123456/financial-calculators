@@ -103,9 +103,15 @@ const calculate = () => {
   // calcTime =
   //   Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
   //   Math.log(1 + realInt);
-  calcTime = Math.log(goal / currentSaved) / (12 * Math.log(1 + realInt / 12));
+  const a = Math.log((1 + realInt) / 12);
+  const b = Math.log(goal / currentSaved);
+  const c = (12 * a) / 12;
 
-  console.log(`Months needed ${calcTime}`);
+  calcTime = b / c;
+
+  console.log(`YEARS needed ${calcTime}`);
+
+  // console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
   const actYears = Math.floor(calcTime / 12);
