@@ -1,0 +1,74 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+option {
+  display: flex;
+
+  width: 100%;
+}
+datalist {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: stretch;
+  color: black;
+  width: 110%;
+}
+/* blue  #053E6A */
+/* green #2fa22f */
+/* background #ffffff */
+
+input {
+  color: black;
+}
+
+/* CSS for Range input ////////////////////////////////////////////// */
+/* https://www.cssportal.com/style-input-range/ */
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+
+/* The slider itself */
+input[type="range"] {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  border-radius: 5px;
+  /* background: #d3d3d3;  */
+
+  background: transparent;
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+input[type="range"]:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  margin-bottom: 11px;
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  border-radius: 50%;
+  background: #04aa6d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  border-radius: 50%;
+
+  background: #04aa6d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+input[type="range"]::-webkit-progress-bar {
+  background-color: red;
+  height: 1em;
+  color: red;
+}
