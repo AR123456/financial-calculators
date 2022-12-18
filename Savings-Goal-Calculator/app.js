@@ -94,7 +94,9 @@ const calculate = () => {
   //   Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
   //   Math.log(1 + realInt);
   // trying the calc again based on this resource  https://www.thecalculatorsite.com/finance/calculators/compound-interest-formula
-  calcTime = Math.log(goal / currentSaved) / (12 * Math.log(1 + realInt / 12));
+  calcTime =
+    Math.log(goal / currentSaved) / (12 * Math.log(1 + realInt / 12)) / 12;
+
   console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
