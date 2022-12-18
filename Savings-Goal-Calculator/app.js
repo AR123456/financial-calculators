@@ -87,15 +87,17 @@ const calculate = () => {
   // const realInt = (expectedReturn - expectedInflation) / 100;
   const realInt = expectedReturn / 100;
   console.log(realInt);
-  // calcTime =
-  //   Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
+  calcTime =
+    Math.log(1 + (goal * realInt) / monthlySaved) / Math.log(1 + realInt);
   //calcTime is the actual amount of time needed to reach the savings goal////
   // calcTime =
   //   Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
   //   Math.log(1 + realInt);
   // trying the calc again based on this resource  https://www.thecalculatorsite.com/finance/calculators/compound-interest-formula
-  calcTime =
-    Math.log(goal / currentSaved) / (12 * Math.log(1 + realInt / 12)) / 12;
+  // calcTime =
+  //   Math.log(goal / (currentSaved + monthlySaved)) /
+  //   (12 * Math.log(1 + realInt / 12)) /
+  //   12;
 
   console.log(`Months needed ${calcTime}`);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
