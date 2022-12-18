@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styleRange.css" />
     <title>Savings Goal Calculator</title>
   </head>
   <body>
@@ -54,209 +55,329 @@
             </span> -->
           </div>
         </div>
-        <div class="card">
+
+        <div>
           <div class="card-body">
-            Savings Plan Inputs
-            <div class="input-group-text row mb-3">
-              <div class="col-2 col-lg-2">
-                <!-- the "for on the label puts matching ID into focus" -->
-                <label for="savingsInput">Savings goal $: </label>
+            <div id="sliderContainer">
+              Savings Plan Inputs
+              <!-- Savings Goal  -->
+              <div class="row mb-3">
+                <div class="col-2 col-lg-2">
+                  <!-- the "for on the label puts matching ID into focus" -->
+                  <label for="savingsInput">Savings goal $: </label>
+                </div>
+
+                <div class="input-amount col-2 col-lg-2">
+                  <input
+                    id="savingsInput"
+                    class="box-input"
+                    type="number"
+                    value="10000"
+                  />
+                </div>
+                <div class="col-sm-8 col-lg-8">
+                  <datalist>
+                    <option value="0" label="$0"></option>
+                    <option label="$25k"></option>
+                    <option label="$50k"></option>
+                    <option label="$75k"></option>
+                    <option label="$100k"></option>
+                  </datalist>
+
+                  <div class="tick-slider">
+                    <!-- If i comment out this slider black background ( to the right disapears) -->
+                    <div class="tick-slider-background"></div>
+                    <!-- If I comment out this div the tick marks and green to left disapear -->
+                    <div id="goalProgress" class="tick-slider-progress"></div>
+                    <!-- If i comment out this div the tick marks only disapear   -->
+                    <div
+                      id="goalTicks"
+                      class="tick-slider-tick-container"
+                    ></div>
+                    <input
+                      id="savingsRange"
+                      id="goalSlider"
+                      class="tick-slider-input"
+                      type="range"
+                      min="0"
+                      max="100000"
+                      step="5"
+                      value="10000"
+                      data-tick-step="5000"
+                      data-tick-id="goalTicks"
+                      data-progress-id="goalProgress"
+                      data-handle-size="18"
+                      data-min-label-id="goalLabelMin"
+                      data-max-label-id="goalLabelMax"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Years to save ///////////////////////// -->
+              <div class="row mb-3">
+                <div class="col-2 col-lg-2">
+                  <!-- the "for on the label puts matching ID into focus" -->
+                  <label for="yearsInput">Years to save </label>
+                </div>
+                <div class="input-amount col-2 col-lg-2">
+                  <input
+                    class="box-input"
+                    id="yearsInput"
+                    min="0"
+                    max="100"
+                    value="10"
+                    type="number"
+                    style="width: 85px"
+                  />
+                </div>
+
+                <div class="col-sm-8 col-lg-8">
+                  <datalist>
+                    <option label="0"></option>
+                    <option label="34"></option>
+                    <option label="67"></option>
+                    <option label="100"></option>
+                  </datalist>
+                  <div class="tick-slider">
+                    <div class="tick-slider-background"></div>
+                    <div id="yearProgress" class="tick-slider-progress"></div>
+                    <div
+                      id="yearTicks"
+                      class="tick-slider-tick-container"
+                    ></div>
+                    <input
+                      id="yearsRange"
+                      id="yearSlider"
+                      class="tick-slider-input"
+                      type="range"
+                      min="0"
+                      max="100"
+                      step="1"
+                      value="10"
+                      data-tick-step="5"
+                      data-tick-id="yearTicks"
+                      data-progress-id="yearProgress"
+                      data-handle-size="18"
+                      data-min-label-id="yearLabelMin"
+                      data-max-label-id="yearLabelMax"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- /////////////////////////current saved area  -->
+              <div class="row mb-3">
+                <div class="col-2 col-lg-2">
+                  <!-- the "for on the label puts matching ID into focus" -->
+                  <label for="currentSavedInput">Current saved </label>
+                </div>
+                <div class="input-amount col-2 col-lg-2">
+                  <input
+                    class="box-input"
+                    id="currentSavedInput"
+                    value="1000"
+                    type="number"
+                    style="width: 85px"
+                  />
+                </div>
+                <div class="col-sm-8 col-lg-8">
+                  <datalist>
+                    <option label="$0"></option>
+                    <option label="$25k"></option>
+                    <option label="$50k"></option>
+                    <option label="$75k"></option>
+                    <option label="$100k"></option>
+                  </datalist>
+                  <div class="tick-slider">
+                    <div class="tick-slider-background"></div>
+                    <div
+                      id="currentSavedProgress"
+                      class="tick-slider-progress"
+                    ></div>
+                    <div
+                      id="currentSavedTicks"
+                      class="tick-slider-tick-container"
+                    ></div>
+                    <input
+                      id="currentSavedRange"
+                      id="currentSavedSlider"
+                      class="tick-slider-input"
+                      type="range"
+                      min="0"
+                      max="100000"
+                      step="500"
+                      value="1000"
+                      data-tick-step="5000"
+                      data-tick-id="currentSavedTicks"
+                      data-progress-id="currentSavedProgress"
+                      data-handle-size="18"
+                      data-min-label-id="currentSavedLabelMin"
+                      data-max-label-id="currentSavedLabelMax"
+                      style="width: 100%"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- //////////////////Monthly to save area  -->
+              <div class="row mb-3">
+                <div class="col-2 col-lg-2">
+                  <!-- the "for on the label puts matching ID into focus" -->
+                  <label for="monthlySavingsInput">Monthly Savings $: </label>
+                </div>
+
+                <div class="input-amount col-2 col-lg-2">
+                  <input
+                    class="box-input"
+                    id="monthlySavingsInput"
+                    value="500"
+                    type="number"
+                    style="width: 85px"
+                  />
+                </div>
+                <div class="col-sm-8 col-lg-8">
+                  <datalist>
+                    <option label="$0"></option>
+                    <option label="$5k"></option>
+                    <option label="$10k"></option>
+                    <option label="$15k"></option>
+                    <option label="$20k"></option>
+                  </datalist>
+                  <div class="tick-slider">
+                    <div class="tick-slider-background"></div>
+                    <div
+                      id="monthlySavingsProgress"
+                      class="tick-slider-progress"
+                    ></div>
+                    <div
+                      id="monthlySavingsTicks"
+                      class="tick-slider-tick-container"
+                    ></div>
+                    <input
+                      id="monthlySavingsRange"
+                      id="monthlySavingsSlider"
+                      class="tick-slider-input"
+                      type="range"
+                      min="0"
+                      max="20000"
+                      step="1000"
+                      value="500"
+                      data-tick-step="1000"
+                      data-tick-id="monthlySavingsTicks"
+                      data-progress-id="monthlySavingsProgress"
+                      data-handle-size="18"
+                      data-min-label-id="monthlySavingsLabelMin"
+                      data-max-label-id="monthlySavingsLabelMax"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div class="input-amount col-2 col-lg-2">
-                <input id="savingsInput" value="10000" style="width: 85px" />
-              </div>
-              <div class="col-sm-8 col-lg-8">
-                <output for="savingsInput"></output>
+              <!-- ///////////////// expected rate area -->
+              <div class="row mb-3">
+                <div class="col-2 col-lg-2">
+                  <!-- the "for on the label puts matching ID into focus" -->
+                  <label for="expectedRateInput"
+                    >Expected Rate of Return %:
+                  </label>
+                </div>
 
-                <datalist id="goalTickmarks">
-                  <option value="0" label="$0"></option>
-                  <!-- <option value="125000"></option> -->
-                  <option value="25000" label="$25k"></option>
-                  <option value="50000" label="$50k"></option>
-                  <option value="75000" label="$75k"></option>
-                  <option value="100000" label="$100k"></option>
-                </datalist>
-                <input
-                  id="savingsRange"
-                  type="range"
-                  min="0"
-                  max="100000"
-                  list="goalTickmarks"
-                  value="10000"
-                  style="width: 100%"
-                />
+                <div class="input-amount col-2 col-lg-2">
+                  <input
+                    class="box-input"
+                    id="expectedRateInput"
+                    value="3"
+                    type="number"
+                    style="width: 85px"
+                  />
+                </div>
+                <div class="col-sm-8 col-lg-8">
+                  <datalist>
+                    <option label="0%"></option>
+                    <option label="3%"></option>
+                    <option label="6%"></option>
+                    <option label="9%"></option>
+                    <option label="12%"></option>
+                  </datalist>
+                  <div class="tick-slider">
+                    <div class="tick-slider-background"></div>
+                    <div id="rateProgress" class="tick-slider-progress"></div>
+                    <div
+                      id="rateTicks"
+                      class="tick-slider-tick-container"
+                    ></div>
+                    <input
+                      id="expectedRateRange"
+                      id="rateSlider"
+                      class="tick-slider-input"
+                      type="range"
+                      min="0"
+                      max="15"
+                      step="1"
+                      value="3"
+                      data-tick-step="1"
+                      data-tick-id="rateTicks"
+                      data-progress-id="rateProgress"
+                      data-handle-size="18"
+                      data-min-label-id="rateLabelMin"
+                      data-max-label-id="rateLabelMax"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="input-group-text row mb-3">
-              <div class="col-2 col-lg-2">
-                <!-- the "for on the label puts matching ID into focus" -->
-                <label for="yearsInput">Years to save </label>
-              </div>
+              <!--  //////////////////////expected Inflation  -->
+              <div class="row mb-3">
+                <div class="col-2 col-lg-2">
+                  <!-- the "for on the label puts matching ID into focus" -->
+                  <label for="expectedInflationInput">
+                    Expected Rate of Inflation %:
+                  </label>
+                </div>
 
-              <div class="input-amount col-2 col-lg-2">
-                <input
-                  id="yearsInput"
-                  min="0"
-                  max="100"
-                  value="10"
-                  type="number"
-                  style="width: 85px"
-                />
-              </div>
-              <div class="col-sm-8 col-lg-8">
-                <datalist id="yearsTickmarks">
-                  <option value="1" label="1"></option>
-                  <option value="34" label="34"></option>
-                  <option value="67" label="67"></option>
-                  <option value="100" label="100"></option>
-                </datalist>
-                <input
-                  id="yearsRange"
-                  type="range"
-                  min="0"
-                  max="100"
-                  list="yearsTickmarks"
-                  value="10"
-                  style="width: 100%"
-                />
-              </div>
-            </div>
-            <div class="input-group-text row mb-3">
-              <div class="col-2 col-lg-2">
-                <!-- the "for on the label puts matching ID into focus" -->
-                <label for="currentSavedInput">Current saved </label>
-              </div>
+                <div class="input-amount col-2 col-lg-2">
+                  <input
+                    class="box-input"
+                    id="expectedInflationInput"
+                    value="1"
+                    type="number"
+                    style="width: 85px"
+                  />
+                </div>
 
-              <div class="input-amount col-2 col-lg-2">
-                <input
-                  id="currentSavedInput"
-                  value="1000"
-                  type="number"
-                  style="width: 85px"
-                />
-              </div>
-              <div class="col-sm-8 col-lg-8">
-                <datalist id="currentSavedTickmarks">
-                  <option value="0" label="0"></option>
-                  <option value="250000" label="2"></option>
-                  <option value="500000" label="5"></option>
-                  <option value="750000" label="7"></option>
-                  <option value="1000000" label="10"></option>
-                </datalist>
-                <input
-                  id="currentSavedRange"
-                  type="range"
-                  min="0"
-                  max="1000000"
-                  list="currentSavedTickmarks"
-                  value="1000"
-                  style="width: 100%"
-                />
-              </div>
-            </div>
-            <div class="input-group-text row mb-3">
-              <div class="col-2 col-lg-2">
-                <!-- the "for on the label puts matching ID into focus" -->
-                <label for="monthlySavingsInput">Monthly Savings $: </label>
-              </div>
-
-              <div class="input-amount col-2 col-lg-2">
-                <input
-                  id="monthlySavingsInput"
-                  value="500"
-                  type="number"
-                  style="width: 85px"
-                />
-              </div>
-              <div class="col-sm-8 col-lg-8">
-                <datalist id="monthlySavingsTickmarks">
-                  <option value="0" label="0"></option>
-                  <option value="250000" label="2"></option>
-                  <option value="500000" label="5"></option>
-                  <option value="750000" label="7"></option>
-                  <option value="1000000" label="10"></option>
-                </datalist>
-                <input
-                  id="monthlySavingsRange"
-                  type="range"
-                  min="0"
-                  max="1000000"
-                  list="monthlySavingsTickmarks"
-                  value="500"
-                  style="width: 100%"
-                />
-              </div>
-            </div>
-
-            <div class="input-group-text row mb-3">
-              <div class="col-2 col-lg-2">
-                <!-- the "for on the label puts matching ID into focus" -->
-                <label for="expectedRateInput"
-                  >Expected Rate of Return %:
-                </label>
-              </div>
-
-              <div class="input-amount col-2 col-lg-2">
-                <input
-                  id="expectedRateInput"
-                  value="2"
-                  type="number"
-                  style="width: 85px"
-                />
-              </div>
-              <div class="col-sm-8 col-lg-8">
-                <datalist id="rateTickmarks">
-                  <option value="0" label="0"></option>
-                  <option value="25" label="25"></option>
-                  <option value="50" label="50"></option>
-                  <option value="77" label="75"></option>
-                  <option value="100" label="100"></option>
-                </datalist>
-                <input
-                  id="expectedRateRange"
-                  type="range"
-                  min="0"
-                  max="100"
-                  list="rateTickmarks"
-                  value="2"
-                  style="width: 100%"
-                />
-              </div>
-            </div>
-            <div class="input-group-text row mb-3">
-              <div class="col-2 col-lg-2">
-                <!-- the "for on the label puts matching ID into focus" -->
-                <label for="expectedInflationInput">
-                  Expected Rate of Inflation %:
-                </label>
-              </div>
-
-              <div class="input-amount col-2 col-lg-2">
-                <input
-                  id="expectedInflationInput"
-                  value="1"
-                  type="number"
-                  style="width: 85px"
-                />
-              </div>
-              <div class="col-sm-8 col-lg-8">
-                <datalist id="inflationTickmarks">
-                  <option value="0" label="0"></option>
-                  <option value="25" label="25"></option>
-                  <option value="50" label="50"></option>
-                  <option value="77" label="75"></option>
-                  <option value="100" label="100"></option>
-                </datalist>
-                <input
-                  id="expectedInflationRange"
-                  type="range"
-                  min="0"
-                  max="100"
-                  list="inflationTickmarks"
-                  value="1"
-                  style="width: 100%"
-                />
+                <div class="col-sm-8 col-lg-8">
+                  <datalist>
+                    <option label="0%"></option>
+                    <option label="3%"></option>
+                    <option label="6%"></option>
+                    <option label="9%"></option>
+                    <option label="12%"></option>
+                  </datalist>
+                  <div class="tick-slider">
+                    <div class="tick-slider-background"></div>
+                    <div
+                      id="expectedInflationProgress"
+                      class="tick-slider-progress"
+                    ></div>
+                    <div
+                      id="expectedInflationTicks"
+                      class="tick-slider-tick-container"
+                    ></div>
+                    <input
+                      id="expectedInflationRange"
+                      id="expectedInflationSlider"
+                      class="tick-slider-input"
+                      type="range"
+                      min="0"
+                      max="15"
+                      step="2"
+                      value="1"
+                      data-tick-step="2"
+                      data-tick-id="expectedInflationTicks"
+                      data-progress-id="expectedInflationProgress"
+                      data-handle-size="18"
+                      data-min-label-id="expectedInflationLabelMin"
+                      data-max-label-id="expectedInflationLabelMax"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
