@@ -22,18 +22,19 @@ const viewReportButton = document.getElementById("viewReport");
 // the initial values, any changes and slider inputs should all be formated
 // target values on page load or with a change call this function
 function formatCurrency(num) {
-  console.log("format");
-  new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  }).format(num);
+  console.log(
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+    }).format(num)
+  );
 }
-
+formatCurrency(inputGoal.value);
 // function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
-  formatCurrency(inputGoal.value);
+
   // /////////////////////////
   sliderGoal.addEventListener("input", function () {
     inputGoal.value = this.value;
