@@ -18,10 +18,22 @@ const actualTime = document.getElementById("actualTime");
 const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
 
+// Function to format input boxes as currency
+// the initial values, any changes and slider inputs should all be formated
+// target values on page load or with a change call this function
+function formatCurrency(num) {
+  console.log("format");
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  }).format(num);
+}
+
 // function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
-
+  formatCurrency(inputGoal.value);
   // /////////////////////////
   sliderGoal.addEventListener("input", function () {
     inputGoal.value = this.value;
