@@ -33,7 +33,9 @@ input[type="range"] {
   width: 100%; /* Full-width */
   height: 10px; /* Specified height */
   border-radius: 5px;
-  background: #d3d3d3; /* Grey background */
+  /* background: #d3d3d3;  */
+
+  background: transparent;
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
