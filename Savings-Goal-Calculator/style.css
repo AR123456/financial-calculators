@@ -10,3 +10,7 @@ input {
   color: black;
   width: 95px;
 }
+.displayExpectedRate,
+p {
+  font-size: x-small;
+}

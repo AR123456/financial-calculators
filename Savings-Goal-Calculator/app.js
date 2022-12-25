@@ -14,6 +14,11 @@ const inputExpectedRate = document.getElementById("expectedRateInput");
 const sliderInflationRate = document.getElementById("expectedInflationRange");
 const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
+const actualRate = document.getElementById("actualRate");
+const displayExpectedRate = document.getElementById("displayExpectedRate");
+// to display expected rate of return to user
+let DisplayExpectedRate = inputExpectedRate.value / 12;
+
 // Buttons
 const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
@@ -71,6 +76,9 @@ function syncInputs() {
   inputExpectedRate.addEventListener("input", function () {
     sliderExpectedRate.value = this.value;
     updateProgress(sliderExpectedRate);
+    let DisplayExpectedRate = (inputExpectedRate.value / 12).toFixed(2);
+    console.log(DisplayExpectedRate);
+    displayExpectedRate.innerHTML = `<p>MPR ${DisplayExpectedRate}%</p>`;
   });
   sliderInflationRate.addEventListener("input", function () {
     inputInflationRate.value = this.value;
@@ -82,6 +90,7 @@ function syncInputs() {
 }
 syncInputs();
 
+displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
@@ -92,11 +101,12 @@ const calculate = () => {
   expectedInflation = parseFloat(inputInflationRate.value);
 
   // Assuming compounding monthly payment at begining of month
-  // API convreted to monthly rate of return expected rate of return / months then to get % as numb /100
+  // APR convreted to monthly rate of return expected rate of return / months then to get % as numb /100
   const nper = years * 12;
   console.log(nper);
-  const API = expectedReturn / 100;
-  const rate = API / nper; // monthly rate of return
+  const APR = expectedReturn / 100;
+  const rate = APR / nper; // monthly rate of return
+
   console.log(rate);
   const pmt = monthlySaved;
   console.log(pmt);
@@ -108,23 +118,30 @@ const calculate = () => {
 
   //  this is the FV formula from stack overflow
   // https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
+  // The FV function is a financial function that returns the future value of an investment
+  // rate - The interest rate per period.
+  // nper - The total number of payment periods.
+  // pmt - The payment made each period. Must be entered as a negative number.
+  // pv - [optional] The present value of future payments. If omitted, assumed to be zero. Must be entered as a negative number.
+  // type - [optional] When payments are due. 0 = end of period, 1 = beginning of period. Default is 0.
   function calcFV(rate, nper, pmt, pv, type) {
     var pow = Math.pow(1 + rate, nper),
       fv;
     if (rate) {
-      fv = (pmt * (1 + rate * type) * (1 - pow)) / rate - pv * pow;
+      fv = (-pmt * (1 + rate * type) * (1 - pow)) / rate - -pv * pow;
     } else {
-      fv = -1 * (pv + pmt * nper);
+      fv = -1 * (-pv + -pmt * nper);
     }
-    // using Math.abs because this returns a negative number
+
     // return fv.toFixed(2);
-    return Math.abs(fv.toFixed(2));
+
+    return fv.toFixed(2);
   }
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(FV);
   // stack overflow of the NPER excel function number nummper of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
   // rate - The interest rate per period.
-  // pmt - payment The payment made each period.
+  // pmt - payment The payment made each period. since this is savings make negative number
   // pv - present The present value, or total value of all payments now. For savings making this a neg number for the calc
   // goal - future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
   // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
@@ -136,10 +153,11 @@ const calculate = () => {
     future = typeof future === "undefined" ? 0 : goal;
 
     // Return number of periods
-    const num = pmt * (1 + rate * type) - goal * rate;
+    const num = -pmt * (1 + rate * type) - goal * rate;
     // this is savings, not loan so making pv negative so the calc works
-    const den = -pv * rate + pmt * (1 + rate * type);
-    return Math.abs(Math.log(num / den) / Math.log(1 + rate));
+    const den = -pv * rate + -pmt * (1 + rate * type);
+
+    return Math.log(num / den) / Math.log(1 + rate);
   }
 
   const calcTime = NPER(rate, pmt, pv, goal, type);

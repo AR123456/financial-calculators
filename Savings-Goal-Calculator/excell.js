@@ -3,8 +3,8 @@
 
 // The NPER function is a financial function that returns the number of periods for loan or investment
 // rate - The interest rate per period.
-// payment - The payment made each period.
-// present - The present value, or total value of all payments now.
+// pmt - payment - The payment made each period. (if savings this needs to be a negative number)
+// pv - present - The present value, or total value of all payments now.(if savings this needs to be a negative number)
 // future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
 // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
 function NPER(rate, payment, present, future, type) {
