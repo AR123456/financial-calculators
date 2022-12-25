@@ -82,18 +82,6 @@ function syncInputs() {
 }
 syncInputs();
 
-//  this is the FV formula from stack overflow
-// https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
-function FV(rate, nper, pmt, pv, type) {
-  var pow = Math.pow(1 + rate, nper),
-     fv;
-  if (rate) {
-   fv = (pmt*(1+rate*type)*(1-pow)/rate)-pv*pow;
-  } else {
-   fv = -1 * (pv + pmt * nper);
-  }
-  return fv.toFixed(2);
-}
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
@@ -102,90 +90,45 @@ const calculate = () => {
   monthlySaved = parseFloat(inputMonthlySavings.value);
   expectedReturn = parseFloat(inputExpectedRate.value);
   expectedInflation = parseFloat(inputInflationRate.value);
-  console.log(goal);
-  console.log(years);
-  console.log(currentSaved);
-  console.log(monthlySaved);
-  console.log(expectedReturn);
-  console.log(expectedInflation);
-  // real interest rate = interest rate - inflation rate
-  // removing for now
-  // const realInt = (expectedReturn - expectedInflation) / 100;
-  // Assuming compounding monthly
+  // console.log(goal);
+  // console.log(years);
+  // console.log(currentSaved);
+  // console.log(monthlySaved);
+  // console.log(expectedReturn);
+  // console.log(expectedInflation);
+
+  // Assuming compounding monthly payment at begining of month
   // API convreted to monthly rate of return expected rate of return / months then to get % as numb /100
-  const n = years * 12;
+  const nper = years * 12;
+  console.log(nper);
   const API = expectedReturn / 100;
-  const rate = API / n; // monthly rate of return
+  const rate = API / nper; // monthly rate of return
   console.log(rate);
-  const realInt = rate;
-  console.log(realInt);
+  const pmt = monthlySaved;
+  console.log(pmt);
+  const pv = currentSaved;
+  console.log(pv);
+  // 1 for pymt at begining of month, 0 at end
+  const type = 1;
+  console.log(type);
 
-  // TODO this is calc is a bit off
-  calcTime =
-    Math.log(1 + (goal * realInt) / (monthlySaved + currentSaved)) /
-    Math.log(1 + realInt);
-
-  console.log(`Months needed ${calcTime}`);
-  // doing some calculations from the PDF
-  // Correct what componded value of current amount saved is in the given years to save
-  FV = currentSaved * Math.pow(1 + realInt, n);
-  FVA = FV * monthlySaved;
-
-  console.log(
-    `This is the FV of just current savings after said amount of years ${FV}`
-  );
-  console.log(
-    `This is the FV annuity that takes into account monthly savings  ${FVA}`
-  );
-  CV = currentSaved;
-
-  TermOfMaturity = (FV / CV - 1) / realInt;
-  console.log(`this should be years ${TermOfMaturity.toFixed(2)}`);
-  // payment of annuity based on the current value or current saved
-  A = (CV * realInt) / 1 - Math.pow(1 + realInt, -years);
-  console.log(
-    `Payment of annuity based on current saved or better stated the amount of interest earned each year for the number of years on the plan  ${A.toFixed(
-      2
-    )}`
-  );
-  // Term of annuity due future value given - in this case FV is goal
-  // TODO this should be the time to reach goal but it is not
-  TermOfAnnuityDueGoalGiven =
-    Math.log(
-      1 + (goal * realInt) / ((currentSaved + monthlySaved) * 1 + realInt)
-    ) / Math.log(1 + realInt);
-  console.log(
-    `Term of annuity due with FV or goal given ${TermOfAnnuityDueGoalGiven}`
-  );
-  // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
-  // act Years and actMonths are for formatting year month style
-  const actYears = Math.floor(calcTime / 12);
-  // let actMonths = Math.ceil(calcTime % 12);
-  const actMonths = Math.round(calcTime % 12);
-
-  /////
-  if (calcTime < years * 12) {
-    // to do change this to __ years and __ months
-    actualTime.innerHTML = `<span>You will reach your savings goal in ${actYears} years ${actMonths} months.</span>
-  </span>`;
-  } else {
-    actualTime.innerHTML = `<span>${years} years is not enough time. You will need ${actYears} years ${actMonths} months to reach your savings goal. </span>`;
+  //  this is the FV formula from stack overflow
+  // https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
+  function calcFV(rate, nper, pmt, pv, type) {
+    var pow = Math.pow(1 + rate, nper),
+      fv;
+    if (rate) {
+      fv = (pmt * (1 + rate * type) * (1 - pow)) / rate - pv * pow;
+    } else {
+      fv = -1 * (pv + pmt * nper);
+    }
+    // using Math.abs because this returns a negative number
+    // return fv.toFixed(2);
+    const FV = Math.abs(fv.toFixed(2));
+    return FV;
   }
-
-  // calcMonthly is what actually needs to be saved per month to get to goal//////////
-  // calcMonthly =( goal*realInt)/( (1+realInt) to the power of years*12)-1)
-  // Math.pow(1 + realInt,years*12)
-  calcMonthly = (goal * realInt) / (Math.pow(1 + realInt, years * 12) - 1);
-  console.log(
-    `What actually needs to be saved monthly to get to goal in year specified ${calcMonthly}`
-  );
-  //
-  //TODO calculate the value of the annuity each year for the graph.  Will need the calculated values and monthly savings for the entered values and the calculated value for what is needed as an actual monthly deposit to meet the savings goal.
-  overTimePerYearActual = "actual value of annuity";
-  overTimePerYearNeeded =
-    "what actually needs to be saved per month based on entered goal";
+  console.log(calcFV(rate, nper, pmt, pv, type));
 };
-
 
 calculateButton.onclick = function () {
   calculate();
