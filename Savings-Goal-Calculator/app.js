@@ -81,6 +81,19 @@ function syncInputs() {
   });
 }
 syncInputs();
+
+//  this is the FV formula from stack overflow
+// https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
+function FV(rate, nper, pmt, pv, type) {
+  var pow = Math.pow(1 + rate, nper),
+     fv;
+  if (rate) {
+   fv = (pmt*(1+rate*type)*(1-pow)/rate)-pv*pow;
+  } else {
+   fv = -1 * (pv + pmt * nper);
+  }
+  return fv.toFixed(2);
+}
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
@@ -98,7 +111,13 @@ const calculate = () => {
   // real interest rate = interest rate - inflation rate
   // removing for now
   // const realInt = (expectedReturn - expectedInflation) / 100;
-  const realInt = expectedReturn / 100;
+  // Assuming compounding monthly
+  // API convreted to monthly rate of return expected rate of return / months then to get % as numb /100
+  const n = years * 12;
+  const API = expectedReturn / 100;
+  const rate = API / n; // monthly rate of return
+  console.log(rate);
+  const realInt = rate;
   console.log(realInt);
 
   // TODO this is calc is a bit off
@@ -109,9 +128,17 @@ const calculate = () => {
   console.log(`Months needed ${calcTime}`);
   // doing some calculations from the PDF
   // Correct what componded value of current amount saved is in the given years to save
-  FV = currentSaved * (1 + realInt * years);
+  FV = currentSaved * Math.pow(1 + realInt, n);
+  FVA = FV * monthlySaved;
+
+  console.log(
+    `This is the FV of just current savings after said amount of years ${FV}`
+  );
+  console.log(
+    `This is the FV annuity that takes into account monthly savings  ${FVA}`
+  );
   CV = currentSaved;
-  console.log(`Value of currently saved after given number of years ${FV}`);
+
   TermOfMaturity = (FV / CV - 1) / realInt;
   console.log(`this should be years ${TermOfMaturity.toFixed(2)}`);
   // payment of annuity based on the current value or current saved
@@ -158,6 +185,7 @@ const calculate = () => {
   overTimePerYearNeeded =
     "what actually needs to be saved per month based on entered goal";
 };
+
 
 calculateButton.onclick = function () {
   calculate();
