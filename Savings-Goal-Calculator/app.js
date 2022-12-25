@@ -122,8 +122,36 @@ const calculate = () => {
   }
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(FV);
+  // stack overflow of the NPER excel function number nummper of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
+  // rate - The interest rate per period.
+  // pmt - payment The payment made each period.
+  // pv - present The present value, or total value of all payments now. For savings making this a neg number for the calc
+  // goal - future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
+  // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
+  function NPER(rate, pmt, pv, goal, type) {
+    // Initialize type
+    type = typeof type === "undefined" ? 0 : type;
 
-  actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}`;
+    // Initialize future value
+    future = typeof future === "undefined" ? 0 : goal;
+
+    // Return number of periods
+    const num = pmt * (1 + rate * type) - goal * rate;
+    // this is savings, not loan so making pv negative so the calc works
+    const den = -pv * rate + pmt * (1 + rate * type);
+    return Math.abs(Math.log(num / den) / Math.log(1 + rate));
+  }
+
+  const calcTime = NPER(rate, pmt, pv, goal, type);
+  // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
+  // act Years and actMonths are for formatting year month style
+  const actYears = Math.floor(calcTime / 12);
+  // let actMonths = Math.ceil(calcTime % 12);
+  const actMonths = Math.round(calcTime % 12);
+  console.log(calcTime, actYears, actMonths);
+  // writing to the dom
+  actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
+  <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
 };
 
 calculateButton.onclick = function () {
