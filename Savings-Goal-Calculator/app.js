@@ -90,12 +90,6 @@ const calculate = () => {
   monthlySaved = parseFloat(inputMonthlySavings.value);
   expectedReturn = parseFloat(inputExpectedRate.value);
   expectedInflation = parseFloat(inputInflationRate.value);
-  // console.log(goal);
-  // console.log(years);
-  // console.log(currentSaved);
-  // console.log(monthlySaved);
-  // console.log(expectedReturn);
-  // console.log(expectedInflation);
 
   // Assuming compounding monthly payment at begining of month
   // API convreted to monthly rate of return expected rate of return / months then to get % as numb /100
@@ -124,10 +118,12 @@ const calculate = () => {
     }
     // using Math.abs because this returns a negative number
     // return fv.toFixed(2);
-    const FV = Math.abs(fv.toFixed(2));
-    return FV;
+    return Math.abs(fv.toFixed(2));
   }
-  console.log(calcFV(rate, nper, pmt, pv, type));
+  const FV = calcFV(rate, nper, pmt, pv, type);
+  console.log(FV);
+
+  actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}`;
 };
 
 calculateButton.onclick = function () {
