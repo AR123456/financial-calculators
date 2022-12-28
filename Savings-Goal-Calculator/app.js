@@ -271,6 +271,8 @@ const myChart = new Chart(ctx, {
     //  years for each year create a label
 
     labels: [
+      "Actual by year 0",
+      "Needed for goal by year 0",
       "Actual by year 1",
       "Needed for goal by year 1",
       "Actual by year 2",
@@ -283,24 +285,38 @@ const myChart = new Chart(ctx, {
       "Needed for goal by year 5",
       "Actual by year 6",
       "Needed for goal by year 6",
+      "Actual by year 7",
+      "Needed for goal by year 7",
+      "Actual by year 8",
+      "Needed for goal by year 8",
+      "Actual by year 9",
+      "Needed for goal by year 9",
+      "Actual by year 10",
+      "Needed for goal by year 10",
     ],
+    // loop number of goal years and push do data array for each year what the actual savings are in blue, the first number
+    // and then amount needed per year to get to goal  each year the green number
     datasets: [
       {
-        label: "you will have ",
+        label: "Savings by Year",
         // thousands of dollars scaled to goal
-        data: [5, 3, 3, 5, 2, 3, 2, 3, 2, 3, 5, 2,],
+        data: [
+          1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
+          5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
+          10000,
+        ],
         backgroundColor: [
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(54, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(54, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(54, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(54, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(54, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(54, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.2)",
         ],
         borderColor: [
