@@ -1,7 +1,5 @@
 //TODO create a app that will take in a dollar amount goal and years goal
 // the app will calculate how much needs to be saved per month to achieve  the goal
-// imports
-import { syncInputs } from "./syncInputsModule";
 // getting range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
 const inputGoal = document.getElementById("savingsInput");
@@ -39,72 +37,65 @@ const viewReportButton = document.getElementById("viewReport");
 // }
 // formatCurrency(inputGoal.value);
 // function to sync range and  text box inputs
-// function syncInputs() {
-//   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
+function syncInputs() {
+  // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
 
-//   // /////////////////////////
-//   sliderGoal.addEventListener("input", function () {
-//     inputGoal.value = sliderGoal.value;
-//   });
-//   inputGoal.addEventListener("input", function () {
-//     sliderGoal.value = inputGoal.value;
-//     // console.log(sliderGoal.dataset);
-//     updateProgress(sliderGoal);
-//   });
-//   sliderYears.addEventListener("input", function () {
-//     inputYears.value = sliderYears.value;
-//   });
-//   inputYears.addEventListener("input", function () {
-//     sliderYears.value = inputYears.value;
-//     updateProgress(sliderYears);
-//   });
-//   sliderCurrentSaved.addEventListener("input", function () {
-//     inputCurrentSaved.value = sliderCurrentSaved.value;
-//   });
-//   inputCurrentSaved.addEventListener("input", function () {
-//     sliderCurrentSaved.value = inputCurrentSaved.value;
-//     updateProgress(sliderCurrentSaved);
-//   });
-//   sliderMonthlySavings.addEventListener("input", function () {
-//     inputMonthlySavings.value = sliderMonthlySavings.value;
-//   });
-//   inputMonthlySavings.addEventListener("input", function () {
-//     sliderMonthlySavings.value = inputMonthlySavings.value;
-//     updateProgress(sliderMonthlySavings);
-//   });
-//   sliderExpectedRate.addEventListener("input", function () {
-//     inputExpectedRate.value = sliderExpectedRate.value;
-//     let DisplayExpectedRate = (sliderExpectedRate.value / 12).toFixed(2);
-//     console.log(DisplayExpectedRate);
-//     displayExpectedRate.innerHTML = `<p>MPR ${DisplayExpectedRate}%</p>`;
-//   });
-//   inputExpectedRate.addEventListener("input", function () {
-//     sliderExpectedRate.value = inputExpectedRate.value;
-//     updateProgress(sliderExpectedRate);
-//     let DisplayExpectedRate = (inputExpectedRate.value / 12).toFixed(2);
-//     console.log(DisplayExpectedRate);
-//     displayExpectedRate.innerHTML = `<p>MPR ${DisplayExpectedRate}%</p>`;
-//   });
-//   sliderInflationRate.addEventListener("input", function () {
-//     inputInflationRate.value = sliderInflationRate.value;
-//   });
-//   inputInflationRate.addEventListener("input", function () {
-//     sliderInflationRate.value = inputInflationRate.value;
-//     updateProgress(sliderInflationRate);
-//   });
-// }
+  // /////////////////////////
+  sliderGoal.addEventListener("input", function () {
+    inputGoal.value = sliderGoal.value;
+  });
+  inputGoal.addEventListener("input", function () {
+    sliderGoal.value = inputGoal.value;
+    // console.log(sliderGoal.dataset);
+    updateProgress(sliderGoal);
+  });
+  sliderYears.addEventListener("input", function () {
+    inputYears.value = sliderYears.value;
+  });
+  inputYears.addEventListener("input", function () {
+    sliderYears.value = inputYears.value;
+    updateProgress(sliderYears);
+  });
+  sliderCurrentSaved.addEventListener("input", function () {
+    inputCurrentSaved.value = sliderCurrentSaved.value;
+  });
+  inputCurrentSaved.addEventListener("input", function () {
+    sliderCurrentSaved.value = inputCurrentSaved.value;
+    updateProgress(sliderCurrentSaved);
+  });
+  sliderMonthlySavings.addEventListener("input", function () {
+    inputMonthlySavings.value = sliderMonthlySavings.value;
+  });
+  inputMonthlySavings.addEventListener("input", function () {
+    sliderMonthlySavings.value = inputMonthlySavings.value;
+    updateProgress(sliderMonthlySavings);
+  });
+  sliderExpectedRate.addEventListener("input", function () {
+    inputExpectedRate.value = sliderExpectedRate.value;
+    let DisplayExpectedRate = (sliderExpectedRate.value / 12).toFixed(2);
+    console.log(DisplayExpectedRate);
+    displayExpectedRate.innerHTML = `<p>MPR ${DisplayExpectedRate}%</p>`;
+  });
+  inputExpectedRate.addEventListener("input", function () {
+    sliderExpectedRate.value = inputExpectedRate.value;
+    updateProgress(sliderExpectedRate);
+    let DisplayExpectedRate = (inputExpectedRate.value / 12).toFixed(2);
+    console.log(DisplayExpectedRate);
+    displayExpectedRate.innerHTML = `<p>MPR ${DisplayExpectedRate}%</p>`;
+  });
+  sliderInflationRate.addEventListener("input", function () {
+    inputInflationRate.value = sliderInflationRate.value;
+  });
+  inputInflationRate.addEventListener("input", function () {
+    sliderInflationRate.value = inputInflationRate.value;
+    updateProgress(sliderInflationRate);
+  });
+}
 syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
-
-const calculate = (
-  goal,
-  years,
-  currentSaved,
-  monthlySaved,
-  expectedReturn,
-  expectedInflation
-) => {
+// calculate  function
+const calculate = () => {
   goal = parseFloat(inputGoal.value);
   years = parseFloat(inputYears.value);
   currentSaved = parseFloat(inputCurrentSaved.value);
@@ -264,3 +255,77 @@ window.onload = init;
 // ////////////////
 //TODO work on formatting to match example site, look at DYI jumbotron
 // TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
+
+// TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
+
+// CHART BOILER PLATE
+
+// https://www.chartjs.org/docs/latest/getting-started/usage.html
+
+const ctx = document.getElementById("myChart");
+const myChart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    // labels: data.map((row) => row.year),
+
+    //  years for each year create a label
+
+    labels: [
+      "Actual by year 1",
+      "Needed for goal by year 1",
+      "Actual by year 2",
+      "Needed for goal by year 2",
+      "Actual by year 3",
+      "Needed for goal by year 3",
+      "Actual by year 4",
+      "Needed for goal by year 4",
+      "Actual by year 5",
+      "Needed for goal by year 5",
+      "Actual by year 6",
+      "Needed for goal by year 6",
+    ],
+    datasets: [
+      {
+        label: "you will have ",
+        // thousands of dollars scaled to goal
+        data: [5, 3, 3, 5, 2, 3, 2, 3, 2, 3, 5, 2,],
+        backgroundColor: [
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+        ],
+        borderColor: [
+          "rgba(54, 162, 235, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(75, 192, 192, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+});

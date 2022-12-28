@@ -377,6 +377,25 @@
           </div>
         </div>
       </form>
+      <!--  -->
+      <!-- Graph  -->
+      <div class="card">
+        <div class="card-body">
+          This is a graph with dollars on left and years along bottom. 2 bars
+          side by side blue is savings per month, green is what is actually
+          required to be saved each month to reach goal. The height of the bar
+          is progress towards goal of the monthly savings input and the actual
+          needed to get to goal at 1 year intervals. The y values are dynamic
+          based on total savings goal. The x values are dynamic based on target
+          years to save, not how many years are actually required. >
+          <!-- <div class="w-50 p-3"> -->
+          <div class="vw-25 vh-25">
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content here -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
@@ -391,6 +410,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="app.js" type="module"></script>
+    <script src="app.js"></script>
   </body>
 </html>
