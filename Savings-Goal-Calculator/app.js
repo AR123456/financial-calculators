@@ -148,12 +148,16 @@ const calculate = () => {
   // EACH LOOP its pv becomes the calcFV from the prior loop
   // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
   // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
-  for (let i = 0; i < years; i++) {
-    let currentPV = 0;
-    currentPV = calcFV(rate, 12, pmt, pv + currentPV, type);
+  let planDataObject = {
+    rate: rate,
+    nper: nper,
+    pmt: 12,
+    pv: pv,
+    type: type,
+    FV1: calcFV(rate, nper, pmt, pv, type),
+  };
+  console.log(planDataObject);
 
-    console.log(currentPV);
-  }
   // let FV1 = calcFV(rate, 12, pmt, pv, type);
   // newPV.push(FV1);
 
