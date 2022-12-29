@@ -148,7 +148,12 @@ const calculate = () => {
   // EACH LOOP its pv becomes the calcFV from the prior loop
   // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
   // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
+  for (let i = 0; i < years; i++) {
+    let currentPV = 0;
+    currentPV = calcFV(rate, 12, pmt, pv + currentPV, type);
 
+    console.log(currentPV);
+  }
   // let FV1 = calcFV(rate, 12, pmt, pv, type);
   // newPV.push(FV1);
 
@@ -241,14 +246,7 @@ const calculate = () => {
   const actYears = Math.floor(calcTime / 12);
   // let actMonths = Math.ceil(calcTime % 12);
   const actMonths = Math.round(calcTime % 12);
-  console.log(
-    "CalcTime",
-    calcTime,
-    "actYears",
-    actYears,
-    ",actMonths",
-    actMonths
-  );
+  console.log(calcTime, actYears, actMonths);
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
