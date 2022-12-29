@@ -130,7 +130,7 @@ const calculate = () => {
   // pmt - The payment made each period. Must be entered as a negative number.
   // pv - [optional] The present value of future payments. If omitted, assumed to be zero. Must be entered as a negative number.
   // type - [optional] When payments are due. 0 = end of period, 1 = beginning of period. Default is 0.
-  function calcFV(rate, nper, pmt, pv, type) {
+  const calcFV = function (rate, nper, pmt, pv, type) {
     var pow = Math.pow(1 + rate, nper),
       fv;
     if (rate) {
@@ -139,7 +139,7 @@ const calculate = () => {
       fv = -1 * (-pv + -pmt * nper);
     }
     return fv.toFixed(2);
-  }
+  };
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
 
@@ -148,38 +148,7 @@ const calculate = () => {
   // EACH LOOP its pv becomes the calcFV from the prior loop
   // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
   // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
-  // Would a switch case work for this  ?///////////////////////////
-  for (let index = 0; index < years; index++) {
-    let j = pv;
-    j = calcFV(rate, 12, pmt, j[index.value], type);
-    newPV.push(j);
 
-    // let FV2 = calcFV(rate, 12, pmt, newPV[0], type);
-    // newPV.push(FV2);
-
-    // let FV3 = calcFV(rate, 12, pmt, newPV[1], type);
-    // newPV.push(FV3);
-
-    // let FV4 = calcFV(rate, 12, pmt, newPV[2], type);
-    // newPV.push(FV4);
-
-    // let FV5 = calcFV(rate, 12, pmt, newPV[3], type);
-    // newPV.push(FV5);
-
-    // let FV6 = calcFV(rate, 12, pmt, newPV[4], type);
-    // newPV.push(FV6);
-
-    // let FV7 = calcFV(rate, 12, pmt, newPV[5], type);
-    // newPV.push(FV7);
-
-    // let FV8 = calcFV(rate, 12, pmt, newPV[6], type);
-    // newPV.push(FV8);
-    // let FV9 = calcFV(rate, 12, pmt, newPV[7], type);
-    // newPV.push(FV9);
-    // let FV10 = calcFV(rate, 12, pmt, newPV[8], type);
-    // newPV.push(FV10);
-    console.log("newPV", newPV);
-  }
   // let FV1 = calcFV(rate, 12, pmt, pv, type);
   // newPV.push(FV1);
 
@@ -207,7 +176,7 @@ const calculate = () => {
   // newPV.push(FV9);
   // let FV10 = calcFV(rate, 12, pmt, newPV[8], type);
   // newPV.push(FV10);
-  // console.log(newPV);
+
   // ////////// looking at some ways to loop
   // https://www.webtips.dev/webtips/javascript/loop-number-of-times-in-javascript
 
