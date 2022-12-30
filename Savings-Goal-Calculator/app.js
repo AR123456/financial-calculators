@@ -100,7 +100,7 @@ displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
-  years = +parseFloat(inputYears.value);
+  years = parseFloat(inputYears.value);
   currentSaved = parseFloat(inputCurrentSaved.value);
   monthlySaved = parseFloat(inputMonthlySavings.value);
   expectedReturn = parseFloat(inputExpectedRate.value);
@@ -130,7 +130,7 @@ const calculate = () => {
   // pmt - The payment made each period. Must be entered as a negative number.
   // pv - [optional] The present value of future payments. If omitted, assumed to be zero. Must be entered as a negative number.
   // type - [optional] When payments are due. 0 = end of period, 1 = beginning of period. Default is 0.
-  function calcFV(rate, nper, pmt, pv, type) {
+  const calcFV = function (rate, nper, pmt, pv, type) {
     var pow = Math.pow(1 + rate, nper),
       fv;
     if (rate) {
@@ -139,93 +139,17 @@ const calculate = () => {
       fv = -1 * (-pv + -pmt * nper);
     }
     return fv.toFixed(2);
-  }
+  };
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
 
-  // each year run calcFV, push that value into array "newPV" the calcFv
-  // the value pushed from the function becomes the new pv
-  // EACH LOOP its pv becomes the calcFV from the prior loop
-  // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
-  // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
-  // Would a switch case work for this  ?///////////////////////////
-  const myFunc = (calcFV) => {
-    // do something
-    let pv = 1000;
-    // value is being passed to callbackFunc as an argument
-    calcFV(rate, 12, pmt, pv, 1);
-  };
-  myFunc(function () {
-    console.log("fv", fv);
-  });
+  for (let i = 0; i <= years; i++) {
+    // each year run calcFV, push that value into array "newPV" the calcFv
+    // the value pushed from the function becomes the new pv
 
-  // let FV1 = calcFV(rate, 12, pmt, pv, type);
-  // newPV.push(FV1);
-
-  // let FV2 = calcFV(rate, 12, pmt, newPV[0], type);
-  // newPV.push(FV2);
-
-  // let FV3 = calcFV(rate, 12, pmt, newPV[1], type);
-  // newPV.push(FV3);
-
-  // let FV4 = calcFV(rate, 12, pmt, newPV[2], type);
-  // newPV.push(FV4);
-
-  // let FV5 = calcFV(rate, 12, pmt, newPV[3], type);
-  // newPV.push(FV5);
-
-  // let FV6 = calcFV(rate, 12, pmt, newPV[4], type);
-  // newPV.push(FV6);
-
-  // let FV7 = calcFV(rate, 12, pmt, newPV[5], type);
-  // newPV.push(FV7);
-
-  // let FV8 = calcFV(rate, 12, pmt, newPV[6], type);
-  // newPV.push(FV8);
-  // let FV9 = calcFV(rate, 12, pmt, newPV[7], type);
-  // newPV.push(FV9);
-  // let FV10 = calcFV(rate, 12, pmt, newPV[8], type);
-  // newPV.push(FV10);
-  // console.log(newPV);
-  // ////////// looking at some ways to loop
-  // https://www.webtips.dev/webtips/javascript/loop-number-of-times-in-javascript
-
-  // console.log(newPV);
-  // const loop = (times, callback) => {
-  //   for (let i = 0; i < times; i++) {
-  //     callback(i);
-  //   }
-  // };
-  // // Loop 5 times and log the current iteration to the console
-  // loop(5, (i) => {
-  //   console.log(`Iteration is #${i}`);
-  // });
-  // const loop = (times, callback) => {
-  //   Array(times)
-  //     .fill(0)
-  //     .forEach((item, i) => callback(i));
-  // };
-
-  // const loop = (times, callback) => {
-  //   [...Array(times)].forEach((item, i) => callback(i));
-  // };
-  // // Loop 5 times and log the current iteration to the console
-  // loop(5, (i) => {
-  //   console.log(`Iteration is #${i}`);
-  // });
-  //stackoverflow.com/questions/35556876/javascript-repeat-a-function-x-amount-of-times
-  // https: function repeat(func, times) {
-  //   func();
-  //   times && --times && repeat(func, times);
-  // }
-  // repeat(function () {
-  //   console.log("Hi");
-  // }, 5);
-  //  maybe async await
-  //  https://dev.to/shadid12/how-to-use-async-await-inside-loops-in-javascript-4dlg
-
-  // //////////////////////////////////////////////////////////////////
-
+    // const element = array[i];
+    console.log(calcFV(rate, 12, pmt, pv, 1));
+  }
   // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
   // solve the annuity for n
   // rate - The interest rate per period.
@@ -251,14 +175,7 @@ const calculate = () => {
   const actYears = Math.floor(calcTime / 12);
   // let actMonths = Math.ceil(calcTime % 12);
   const actMonths = Math.round(calcTime % 12);
-  console.log(
-    "CalcTime",
-    calcTime,
-    "actYears",
-    actYears,
-    ",actMonths",
-    actMonths
-  );
+  console.log(calcTime, actYears, actMonths);
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
