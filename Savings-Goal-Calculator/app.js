@@ -100,7 +100,7 @@ displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
-  years = parseFloat(inputYears.value);
+  years = +parseFloat(inputYears.value);
   currentSaved = parseFloat(inputCurrentSaved.value);
   monthlySaved = parseFloat(inputMonthlySavings.value);
   expectedReturn = parseFloat(inputExpectedRate.value);
@@ -143,13 +143,40 @@ const calculate = () => {
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
 
-  for (let i = 0; i <= years; i++) {
-    // each year run calcFV, push that value into array "newPV" the calcFv
-    // the value pushed from the function becomes the new pv
+  // each year run calcFV, push that value into array "newPV" the calcFv
+  // the value pushed from the function becomes the new pv
+  // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
+  // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
+  let FV1 = calcFV(rate, 12, pmt, pv, type);
+  newPV.push(FV1);
 
-    // const element = array[i];
-    console.log(calcFV(rate, 12, pmt, pv, 1));
-  }
+  let FV2 = calcFV(rate, 12, pmt, newPV[0], type);
+  newPV.push(FV2);
+
+  let FV3 = calcFV(rate, 12, pmt, newPV[1], type);
+  newPV.push(FV3);
+
+  let FV4 = calcFV(rate, 12, pmt, newPV[2], type);
+  newPV.push(FV4);
+
+  let FV5 = calcFV(rate, 12, pmt, newPV[3], type);
+  newPV.push(FV5);
+
+  let FV6 = calcFV(rate, 12, pmt, newPV[4], type);
+  newPV.push(FV6);
+
+  let FV7 = calcFV(rate, 12, pmt, newPV[5], type);
+  newPV.push(FV7);
+
+  let FV8 = calcFV(rate, 12, pmt, newPV[6], type);
+  newPV.push(FV8);
+  let FV9 = calcFV(rate, 12, pmt, newPV[7], type);
+  newPV.push(FV9);
+  let FV10 = calcFV(rate, 12, pmt, newPV[8], type);
+  newPV.push(FV10);
+  // newPV.push(FV1, FV2, FV3, FV4, FV5, FV6, FV7, FV8, FV9, FV10);
+  console.log(newPV);
+
   // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
   // solve the annuity for n
   // rate - The interest rate per period.
