@@ -18,8 +18,6 @@ const actualRate = document.getElementById("actualRate");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 // to display expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
-// global array the hold what would acctually be saved give plan inputs
-const newPV = [];
 
 // Buttons
 const calculateButton = document.getElementById("calculate");
@@ -96,11 +94,10 @@ function syncInputs() {
 syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
-
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
-  years = +parseFloat(inputYears.value);
+  years = parseFloat(inputYears.value);
   currentSaved = parseFloat(inputCurrentSaved.value);
   monthlySaved = parseFloat(inputMonthlySavings.value);
   expectedReturn = parseFloat(inputExpectedRate.value);
@@ -138,112 +135,33 @@ const calculate = () => {
     } else {
       fv = -1 * (-pv + -pmt * nper);
     }
+
+    // return fv.toFixed(2);
+
     return fv.toFixed(2);
   }
   const FV = calcFV(rate, nper, pmt, pv, type);
-  console.log(`The calculated future value ${FV}`);
-
-  // each year run calcFV, push that value into array "newPV" the calcFv
-  // the value pushed from the function becomes the new pv
-  // EACH LOOP its pv becomes the calcFV from the prior loop
-  // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
-  // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
-  // Would a switch case work for this  ?///////////////////////////
-  const myFunc = (calcFV) => {
-    // do something
-    let pv = 1000;
-    // value is being passed to callbackFunc as an argument
-    calcFV(rate, 12, pmt, pv, 1);
-  };
-  myFunc(function () {
-    console.log("fv", fv);
-  });
-
-  // let FV1 = calcFV(rate, 12, pmt, pv, type);
-  // newPV.push(FV1);
-
-  // let FV2 = calcFV(rate, 12, pmt, newPV[0], type);
-  // newPV.push(FV2);
-
-  // let FV3 = calcFV(rate, 12, pmt, newPV[1], type);
-  // newPV.push(FV3);
-
-  // let FV4 = calcFV(rate, 12, pmt, newPV[2], type);
-  // newPV.push(FV4);
-
-  // let FV5 = calcFV(rate, 12, pmt, newPV[3], type);
-  // newPV.push(FV5);
-
-  // let FV6 = calcFV(rate, 12, pmt, newPV[4], type);
-  // newPV.push(FV6);
-
-  // let FV7 = calcFV(rate, 12, pmt, newPV[5], type);
-  // newPV.push(FV7);
-
-  // let FV8 = calcFV(rate, 12, pmt, newPV[6], type);
-  // newPV.push(FV8);
-  // let FV9 = calcFV(rate, 12, pmt, newPV[7], type);
-  // newPV.push(FV9);
-  // let FV10 = calcFV(rate, 12, pmt, newPV[8], type);
-  // newPV.push(FV10);
-  // console.log(newPV);
-  // ////////// looking at some ways to loop
-  // https://www.webtips.dev/webtips/javascript/loop-number-of-times-in-javascript
-
-  // console.log(newPV);
-  // const loop = (times, callback) => {
-  //   for (let i = 0; i < times; i++) {
-  //     callback(i);
-  //   }
-  // };
-  // // Loop 5 times and log the current iteration to the console
-  // loop(5, (i) => {
-  //   console.log(`Iteration is #${i}`);
-  // });
-  // const loop = (times, callback) => {
-  //   Array(times)
-  //     .fill(0)
-  //     .forEach((item, i) => callback(i));
-  // };
-
-  // const loop = (times, callback) => {
-  //   [...Array(times)].forEach((item, i) => callback(i));
-  // };
-  // // Loop 5 times and log the current iteration to the console
-  // loop(5, (i) => {
-  //   console.log(`Iteration is #${i}`);
-  // });
-  //stackoverflow.com/questions/35556876/javascript-repeat-a-function-x-amount-of-times
-  // https: function repeat(func, times) {
-  //   func();
-  //   times && --times && repeat(func, times);
-  // }
-  // repeat(function () {
-  //   console.log("Hi");
-  // }, 5);
-  //  maybe async await
-  //  https://dev.to/shadid12/how-to-use-async-await-inside-loops-in-javascript-4dlg
-
-  // //////////////////////////////////////////////////////////////////
-
-  // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
-  // solve the annuity for n
+  console.log(FV);
+  // stack overflow of the NPER excel function number nummper of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
   // rate - The interest rate per period.
   // pmt - payment The payment made each period. since this is savings make negative number
   // pv - present The present value, or total value of all payments now. For savings making this a neg number for the calc
   // goal - future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
   // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
-  const NPER = function (rate, pmt, pv, goal, type) {
+  function NPER(rate, pmt, pv, goal, type) {
     // Initialize type
     type = typeof type === "undefined" ? 0 : type;
+
     // Initialize future value
     future = typeof future === "undefined" ? 0 : goal;
+
     // Return number of periods
     const num = -pmt * (1 + rate * type) - goal * rate;
     // this is savings, not loan so making pv negative so the calc works
     const den = -pv * rate + -pmt * (1 + rate * type);
+
     return Math.log(num / den) / Math.log(1 + rate);
-  };
+  }
 
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
@@ -251,14 +169,7 @@ const calculate = () => {
   const actYears = Math.floor(calcTime / 12);
   // let actMonths = Math.ceil(calcTime % 12);
   const actMonths = Math.round(calcTime % 12);
-  console.log(
-    "CalcTime",
-    calcTime,
-    "actYears",
-    actYears,
-    ",actMonths",
-    actMonths
-  );
+  console.log(calcTime, actYears, actMonths);
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
@@ -272,7 +183,7 @@ calculateButton.onclick = function () {
 ///////////////////////////////////////////////////////////////////////
 // looking at using Javascript to generate slider marks
 // https://codepen.io/viestursm/pen/BayEjaN
-function initRangeSlider() {
+function init() {
   // getting slider to pass into the functions that control appearance and behavior
   // each range input has the class tick-slider-input
   const sliders = document.getElementsByClassName("tick-slider-input");
@@ -339,7 +250,7 @@ function setTicks(slider) {
   }
 }
 
-window.onload = initRangeSlider;
+window.onload = init;
 
 // ////////////////
 //TODO work on formatting to match example site, look at DYI jumbotron
@@ -352,7 +263,6 @@ window.onload = initRangeSlider;
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 const ctx = document.getElementById("myChart");
-
 const myChart = new Chart(ctx, {
   type: "bar",
   data: {
