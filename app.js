@@ -145,6 +145,7 @@ const calculate = () => {
 
   // each year run calcFV, push that value into array "newPV" the calcFv
   // the value pushed from the function becomes the new pv
+  // EACH LOOP its pv becomes the calcFV from the prior loop
   // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
   // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
   let FV1 = calcFV(rate, 12, pmt, pv, type);
@@ -194,22 +195,26 @@ const calculate = () => {
   //     .forEach((item, i) => callback(i));
   // };
 
-  const loop = (times, callback) => {
-    [...Array(times)].forEach((item, i) => callback(i));
-  };
-  // Loop 5 times and log the current iteration to the console
-  loop(5, (i) => {
-    console.log(`Iteration is #${i}`);
-  });
+  // const loop = (times, callback) => {
+  //   [...Array(times)].forEach((item, i) => callback(i));
+  // };
+  // // Loop 5 times and log the current iteration to the console
+  // loop(5, (i) => {
+  //   console.log(`Iteration is #${i}`);
+  // });
   //stackoverflow.com/questions/35556876/javascript-repeat-a-function-x-amount-of-times
-  https: function repeat(func, times) {
-    func();
-    times && --times && repeat(func, times);
-  }
+  // https: function repeat(func, times) {
+  //   func();
+  //   times && --times && repeat(func, times);
+  // }
+  // repeat(function () {
+  //   console.log("Hi");
+  // }, 5);
+  //  maybe async await
+  //  https://dev.to/shadid12/how-to-use-async-await-inside-loops-in-javascript-4dlg
 
-  repeat(function () {
-    console.log("Hi");
-  }, 5);
+  // //////////////////////////////////////////////////////////////////
+
   // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
   // solve the annuity for n
   // rate - The interest rate per period.
