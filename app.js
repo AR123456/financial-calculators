@@ -142,21 +142,23 @@ const calculate = () => {
   };
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
+  let FV1 = calcFV(rate, 12, pmt, pv, type);
 
-  for (let i = 0; i <= years; i++) {
-    // each year run calcFV, push that value into array "newPV" the calcFv
-    // the value pushed from the function becomes the new pv
-    // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
-    // next loop run +calcFV(rate, 12, pmt, newlyCalculatedPV, 1)
-    let j = 0;
-    j = +calcFV(rate, 12, pmt, pv, 1);
+  let FV2 = calcFV(rate, 12, pmt, FV1, type);
+  let FV3 = calcFV(rate, 12, pmt, FV2, type);
+  let FV4 = calcFV(rate, 12, pmt, FV3, type);
+  let FV5 = calcFV(rate, 12, pmt, FV4, type);
+  let FV6 = calcFV(rate, 12, pmt, FV5, type);
+  let FV7 = calcFV(rate, 12, pmt, FV6, type);
+  let FV8 = calcFV(rate, 12, pmt, FV7, type);
+  let FV9 = calcFV(rate, 12, pmt, FV8, type);
+  let FV10 = calcFV(rate, 12, pmt, FV9, type);
 
-    // k = +calcFV(rate, 12, pmt, j, type);
+  // each year run calcFV, push that value into array "newPV" the calcFv
+  // the value pushed from the function becomes the new pv
+  // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
+  // next loop run +calcFV(rate, 12, pmt, pv+lastFV, 1)
 
-    newPV.push(j);
-    // const element = array[i];
-    console.log(newPV);
-  }
   // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
   // solve the annuity for n
   // rate - The interest rate per period.
