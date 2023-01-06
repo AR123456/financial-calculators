@@ -18,6 +18,8 @@ const actualRate = document.getElementById("actualRate");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 // to display expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
+// global array the hold what would acctually be saved give plan inputs
+const newPV = [];
 
 // Buttons
 const calculateButton = document.getElementById("calculate");
@@ -94,6 +96,7 @@ function syncInputs() {
 syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
+
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
@@ -127,7 +130,7 @@ const calculate = () => {
   // pmt - The payment made each period. Must be entered as a negative number.
   // pv - [optional] The present value of future payments. If omitted, assumed to be zero. Must be entered as a negative number.
   // type - [optional] When payments are due. 0 = end of period, 1 = beginning of period. Default is 0.
-  function calcFV(rate, nper, pmt, pv, type) {
+  const calcFV = function (rate, nper, pmt, pv, type) {
     var pow = Math.pow(1 + rate, nper),
       fv;
     if (rate) {
@@ -135,33 +138,43 @@ const calculate = () => {
     } else {
       fv = -1 * (-pv + -pmt * nper);
     }
-
-    // return fv.toFixed(2);
-
     return fv.toFixed(2);
-  }
+  };
   const FV = calcFV(rate, nper, pmt, pv, type);
-  console.log(FV);
-  // stack overflow of the NPER excel function number nummper of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
+  console.log(`The calculated future value ${FV}`);
+
+  for (let i = 0; i <= years; i++) {
+    // each year run calcFV, push that value into array "newPV" the calcFv
+    // the value pushed from the function becomes the new pv
+    // pv becomes the result of +calcFV(rate, 12, pmt, pv, 1)
+    // next loop run +calcFV(rate, 12, pmt, newlyCalculatedPV, 1)
+    let j = 0;
+    j = +calcFV(rate, 12, pmt, pv, 1);
+
+    // k = +calcFV(rate, 12, pmt, j, type);
+
+    newPV.push(j);
+    // const element = array[i];
+    console.log(newPV);
+  }
+  // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
+  // solve the annuity for n
   // rate - The interest rate per period.
   // pmt - payment The payment made each period. since this is savings make negative number
   // pv - present The present value, or total value of all payments now. For savings making this a neg number for the calc
   // goal - future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
   // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
-  function NPER(rate, pmt, pv, goal, type) {
+  const NPER = function (rate, pmt, pv, goal, type) {
     // Initialize type
     type = typeof type === "undefined" ? 0 : type;
-
     // Initialize future value
     future = typeof future === "undefined" ? 0 : goal;
-
     // Return number of periods
     const num = -pmt * (1 + rate * type) - goal * rate;
     // this is savings, not loan so making pv negative so the calc works
     const den = -pv * rate + -pmt * (1 + rate * type);
-
     return Math.log(num / den) / Math.log(1 + rate);
-  }
+  };
 
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
@@ -183,7 +196,7 @@ calculateButton.onclick = function () {
 ///////////////////////////////////////////////////////////////////////
 // looking at using Javascript to generate slider marks
 // https://codepen.io/viestursm/pen/BayEjaN
-function init() {
+function initRangeSlider() {
   // getting slider to pass into the functions that control appearance and behavior
   // each range input has the class tick-slider-input
   const sliders = document.getElementsByClassName("tick-slider-input");
@@ -250,7 +263,7 @@ function setTicks(slider) {
   }
 }
 
-window.onload = init;
+window.onload = initRangeSlider;
 
 // ////////////////
 //TODO work on formatting to match example site, look at DYI jumbotron
@@ -263,6 +276,7 @@ window.onload = init;
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 const ctx = document.getElementById("myChart");
+
 const myChart = new Chart(ctx, {
   type: "bar",
   data: {
