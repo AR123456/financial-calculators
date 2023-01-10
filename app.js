@@ -96,15 +96,22 @@ function syncInputs() {
 syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
+// variables uses in calculate and the chart
+const goal = parseFloat(inputGoal.value);
+const years = parseFloat(inputYears.value);
+const currentSaved = parseFloat(inputCurrentSaved.value);
+const monthlySaved = parseFloat(inputMonthlySavings.value);
+const expectedReturn = parseFloat(inputExpectedRate.value);
+const expectedInflation = parseFloat(inputInflationRate.value);
 
 // calculate  function
 const calculate = () => {
-  goal = parseFloat(inputGoal.value);
-  years = +parseFloat(inputYears.value);
-  currentSaved = parseFloat(inputCurrentSaved.value);
-  monthlySaved = parseFloat(inputMonthlySavings.value);
-  expectedReturn = parseFloat(inputExpectedRate.value);
-  expectedInflation = parseFloat(inputInflationRate.value);
+  // goal = parseFloat(inputGoal.value);
+  // years = parseFloat(inputYears.value);
+  // currentSaved = parseFloat(inputCurrentSaved.value);
+  // monthlySaved = parseFloat(inputMonthlySavings.value);
+  // expectedReturn = parseFloat(inputExpectedRate.value);
+  // expectedInflation = parseFloat(inputInflationRate.value);
 
   // Assuming compounding monthly payment at begining of month
   // APR convreted to monthly rate of return expected rate of return / months then to get % as numb /100
