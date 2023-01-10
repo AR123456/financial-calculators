@@ -19,7 +19,7 @@ const displayExpectedRate = document.getElementById("displayExpectedRate");
 // to display expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // global array the hold what would acctually be saved give plan inputs
-const growthYears = [];
+const growthByYear = [];
 // global array that holds the years const made into array for data display
 const yearsToGrow = [];
 
@@ -152,15 +152,15 @@ const calculate = () => {
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
   /////////////// Array of FV from start to end of goal period year by year
-  growthYears.push(pv);
+  growthByYear.push(pv);
   let newPV = calcFV(rate, 12, pmt, pv, type);
-  growthYears.push(newPV);
+  growthByYear.push(newPV);
   for (let i = 1; i < years; i++) {
     newPV = calcFV(rate, 12, pmt, newPV, type);
-    growthYears.push(newPV);
+    growthByYear.push(newPV);
   }
 
-  console.log(growthYears);
+  console.log(growthByYear);
 
   // //////////////////////////////////////////////////////////////////
 
@@ -291,55 +291,24 @@ window.onload = initRangeSlider;
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 const displayChart = () => {
-  console.log(typeof years);
   for (let i = 0; i < years + 1; i++) {
     yearsToGrow.push(i);
   }
-  console.log(yearsToGrow);
   // call this after calculate
   const ctx = document.getElementById("myChart").getContext("2d");
   myChart = new Chart(ctx, {
     type: "bar",
     data: {
       // labels: data.map((row) => row.year),
-
       //  years for each year create a label
-
-      labels: [
-        "0",
-        "",
-        "1",
-        "",
-        "2",
-        "",
-        "3",
-        "",
-        "4",
-        "",
-        "5",
-        "",
-        "6",
-        "",
-        "7",
-        "",
-        "8",
-        "",
-        "9",
-        "",
-        "10",
-        "",
-      ],
+      labels: yearsToGrow,
       // loop number of goal years and push do data array for each year what the actual savings are in blue, the first number
       // and then amount needed per year to get to goal  each year the green number
       datasets: [
         {
-          label: "Actual Savings by Year vs Needed by year to get to goal",
+          label: "Plan Savings by Year",
           // thousands of dollars scaled to goal
-          data: [
-            1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573,
-            31204, 5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090,
-            61787, 10000,
-          ],
+          data: growthByYear,
           // data: [
           //   1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
           //   5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
@@ -347,31 +316,31 @@ const displayChart = () => {
           // ],
           backgroundColor: [
             "rgba(54, 162, 235, 0.5)",
-            "rgba(75, 192, 192, 0.2)",
+
             "rgba(54, 162, 235, 0.5)",
-            "rgba(75, 192, 192, 0.2)",
+
             "rgba(54, 162, 235, 0.5)",
-            "rgba(75, 192, 192, 0.2)",
+
             "rgba(54, 162, 235, 0.5)",
-            "rgba(75, 192, 192, 0.2)",
+
             "rgba(54, 162, 235, 0.5)",
-            "rgba(75, 192, 192, 0.2)",
+
             "rgba(54, 162, 235, 0.5)",
-            "rgba(75, 192, 192, 0.2)",
+            // "rgba(75, 192, 192, 0.2)",
           ],
           borderColor: [
             "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
+
             "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
+
             "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
+
             "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
+
             "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
+
             "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
+            // "rgba(75, 192, 192, 1)",
           ],
           borderWidth: 1,
         },
