@@ -19,7 +19,7 @@ const displayExpectedRate = document.getElementById("displayExpectedRate");
 // to display expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // global array the hold what would acctually be saved give plan inputs
-const newPV = [];
+const growthYears = [];
 
 // Buttons
 const calculateButton = document.getElementById("calculate");
@@ -150,7 +150,7 @@ const calculate = () => {
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
   /////////////// Array of FV from start to end of goal period year by year
-  let growthYears = [pv];
+  growthYears.push(pv);
   let newPV = calcFV(rate, 12, pmt, pv, type);
   growthYears.push(newPV);
   for (let i = 1; i < years; i++) {
