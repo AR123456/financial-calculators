@@ -20,6 +20,8 @@ const displayExpectedRate = document.getElementById("displayExpectedRate");
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // global array the hold what would acctually be saved give plan inputs
 const growthYears = [];
+// global array that holds the years const made into array for data display
+const yearsToGrow = [];
 
 // Buttons
 const calculateButton = document.getElementById("calculate");
@@ -202,6 +204,7 @@ const calculate = () => {
 
 calculateButton.onclick = function () {
   calculate();
+  displayChart();
 };
 
 // adding JS to get the range track and ticks working
@@ -287,87 +290,99 @@ window.onload = initRangeSlider;
 
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
-const ctx = document.getElementById("myChart");
+const displayChart = () => {
+  console.log(typeof years);
+  for (let i = 0; i < years + 1; i++) {
+    yearsToGrow.push(i);
+  }
+  console.log(yearsToGrow);
+  // call this after calculate
+  const ctx = document.getElementById("myChart").getContext("2d");
+  myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      // labels: data.map((row) => row.year),
 
-const myChart = new Chart(ctx, {
-  type: "bar",
-  data: {
-    // labels: data.map((row) => row.year),
+      //  years for each year create a label
 
-    //  years for each year create a label
-
-    labels: [
-      "0",
-      "",
-      "1",
-      "",
-      "2",
-      "",
-      "3",
-      "",
-      "4",
-      "",
-      "5",
-      "",
-      "6",
-      "",
-      "7",
-      "",
-      "8",
-      "",
-      "9",
-      "",
-      "10",
-      "",
-    ],
-    // loop number of goal years and push do data array for each year what the actual savings are in blue, the first number
-    // and then amount needed per year to get to goal  each year the green number
-    datasets: [
-      {
-        label: "Actual Savings by Year vs Needed by year to get to goal",
-        // thousands of dollars scaled to goal
-        data: [
-          1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
-          5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
-          10000,
-        ],
-        backgroundColor: [
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(75, 192, 192, 0.2)",
-        ],
-        borderColor: [
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(75, 192, 192, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+      labels: [
+        "0",
+        "",
+        "1",
+        "",
+        "2",
+        "",
+        "3",
+        "",
+        "4",
+        "",
+        "5",
+        "",
+        "6",
+        "",
+        "7",
+        "",
+        "8",
+        "",
+        "9",
+        "",
+        "10",
+        "",
+      ],
+      // loop number of goal years and push do data array for each year what the actual savings are in blue, the first number
+      // and then amount needed per year to get to goal  each year the green number
+      datasets: [
+        {
+          label: "Actual Savings by Year vs Needed by year to get to goal",
+          // thousands of dollars scaled to goal
+          data: [
+            1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573,
+            31204, 5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090,
+            61787, 10000,
+          ],
+          // data: [
+          //   1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
+          //   5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
+          //   10000,
+          // ],
+          backgroundColor: [
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(75, 192, 192, 0.2)",
+          ],
+          borderColor: [
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
       },
     },
-  },
-});
+  });
+};
