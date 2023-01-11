@@ -291,6 +291,12 @@ window.onload = initRangeSlider;
 const displayChart = () => {
   // call this after calculate
   const ctx = document.getElementById("myChart").getContext("2d");
+  // https://stackoverflow.com/questions/69559728/eror-chart-min-js13-uncaught-in-promise-error-canvas-is-already-in-use-cha
+  // https://www.youtube.com/watch?v=TvkT6a17L2s
+  let chartStatus = Chart.getChart("myChart");
+  if (chartStatus != undefined) {
+    chartStatus.destroy();
+  }
   myChart = new Chart(ctx, {
     type: "bar",
     data: {
