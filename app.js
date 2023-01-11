@@ -156,7 +156,7 @@ const calculate = () => {
   console.log(growthByYear);
 
   /// push goal years to years to grow array
-  for (let i = 0; i < years + 1; i++) {
+  for (let i = 0; i <= years; i++) {
     yearsToGrow.push(i);
   }
   console.log(yearsToGrow);
