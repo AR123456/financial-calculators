@@ -99,16 +99,21 @@ syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // variables uses in calculate and the chart
-
+let goal = parseFloat(inputGoal.value);
+let years = parseFloat(inputYears.value);
+let currentSaved = parseFloat(inputCurrentSaved.value);
+let monthlySaved = parseFloat(inputMonthlySavings.value);
+let expectedReturn = parseFloat(inputExpectedRate.value);
+let expectedInflation = parseFloat(inputInflationRate.value);
 // calculate  function
-const calculate = () => {
-  const goal = parseFloat(inputGoal.value);
-  const years = parseFloat(inputYears.value);
-  const currentSaved = parseFloat(inputCurrentSaved.value);
-  const monthlySaved = parseFloat(inputMonthlySavings.value);
-  const expectedReturn = parseFloat(inputExpectedRate.value);
-  const expectedInflation = parseFloat(inputInflationRate.value);
-
+const calculate = (
+  goal,
+  years,
+  currentSaved,
+  monthlySaved,
+  expectedReturn,
+  expectedInflation
+) => {
   // Assuming compounding monthly payment at begining of month
   // APR convreted to monthly rate of return expected rate of return / months then to get % as numb /100
   const nper = years * 12;
@@ -153,13 +158,9 @@ const calculate = () => {
     newPV = calcFV(rate, 12, pmt, newPV, type);
     growthByYear.push(newPV);
   }
+
   console.log(growthByYear);
 
-  /// push goal years to years to grow array
-  for (let i = 0; i < years + 1; i++) {
-    yearsToGrow.push(i);
-  }
-  console.log(yearsToGrow);
   // //////////////////////////////////////////////////////////////////
 
   // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
@@ -289,6 +290,10 @@ window.onload = initRangeSlider;
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 const displayChart = () => {
+  for (let i = 0; i < years + 1; i++) {
+    yearsToGrow.push(i);
+  }
+  console.log(yearsToGrow);
   // call this after calculate
   const ctx = document.getElementById("myChart").getContext("2d");
   myChart = new Chart(ctx, {
