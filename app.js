@@ -1,3 +1,5 @@
+import { calcFV } from "./calculations.js";
+
 //TODO create a app that will take in a dollar amount goal and years goal
 // the app will calculate how much needs to be saved per month to achieve  the goal
 // getting range and text inputs
@@ -16,10 +18,15 @@ const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
 const actualRate = document.getElementById("actualRate");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
+// need to declare since using module syntax
+let future;
+let myChart;
 // to display expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // global array the hold what would acctually be saved give plan inputs
 const growthByYear = [];
+// global array that holds growth by year contributing calculated needed
+const growthByYearNeededToBeSaved = [];
 // global array that holds the years const made into array for data display
 const yearsToGrow = [];
 
@@ -125,24 +132,24 @@ const calculate = () => {
   const type = 0;
   const fv = goal;
 
-  //  this is the FV formula from stack overflow
-  // https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
-  // The FV function is a financial function that returns the future value of an investment
-  // rate - The interest rate per period.
-  // nper - The total number of payment periods.
-  // pmt - The payment made each period. Must be entered as a negative number.
-  // pv - [optional] The present value of future payments. If omitted, assumed to be zero. Must be entered as a negative number.
-  // type - [optional] When payments are due. 0 = end of period, 1 = beginning of period. Default is 0.
-  function calcFV(rate, nper, pmt, pv, type) {
-    var pow = Math.pow(1 + rate, nper),
-      fv;
-    if (rate) {
-      fv = (-pmt * (1 + rate * type) * (1 - pow)) / rate - -pv * pow;
-    } else {
-      fv = -1 * (-pv + -pmt * nper);
-    }
-    return fv.toFixed(2);
-  }
+  // //  this is the FV formula from stack overflow
+  // // https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
+  // // The FV function is a financial function that returns the future value of an investment
+  // // rate - The interest rate per period.
+  // // nper - The total number of payment periods.
+  // // pmt - The payment made each period. Must be entered as a negative number.
+  // // pv - [optional] The present value of future payments. If omitted, assumed to be zero. Must be entered as a negative number.
+  // // type - [optional] When payments are due. 0 = end of period, 1 = beginning of period. Default is 0.
+  // function calcFV(rate, nper, pmt, pv, type) {
+  //   var pow = Math.pow(1 + rate, nper),
+  //     fv;
+  //   if (rate) {
+  //     fv = (-pmt * (1 + rate * type) * (1 - pow)) / rate - -pv * pow;
+  //   } else {
+  //     fv = -1 * (-pv + -pmt * nper);
+  //   }
+  //   return fv.toFixed(2);
+  // }
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
   /////////////// Array of FV from start to end of goal period year by year
@@ -230,6 +237,7 @@ const calculate = () => {
     "Monthly savings contribution needed",
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
   );
+
   //
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
