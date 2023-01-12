@@ -122,7 +122,7 @@ const calculate = () => {
   const pv = currentSaved;
   console.log(pv);
   // 1 for pymt at begining of month, 0 at end
-  const type = 1;
+  const type = 0;
   const fv = goal;
 
   //  this is the FV formula from stack overflow
@@ -198,9 +198,10 @@ const calculate = () => {
     if (rate == 0) {
       return -(pv + fv) / nper;
     }
-
+    // The present value interest factor (PVIF) is a formula used to estimate the current worth of a sum of money that is to be received at some future date.
     const pvif = Math.pow(1 + rate, nper);
-    let pmt = (-rate / (pvif - 1)) * (pv * pvif + fv);
+    console.log("this is pvif", pvif);
+    let pmt = (-rate / (pvif - 1)) * (pv * pvif + fv) * -1;
 
     if (type == 1) {
       pmt /= 1 + rate;
@@ -209,10 +210,22 @@ const calculate = () => {
     return pmt;
   }
   console.log(
-    "Montly needed to get to goal in stated years",
+    "Montly needed to get to goal in stated years includes interest ",
     PMT(rate, nper, pv, fv, type)
   );
+  ///////// int
+  // rate - intrest rate per period
+  //per - the period for which you want to find the interest and must be in the range 1 to Nper
+  //nper - total number of payment periods of the investment
+  // pv - the present value of the lump sum amount that a series of future payemtns is worth now
+  // fv - the future value, or a cash balance you want to attain after the last payment is made if omitted =0
+  function IPMT(pv, pmt, rate, per) {
+    var tmp = Math.pow(1 + rate, per);
+    return 0 - (pv * tmp * rate + pmt * (tmp - 1));
+  }
+  console.log("part of monthly that is interest", IPMT(pv, pmt, rate, nper));
 
+  //
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
