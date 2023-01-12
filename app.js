@@ -210,7 +210,7 @@ const calculate = () => {
     return pmt;
   }
   console.log(
-    "Montly needed to get to goal in stated years includes interest ",
+    "PMT so monthly savings plus monthly interest ",
     PMT(rate, nper, pv, fv, type)
   );
   ///////// int
@@ -221,10 +221,15 @@ const calculate = () => {
   // fv - the future value, or a cash balance you want to attain after the last payment is made if omitted =0
   function IPMT(pv, pmt, rate, per) {
     var tmp = Math.pow(1 + rate, per);
-    return 0 - (pv * tmp * rate + pmt * (tmp - 1));
+    let ipmt = 0 - (pv * tmp * rate + pmt * (tmp - 1)) * -1;
+    return ipmt;
   }
   console.log("part of monthly that is interest", IPMT(pv, pmt, rate, nper));
 
+  console.log(
+    "Monthly savings contribution needed",
+    PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
+  );
   //
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
