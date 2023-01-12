@@ -201,6 +201,8 @@ const calculate = () => {
 };
 
 calculateButton.onclick = function () {
+  growthByYear.length = 0;
+  yearsToGrow.length = 0;
   calculate();
   displayChart();
 };
@@ -294,6 +296,7 @@ const displayChart = () => {
   // https://stackoverflow.com/questions/69559728/eror-chart-min-js13-uncaught-in-promise-error-canvas-is-already-in-use-cha
   // https://www.youtube.com/watch?v=TvkT6a17L2s
   let chartStatus = Chart.getChart("myChart");
+
   if (chartStatus != undefined) {
     chartStatus.destroy();
   }
