@@ -123,7 +123,7 @@ const calculate = () => {
   console.log(pv);
   // 1 for pymt at begining of month, 0 at end
   const type = 1;
-  console.log(type);
+  const fv = goal;
 
   //  this is the FV formula from stack overflow
   // https://stackoverflow.com/questions/1780645/how-to-calculate-future-value-fv-using-javascript
@@ -180,6 +180,38 @@ const calculate = () => {
     const den = -pv * rate + -pmt * (1 + rate * type);
     return Math.log(num / den) / Math.log(1 + rate);
   };
+  /////// solving for PMT to determine what is acctually needed to get to goal
+  // The PMT function is a financial function that returns the periodic payment for a loan
+  // rate - The interest rate for the loan.
+  // nper - The total number of payments for the loan. (in months)
+  // pv - The present value, or total value of all loan payments now.(current saved )
+  // fv -The future value, (goal)
+  // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
+  function PMT(rate, nper, pv, fv, type) {
+    if (!fv) {
+      fv = 0;
+    }
+    if (!type) {
+      type = 0;
+    }
+
+    if (rate == 0) {
+      return -(pv + fv) / nper;
+    }
+
+    const pvif = Math.pow(1 + rate, nper);
+    let pmt = (-rate / (pvif - 1)) * (pv * pvif + fv);
+
+    if (type == 1) {
+      pmt /= 1 + rate;
+    }
+
+    return pmt;
+  }
+  console.log(
+    "Montly needed to get to goal in stated years",
+    PMT(rate, nper, pv, fv, type)
+  );
 
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
