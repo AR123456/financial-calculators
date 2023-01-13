@@ -1,4 +1,4 @@
-import { calcFV, PMT } from "./calculations.js";
+import { calcFV, PMT, IPMT, NPER } from "./calculations.js";
 
 //TODO create a app that will take in a dollar amount goal and years goal
 // the app will calculate how much needs to be saved per month to achieve  the goal
@@ -19,7 +19,7 @@ const actualTime = document.getElementById("actualTime");
 const actualRate = document.getElementById("actualRate");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 // need to declare since using module syntax
-let future;
+
 let myChart;
 // to display expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
@@ -122,7 +122,6 @@ const calculate = () => {
   console.log(nper);
   const APR = expectedReturn / 100;
   const rate = APR / nper; // monthly rate of return
-
   console.log(rate);
   const pmt = monthlySaved;
   console.log(pmt);
@@ -131,7 +130,7 @@ const calculate = () => {
   // 1 for pymt at begining of month, 0 at end
   const type = 0;
   const fv = goal;
-
+  /////////////////////////// FV
   const FV = calcFV(rate, nper, pmt, pv, type);
   console.log(`The calculated future value ${FV}`);
   /////////////// Array of FV from start to end of goal period year by year
@@ -149,42 +148,14 @@ const calculate = () => {
     yearsToGrow.push(i);
   }
   console.log(yearsToGrow);
-  // //////////////////////////////////////////////////////////////////
 
-  // stack overflow of the NPER excel function number  of periods  https://gist.github.com/Nitin-Daddikar/43899765e30274ec739f44ebbac434c3
-  // solve the annuity for n
-  // rate - The interest rate per period.
-  // pmt - payment The payment made each period. since this is savings make negative number
-  // pv - present The present value, or total value of all payments now. For savings making this a neg number for the calc
-  // goal - future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
-  // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
-  const NPER = function (rate, pmt, pv, goal, type) {
-    // Initialize type
-    type = typeof type === "undefined" ? 0 : type;
-    // Initialize future value
-    future = typeof future === "undefined" ? 0 : goal;
-    // Return number of periods
-    const num = -pmt * (1 + rate * type) - goal * rate;
-    // this is savings, not loan so making pv negative so the calc works
-    const den = -pv * rate + -pmt * (1 + rate * type);
-    return Math.log(num / den) / Math.log(1 + rate);
-  };
-
+  //////////////////////////////////////PMT
   console.log(
     "PMT so monthly savings plus monthly interest ",
     PMT(rate, nper, pv, fv, type)
   );
-  ///////// int
-  // rate - intrest rate per period
-  //per - the period for which you want to find the interest and must be in the range 1 to Nper
-  //nper - total number of payment periods of the investment
-  // pv - the present value of the lump sum amount that a series of future payemtns is worth now
-  // fv - the future value, or a cash balance you want to attain after the last payment is made if omitted =0
-  function IPMT(pv, pmt, rate, per) {
-    var tmp = Math.pow(1 + rate, per);
-    let ipmt = 0 - (pv * tmp * rate + pmt * (tmp - 1)) * -1;
-    return ipmt;
-  }
+
+  /////////////////////////////////////// IPMT
   console.log("part of monthly that is interest", IPMT(pv, pmt, rate, nper));
 
   console.log(
@@ -192,7 +163,7 @@ const calculate = () => {
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
   );
 
-  //
+  /////////////////////////////////////////////// NPER
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
