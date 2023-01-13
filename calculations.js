@@ -46,7 +46,7 @@ export function PMT(rate, nper, pv, fv, type) {
   return pmt;
 }
 
-///////// int
+///////// IPMT
 // rate - intrest rate per period
 //per - the period for which you want to find the interest and must be in the range 1 to Nper
 //nper - total number of payment periods of the investment

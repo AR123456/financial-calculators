@@ -1,8 +1,5 @@
 import { calcFV, PMT, IPMT, NPER } from "./calculations.js";
-
-//TODO create a app that will take in a dollar amount goal and years goal
-// the app will calculate how much needs to be saved per month to achieve  the goal
-// getting range and text inputs
+// range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
 const inputGoal = document.getElementById("savingsInput");
 const sliderYears = document.getElementById("yearsRange");
@@ -18,23 +15,21 @@ const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
 const actualRate = document.getElementById("actualRate");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
-// need to declare since using module syntax
-
+// TODO put chart in its own file need to declare since using module syntax
 let myChart;
-// to display expected rate of return to user
+// display monthly expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
-// global array the hold what would acctually be saved give plan inputs
+// what would be saved give plan inputs
 const growthByYear = [];
-// global array that holds growth by year contributing calculated needed
+// growth if needed used
 const growthByYearNeededToBeSaved = [];
-// global array that holds the years const made into array for data display
+// years for chart
 const yearsToGrow = [];
-
 // Buttons
 const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
 
-// Function to format input boxes as currency
+// TODO Function to format input boxes as currency
 // the initial values, any changes and slider inputs should all be formated
 // target values on page load or with a change call this function
 // function formatCurrency(num) {
@@ -47,7 +42,7 @@ const viewReportButton = document.getElementById("viewReport");
 //   );
 // }
 // formatCurrency(inputGoal.value);
-// function to sync range and  text box inputs
+// TODO can this be in its own file ?function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
 
@@ -105,8 +100,6 @@ function syncInputs() {
 syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
-// variables uses in calculate and the chart
-
 // calculate  function
 const calculate = () => {
   const goal = parseFloat(inputGoal.value);
@@ -115,19 +108,22 @@ const calculate = () => {
   const monthlySaved = parseFloat(inputMonthlySavings.value);
   const expectedReturn = parseFloat(inputExpectedRate.value);
   const expectedInflation = parseFloat(inputInflationRate.value);
-
-  // Assuming compounding monthly payment at begining of month
-  // APR convreted to monthly rate of return expected rate of return / months then to get % as numb /100
+  // Assuming compounding monthly payment at ebd of month- type 0
+  // nper - The total number of payment periods.
   const nper = years * 12;
   console.log(nper);
+  //expected as a decimal
   const APR = expectedReturn / 100;
-  const rate = APR / nper; // monthly rate of return
+  //The interest rate per period aka monthly rate of return
+  const rate = APR / nper;
   console.log(rate);
+  //payment made each period.
   const pmt = monthlySaved;
   console.log(pmt);
+  // The present value
   const pv = currentSaved;
   console.log(pv);
-  // 1 for pymt at begining of month, 0 at end
+  // 1 for pymt at beginning of month, 0 at end
   const type = 0;
   const fv = goal;
   /////////////////////////// FV
@@ -142,28 +138,29 @@ const calculate = () => {
     growthByYear.push(newPV);
   }
   console.log(growthByYear);
-
   /// push goal years to years to grow array
   for (let i = 0; i <= years; i++) {
     yearsToGrow.push(i);
   }
   console.log(yearsToGrow);
 
-  //////////////////////////////////////PMT
+  //////////////////////////////////////PMT monthly actually needed to get to goal
+  //TODO push to growth array to add to chart
   console.log(
     "PMT so monthly savings plus monthly interest ",
     PMT(rate, nper, pv, fv, type)
   );
 
-  /////////////////////////////////////// IPMT
+  /////////////////////////////////////// IPMT what is int of monthly actually needed
   console.log("part of monthly that is interest", IPMT(pv, pmt, rate, nper));
-
+  //  monthly actually needed that is principal,user needs to contribute
+  //TODO display in message to user
   console.log(
     "Monthly savings contribution needed",
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
   );
 
-  /////////////////////////////////////////////// NPER
+  /////////////////////////////////////////////// NPER// number of periods - in months
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
   // act Years and actMonths are for formatting year month style
@@ -181,6 +178,12 @@ const calculate = () => {
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
+  //TODO show user
+
+  // console.log(
+  //   "Monthly savings contribution needed",
+  //   PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
+  // );
 };
 
 calculateButton.onclick = function () {
@@ -190,7 +193,7 @@ calculateButton.onclick = function () {
   displayChart();
 };
 
-// adding JS to get the range track and ticks working
+// TODO put in its own file adding JS to get the range track and ticks working
 ///////////////////////////////////////////////////////////////////////
 // looking at using Javascript to generate slider marks
 // https://codepen.io/viestursm/pen/BayEjaN
@@ -262,12 +265,6 @@ function setTicks(slider) {
 }
 
 window.onload = initRangeSlider;
-
-// ////////////////
-//TODO work on formatting to match example site, look at DYI jumbotron
-// TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
-
-// TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
 
 // CHART BOILER PLATE
 
