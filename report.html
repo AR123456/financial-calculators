@@ -93,6 +93,7 @@
       </table>
     </div> -->
     <div id="displayTable"></div>
+    <div class="scoreboard"></div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
@@ -105,7 +106,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- https://plainenglish.io/blog/creating-a-dynamic-html-table-through-javascript-f554fba376cf -->
-    <script>
+    <!-- <script>
       const displayTable = document.getElementById(displayTable);
       let tableHeaders = [
         "Savings goal",
@@ -137,6 +138,45 @@
         //
         displayTable.append(summaryTable);
       };
+    </script> -->
+    <script>
+      const scoreDiv = document.querySelector("div.scoreboard"); // Find the scoreboard div in our html
+      let tableHeaders = [
+        "Global Ranking",
+        "Username",
+        "Score",
+        "Time Alive [seconds]",
+        "Accuracy [%]",
+      ];
+      const createScoreboardTable = () => {
+        while (scoreDiv.firstChild) scoreDiv.removeChild(scoreDiv.firstChild); // Remove all children from scoreboard div (if any)
+        let scoreboardTable = document.createElement("table"); // Create the table itself
+        scoreboardTable.className = "scoreboardTable";
+        //
+        let scoreboardTableHead = document.createElement("thead"); // Creates the table header group element
+        scoreboardTableHead.className = "scoreboardTableHead";
+        //
+        let scoreboardTableHeaderRow = document.createElement("tr"); // Creates the row that will contain the headers
+        scoreboardTableHeaderRow.className = "scoreboardTableHeaderRow";
+        //
+        // iterate over all the strings in the tableHeader array and will append the header cells to the table header row
+        tableHeaders.forEach((header) => {
+          let scoreHeader = document.createElement("th"); // Creates the current header cell during a specific iteration
+          scoreHeader.innerText = header;
+          scoreboardTableHeaderRow.append(scoreHeader); // Appends the current header cell to the header row
+        });
+        //
+        scoreboardTableHead.append(scoreboardTableHeaderRow); // Appends the header row to the table header group element
+        //
+        let scoreboardTableBody = document.createElement("tbody"); // Creates the table body group element
+        scoreboardTableBody.className = "scoreboardTable-Body";
+        scoreboardTable.append(scoreboardTableBody); // Appends the table body group element to the table
+        //
+        scoreDiv.append(scoreboardTable); // Appends the table to the scoreboard div
+        console.log(scoreboardTable);
+      };
+
+      createScoreboardTable();
     </script>
   </body>
 </html>
