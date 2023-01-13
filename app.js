@@ -13,15 +13,16 @@ const inputExpectedRate = document.getElementById("expectedRateInput");
 const sliderInflationRate = document.getElementById("expectedInflationRange");
 const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
-const actualRate = document.getElementById("actualRate");
+const chartDiv = document.getElementById("chartDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
+const displayTable = document.getElementById("displayTable");
 // TODO put chart in its own file need to declare since using module syntax
 let myChart;
 // display monthly expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // what would be saved give plan inputs
 const growthByYear = [];
-// growth if needed used
+// growth by year using monthly payment needed to reach savings goal
 const growthByYearNeededToBeSaved = [];
 // years for chart
 const yearsToGrow = [];
@@ -146,20 +147,24 @@ const calculate = () => {
 
   //////////////////////////////////////PMT monthly actually needed to get to goal
   //TODO push to growth array to add to chart
-  console.log(
-    "PMT so monthly savings plus monthly interest ",
-    PMT(rate, nper, pv, fv, type)
-  );
-
+  const PandIPmt = PMT(rate, nper, pv, fv, type);
+  console.log("PMT so monthly savings plus monthly interest ", PandIPmt);
   /////////////////////////////////////// IPMT what is int of monthly actually needed
-  console.log("part of monthly that is interest", IPMT(pv, pmt, rate, nper));
-  //  monthly actually needed that is principal,user needs to contribute
-  //TODO display in message to user
-  console.log(
-    "Monthly savings contribution needed",
+  const ipmt = IPMT(pv, pmt, rate, nper);
+  console.log("part of monthly that is interest", ipmt);
+  //Show user needed monthly contribution
+  const Ppmt = parseFloat(
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
-  );
-
+  ).toFixed(2);
+  ////////////////////// display need in chart
+  growthByYearNeededToBeSaved.push(pv);
+  let newPVP = calcFV(rate, 12, Ppmt, pv, type);
+  growthByYearNeededToBeSaved.push(newPVP);
+  for (let i = 1; i < years; i++) {
+    newPVP = calcFV(rate, 12, Ppmt, newPVP, type);
+    growthByYearNeededToBeSaved.push(newPVP);
+  }
+  console.log(growthByYearNeededToBeSaved);
   /////////////////////////////////////////////// NPER// number of periods - in months
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
@@ -177,20 +182,22 @@ const calculate = () => {
   );
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
-  <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
-  //TODO show user
-
-  // console.log(
-  //   "Monthly savings contribution needed",
-  //   PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
-  // );
+  <span>The actual amount of time needed to save $${goal} saving $${monthlySaved} per month is ${actYears} years and ${actMonths} months </span><br>
+  <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
+  `;
+  chartDiv.innerHTML = `<span>    Actual monthly savings according to plan vs needed monthly saving to
+  get to goal in plan years.<span>`;
 };
 
 calculateButton.onclick = function () {
   growthByYear.length = 0;
   yearsToGrow.length = 0;
+  growthByYearNeededToBeSaved.length = 0;
   calculate();
   displayChart();
+};
+viewReportButton.onclick = function () {
+  console.log("view report clicked ");
 };
 
 // TODO put in its own file adding JS to get the range track and ticks working
@@ -290,7 +297,8 @@ const displayChart = () => {
       // and then amount needed per year to get to goal  each year the green number
       datasets: [
         {
-          label: "Plan Savings by Year",
+          // TODO use JS to show  monthlySaved
+          label: "Plan monthly",
           // thousands of dollars scaled to goal
           data: growthByYear,
           // data: [
@@ -322,6 +330,44 @@ const displayChart = () => {
             "rgba(54, 162, 235, 1)",
 
             "rgba(54, 162, 235, 1)",
+            // "rgba(75, 192, 192, 1)",
+          ],
+          borderWidth: 1,
+        },
+        {
+          // TODO use JS to show  monthlySaved
+          label: "Needed monthly",
+          // thousands of dollars scaled to goal
+          data: growthByYearNeededToBeSaved,
+          // data: [
+          //   1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
+          //   5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
+          //   10000,
+          // ],
+          backgroundColor: [
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            //  site default green rgba(47, 162, 47, 1)
+          ],
+          borderColor: [
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
             // "rgba(75, 192, 192, 1)",
           ],
           borderWidth: 1,

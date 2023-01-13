@@ -45,16 +45,6 @@
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body" id="actualTime">
-            <!-- <span
-              >You will reach your goal in <span id="actualTime"></span> months.</span>
-            </span> -->
-            <!-- <span
-              >You will need <span id="actualTime"></span> months to reach your goal.</span>
-            </span> -->
-          </div>
-        </div>
 
         <div>
           <div class="card-body">
@@ -378,21 +368,19 @@
         </div>
       </form>
       <!--  -->
+      <div class="card">
+        <div class="card-body" id="actualTime"></div>
+      </div>
       <!-- Graph  -->
       <div class="card">
         <div class="card-body">
-          This is a graph with dollars on left and years along bottom. 2 bars
-          side by side blue is savings per month, green is what is actually
-          being saved compouned. Blue is what needs to be saved to get to goal.
-          >
+          <div id="chartDiv"></div>
           <!-- <div class="w-50 p-3"> -->
           <div class="vw-25 vh-25">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="300" height="150"></canvas>
           </div>
         </div>
       </div>
-
-      <!-- Content here -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
