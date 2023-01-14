@@ -178,7 +178,7 @@ const calculate = () => {
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
-  //TODO show user
+  //TODO  make a const for chart and to show user
 
   // console.log(
   //   "Monthly savings contribution needed",
@@ -290,7 +290,8 @@ const displayChart = () => {
       // and then amount needed per year to get to goal  each year the green number
       datasets: [
         {
-          label: "Plan Savings by Year",
+          // TODO use JS to show  monthlySaved
+          label: "Input Plan by Year",
           // thousands of dollars scaled to goal
           data: growthByYear,
           // data: [
@@ -322,6 +323,44 @@ const displayChart = () => {
             "rgba(54, 162, 235, 1)",
 
             "rgba(54, 162, 235, 1)",
+            // "rgba(75, 192, 192, 1)",
+          ],
+          borderWidth: 1,
+        },
+        {
+          // TODO use JS to show  monthlySaved
+          label: "Needed monthly by Year",
+          // thousands of dollars scaled to goal
+          data: growthByYear,
+          // data: [
+          //   1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
+          //   5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
+          //   10000,
+          // ],
+          backgroundColor: [
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            "rgba(54, 162, 235, 1)",
+
+            //  site default green rgba(47, 162, 47, 1)
+          ],
+          borderColor: [
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
+            "rgba(47, 162, 47, 0.2)",
             // "rgba(75, 192, 192, 1)",
           ],
           borderWidth: 1,
