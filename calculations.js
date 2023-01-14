@@ -78,17 +78,3 @@ export function NPER(rate, pmt, pv, goal, type) {
   const den = -pv * rate + -pmt * (1 + rate * type);
   return Math.log(num / den) / Math.log(1 + rate);
 }
-
-// PPMT -part of monthly that is
-//  rate = the interest rate per period
-// per = specifies the period and must be in the range 1 to nper ? 12?
-// nper = the total number of payment periods in the investment
-// pv = present value the total amount that a series of future payments is worth now
-// fv = the cash balance to attain after the last payment is made
-
-export function PPMT(rate, per, nper, pv, fv, type) {
-  if (per < 1 || per >= nper + 1) return null;
-  var pmt = this.PMT(rate, nper, pv, fv, type);
-  var ipmt = this.IPMT(pv, pmt, rate, per - 1);
-  return pmt - ipmt;
-}
