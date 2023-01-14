@@ -65,17 +65,7 @@ export function IPMT(pv, pmt, rate, per) {
 // pv - present The present value, or total value of all payments now. For savings making this a neg number for the calc
 // goal - future - [optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.
 // type - [optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.
-// const NPER = function (rate, pmt, pv, goal, type) {
-//   // Initialize type
-//   type = typeof type === "undefined" ? 0 : type;
-//   // Initialize future value
-//   future = typeof future === "undefined" ? 0 : goal;
-//   // Return number of periods
-//   const num = -pmt * (1 + rate * type) - goal * rate;
-//   // this is savings, not loan so making pv negative so the calc works
-//   const den = -pv * rate + -pmt * (1 + rate * type);
-//   return Math.log(num / den) / Math.log(1 + rate);
-// };
+
 let future;
 export function NPER(rate, pmt, pv, goal, type) {
   // Initialize type
@@ -87,4 +77,18 @@ export function NPER(rate, pmt, pv, goal, type) {
   // this is savings, not loan so making pv negative so the calc works
   const den = -pv * rate + -pmt * (1 + rate * type);
   return Math.log(num / den) / Math.log(1 + rate);
+}
+
+// PPMT -part of monthly that is
+//  rate = the interest rate per period
+// per = specifies the period and must be in the range 1 to nper ? 12?
+// nper = the total number of payment periods in the investment
+// pv = present value the total amount that a series of future payments is worth now
+// fv = the cash balance to attain after the last payment is made
+
+export function PPMT(rate, per, nper, pv, fv, type) {
+  if (per < 1 || per >= nper + 1) return null;
+  var pmt = this.PMT(rate, nper, pv, fv, type);
+  var ipmt = this.IPMT(pv, pmt, rate, per - 1);
+  return pmt - ipmt;
 }

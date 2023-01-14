@@ -1,4 +1,4 @@
-import { calcFV, PMT, IPMT, NPER } from "./calculations.js";
+import { calcFV, PMT, IPMT, NPER, PPMT } from "./calculations.js";
 // range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
 const inputGoal = document.getElementById("savingsInput");
@@ -146,20 +146,28 @@ const calculate = () => {
 
   //////////////////////////////////////PMT monthly actually needed to get to goal
   //TODO push to growth array to add to chart
+  const pmtMonthlyIncludingInt = PMT(rate, nper, pv, fv, type);
   console.log(
     "PMT so monthly savings plus monthly interest ",
-    PMT(rate, nper, pv, fv, type)
+    pmtMonthlyIncludingInt
   );
 
   /////////////////////////////////////// IPMT what is int of monthly actually needed
-  console.log("part of monthly that is interest", IPMT(pv, pmt, rate, nper));
+  const ipmt = IPMT(pv, pmt, rate, nper);
+
+  console.log("part of monthly that is interest", ipmt);
   //  monthly actually needed that is principal,user needs to contribute
   //TODO display in message to user
   console.log(
     "Monthly savings contribution needed",
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
   );
-
+  let per = nper;
+  // from the PPMT function
+  console.log(
+    "This is month save needed from the PPMT formula ",
+    PPMT(rate, per, nper, pv, fv, type)
+  );
   /////////////////////////////////////////////// NPER// number of periods - in months
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
