@@ -146,11 +146,8 @@ const calculate = () => {
 
   //////////////////////////////////////PMT monthly actually needed to get to goal
   //TODO push to growth array to add to chart
-  const pmtMonthlyIncludingInt = PMT(rate, nper, pv, fv, type);
-  console.log(
-    "PMT so monthly savings plus monthly interest ",
-    pmtMonthlyIncludingInt
-  );
+  const neededPmt = PMT(rate, nper, pv, fv, type);
+  console.log("PMT so monthly savings plus monthly interest ", neededPmt);
 
   /////////////////////////////////////// IPMT what is int of monthly actually needed
   const ipmt = IPMT(pv, pmt, rate, nper);
