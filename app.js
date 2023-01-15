@@ -21,7 +21,7 @@ let myChart;
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // what would be saved give plan inputs
 const growthByYear = [];
-// growth if needed used
+// growth by year using monthly payment needed to reach savings goal
 const growthByYearNeededToBeSaved = [];
 // years for chart
 const yearsToGrow = [];
@@ -148,18 +148,22 @@ const calculate = () => {
   //TODO push to growth array to add to chart
   const PandIPmt = PMT(rate, nper, pv, fv, type);
   console.log("PMT so monthly savings plus monthly interest ", PandIPmt);
-
   /////////////////////////////////////// IPMT what is int of monthly actually needed
   const ipmt = IPMT(pv, pmt, rate, nper);
-
   console.log("part of monthly that is interest", ipmt);
-  //  monthly actually needed that is principal,user needs to contribute
-
   //Show user needed monthly contribution
   const Ppmt = parseFloat(
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
   ).toFixed(2);
-
+  ////////////////////// display need in chart
+  growthByYearNeededToBeSaved.push(pv);
+  let newPVP = calcFV(rate, 12, Ppmt, pv, type);
+  growthByYearNeededToBeSaved.push(newPVP);
+  for (let i = 1; i < years; i++) {
+    newPVP = calcFV(rate, 12, Ppmt, newPVP, type);
+    growthByYearNeededToBeSaved.push(newPVP);
+  }
+  console.log(growthByYearNeededToBeSaved);
   /////////////////////////////////////////////// NPER// number of periods - in months
   const calcTime = NPER(rate, pmt, pv, goal, type);
   // https://stackoverflow.com/questions/39275225/how-to-convert-a-number-of-months-into-months-and-years
@@ -180,12 +184,6 @@ const calculate = () => {
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span><br>
   <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
   `;
-  //TODO  make a const for chart and to show user
-
-  // console.log(
-  //   "Monthly savings contribution needed",
-  //   PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
-  // );
 };
 
 calculateButton.onclick = function () {
