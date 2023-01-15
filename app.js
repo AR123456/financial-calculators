@@ -189,6 +189,7 @@ const calculate = () => {
 calculateButton.onclick = function () {
   growthByYear.length = 0;
   yearsToGrow.length = 0;
+  growthByYearNeededToBeSaved.length = 0;
   calculate();
   displayChart();
 };
@@ -331,7 +332,7 @@ const displayChart = () => {
           // TODO use JS to show  monthlySaved
           label: "Needed monthly by Year",
           // thousands of dollars scaled to goal
-          data: growthByYear,
+          data: growthByYearNeededToBeSaved,
           // data: [
           //   1000, 1000, 7011, 1890, 13036, 2783, 19077, 3676, 25133, 4573, 31204,
           //   5472, 37290, 6373, 43391, 7276, 49508, 8182, 55640, 9090, 61787,
