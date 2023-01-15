@@ -146,19 +146,19 @@ const calculate = () => {
 
   //////////////////////////////////////PMT monthly actually needed to get to goal
   //TODO push to growth array to add to chart
-  const neededPmt = PMT(rate, nper, pv, fv, type);
-  console.log("PMT so monthly savings plus monthly interest ", neededPmt);
+  const PandIPmt = PMT(rate, nper, pv, fv, type);
+  console.log("PMT so monthly savings plus monthly interest ", PandIPmt);
 
   /////////////////////////////////////// IPMT what is int of monthly actually needed
   const ipmt = IPMT(pv, pmt, rate, nper);
 
   console.log("part of monthly that is interest", ipmt);
   //  monthly actually needed that is principal,user needs to contribute
-  //TODO display in message to user
-  console.log(
-    "Monthly savings contribution needed",
+
+  //Show user needed monthly contribution
+  const Ppmt = parseFloat(
     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
-  );
+  ).toFixed(2);
 
   /////////////////////////////////////////////// NPER// number of periods - in months
   const calcTime = NPER(rate, pmt, pv, goal, type);
@@ -177,7 +177,9 @@ const calculate = () => {
   );
   // writing to the dom
   actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
-  <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span>`;
+  <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span><br>
+  <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
+  `;
   //TODO  make a const for chart and to show user
 
   // console.log(
