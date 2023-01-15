@@ -13,7 +13,7 @@ const inputExpectedRate = document.getElementById("expectedRateInput");
 const sliderInflationRate = document.getElementById("expectedInflationRange");
 const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
-const actualRate = document.getElementById("actualRate");
+const chartDiv = document.getElementById("chartDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 // TODO put chart in its own file need to declare since using module syntax
 let myChart;
@@ -184,6 +184,8 @@ const calculate = () => {
   <span>The actual amount of time needed to save $${goal} is ${actYears} years and ${actMonths} months </span><br>
   <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
   `;
+  chartDiv.innerHTML = `<span>    Actual monthly savings according to plan vs needed monthly saving to
+  get to goal in plan years.<span>`;
 };
 
 calculateButton.onclick = function () {
@@ -292,7 +294,7 @@ const displayChart = () => {
       datasets: [
         {
           // TODO use JS to show  monthlySaved
-          label: "Input Plan by Year",
+          label: "Plan monthly",
           // thousands of dollars scaled to goal
           data: growthByYear,
           // data: [
@@ -330,7 +332,7 @@ const displayChart = () => {
         },
         {
           // TODO use JS to show  monthlySaved
-          label: "Needed monthly by Year",
+          label: "Needed monthly",
           // thousands of dollars scaled to goal
           data: growthByYearNeededToBeSaved,
           // data: [
