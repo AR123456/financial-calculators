@@ -15,6 +15,7 @@ const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
 const chartDiv = document.getElementById("chartDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
+const displayTable = document.getElementById("displayTable");
 // TODO put chart in its own file need to declare since using module syntax
 let myChart;
 // display monthly expected rate of return to user
@@ -194,6 +195,9 @@ calculateButton.onclick = function () {
   growthByYearNeededToBeSaved.length = 0;
   calculate();
   displayChart();
+};
+viewReportButton.onclick = function () {
+  console.log("view report clicked ");
 };
 
 // TODO put in its own file adding JS to get the range track and ticks working
