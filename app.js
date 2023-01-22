@@ -272,10 +272,10 @@ window.onload = initRangeSlider;
 // CHART BOILER PLATE
 
 // https://www.chartjs.org/docs/latest/getting-started/usage.html
-
+const ctx = document.getElementById("myChart").getContext("2d");
 const displayChart = () => {
   // call this after calculate
-  const ctx = document.getElementById("myChart").getContext("2d");
+  // const ctx = document.getElementById("myChart").getContext("2d");
   // https://stackoverflow.com/questions/69559728/eror-chart-min-js13-uncaught-in-promise-error-canvas-is-already-in-use-cha
   // https://www.youtube.com/watch?v=TvkT6a17L2s
   let chartStatus = Chart.getChart("myChart");
