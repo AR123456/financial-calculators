@@ -14,6 +14,7 @@ const sliderInflationRate = document.getElementById("expectedInflationRange");
 const inputInflationRate = document.getElementById("expectedInflationInput");
 const actualTime = document.getElementById("actualTime");
 const chartDiv = document.getElementById("chartDiv");
+const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 // TODO put chart in its own file need to declare since using module syntax
 let myChart;
@@ -102,6 +103,7 @@ syncInputs();
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // calculate  function
 const calculate = () => {
+  chartDiv.scrollIntoView();
   const goal = parseFloat(inputGoal.value);
   const years = parseFloat(inputYears.value);
   const currentSaved = parseFloat(inputCurrentSaved.value);
@@ -192,8 +194,12 @@ calculateButton.onclick = function () {
   growthByYear.length = 0;
   yearsToGrow.length = 0;
   growthByYearNeededToBeSaved.length = 0;
+
   calculate();
   displayChart();
+};
+viewReportButton.onClick = function () {
+  console.log("clicked");
 };
 
 // TODO put in its own file adding JS to get the range track and ticks working
@@ -379,3 +385,9 @@ const displayChart = () => {
     },
   });
 };
+function clearPriorTable() {
+  tableDiv.innerHTML = "";
+}
+function generateTables() {
+  tableDiv.scrollIntoView();
+}
