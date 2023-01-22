@@ -198,9 +198,6 @@ calculateButton.onclick = function () {
   calculate();
   displayChart();
 };
-viewReportButton.onClick = function () {
-  console.log("clicked");
-};
 
 // TODO put in its own file adding JS to get the range track and ticks working
 ///////////////////////////////////////////////////////////////////////
@@ -385,9 +382,12 @@ const displayChart = () => {
     },
   });
 };
+viewReportButton.addEventListener("click", generateTables);
 function clearPriorTable() {
   tableDiv.innerHTML = "";
 }
 function generateTables() {
+  console.log("clicked");
+  clearPriorTable();
   tableDiv.scrollIntoView();
 }
