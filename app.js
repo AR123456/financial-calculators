@@ -101,7 +101,6 @@ function syncInputs() {
 syncInputs();
 
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
-
 // calculate  function
 const calculate = () => {
   chartDiv.scrollIntoView();
@@ -389,80 +388,31 @@ viewReportButton.addEventListener("click", generateTables);
 function clearPriorTable() {
   tableDiv.innerHTML = "";
 }
-function generateTables() {
+function generateTables(
+  goal,
+  years,
+  currentsaved,
+  rate,
+  expectedInflation,
+  growthByYearNeededToBeSaved,
+  ppmt,
+  monthlySaved,
+  growthByYear,
+  yearsToGrow
+) {
   console.log("clicked");
   clearPriorTable();
   tableDiv.scrollIntoView();
-  generateResultSummary();
-}
-function generateResultSummary() {
-  const goal = parseFloat(inputGoal.value);
-  const years = parseFloat(inputYears.value);
-  const currentSaved = parseFloat(inputCurrentSaved.value);
-  const monthlySaved = parseFloat(inputMonthlySavings.value);
-  const expectedReturn = parseFloat(inputExpectedRate.value);
-  const expectedInflation = parseFloat(inputInflationRate.value);
-  // clear out stuff from last click so it does not keep appending new
-  clearPriorTable();
-  // create teh bootstrap responsive table container
-  const cont = document.createElement("div");
-  cont.classList.add("table-responsive", "container");
-  // create the main table element
-  const tbl = document.createElement("table");
-  tbl.classList.add(
-    "table",
-    "table-striped",
-    "table-hover",
-    "table-bordered",
-    "table-sm",
-    "caption-top"
+  console.log(
+    goal,
+    years,
+    currentsaved,
+    rate,
+    expectedInflation,
+    growthByYearNeededToBeSaved,
+    ppmt,
+    monthlySaved,
+    growthByYear,
+    yearsToGrow
   );
-  tbl.innerHTML = `<caption class="text-center">By Year</caption>`;
-  // create the parts of the table
-  const tblBody = document.createElement("tbody");
-  const tblHeader = document.createElement("thead");
-  const tblFooter = document.createElement("tfoot");
-  //  add to elements
-  tblHeader.innerHTML = `
-  <tr><th class="text-center">Result Summary</th></tr>`;
-  tblBody.innerHTML = `
-  <tr>  
-  <td class="text-end">Savings goal </td>
-  <td class="text-end"> ${goal}</td>
-  </tr>
-  <tr>  
-  <td class="text-end">Target years to save </td>
-  <td class="text-end"> ${years}</td>
-   </tr>
-  <tr>  
-  <td class="text-end">Amount currently saved </td> 
-  <td class="text-end"> ${currentSaved}</td> 
-   </tr>
-  <tr>  
-  <td class="text-end">Expected rate of return</td>
-   <td class="text-end"> ${rate}</td>
-    </tr>
-  <tr>  
-  <td class="text-end">Inflation rate  </td>
-    <td class="text-end"> ${expectedInflation}</td>
-    </tr>   
-   `;
-  tblFooter.innerHTML = `
-  <tr> 
-    <td class="text-end">Total after 10 years </td>
-    <td class="text-end"> ${growthByYearNeededToBeSaved[10]}</td>
-  </tr>
-  <tr>    
-    <td class="text-end">Amount required to meet goal in ${years} years</td>
-    <td class="text-end"> ${ppmt} monthly</td>
-  </tr> `;
-  // put tblHeader into the table
-  tbl.appendChild(tblHeader);
-  // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
-  // put footer into table
-  tbl.appendChild(tblFooter);
-  cont.appendChild(tbl);
-  // appends <table> to div >
-  dynamicGenerateTable.appendChild(cont);
 }
