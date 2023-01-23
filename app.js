@@ -193,6 +193,9 @@ const calculate = () => {
   localStorage.setItem("years", "years");
   localStorage.setItem("monthlySaved", "monthlySaved");
   localStorage.setItem("ppmt", "ppmt");
+  localStorage.setItem("goal", "goal");
+  localStorage.setItem("currentSaved", "currentSaved");
+  console.log("from local storage", localStorage.key("currentSaved"));
 };
 
 calculateButton.onclick = function () {
@@ -394,20 +397,23 @@ function clearPriorTable() {
   tableDiv.innerHTML = "";
 }
 function generateTables() {
+  clearPriorTable();
+  tableDiv.scrollIntoView();
+  // generateTable();
+  generateResultSummary();
+}
+function generateResultSummary() {
   /// get needed consts from the calculations from local storage
   let years = localStorage.getItem("years");
   let monthlySaved = localStorage.getItem("monthlySaved");
   let ppmt = localStorage.getItem("ppmt");
+  let goal = localStorage.getItem("goal");
+  let currentSaved = localStorage.getItem("currentSaved");
   console.log(years);
   console.log(monthlySaved);
   console.log(ppmt);
-  console.log("clicked");
-  clearPriorTable();
-  tableDiv.scrollIntoView();
-  generateTable();
-  generateResultSummary();
-}
-function generateResultSummary() {
+  console.log(goal);
+  console.log(currentSaved);
   // create teh bootstrap responsive table container
   const cont = document.createElement("div");
   cont.classList.add("table-responsive", "container");
@@ -470,59 +476,59 @@ function generateResultSummary() {
   // appends <table> to div >
   dynamicGenerateTable.appendChild(cont);
 }
-function generateTable() {
-  // create teh bootstrap responsive table container
-  const cont = document.createElement("div");
-  cont.classList.add("table-responsive", "container");
-  cont.id = "tableDiv";
-  // creates a <table> element and a <tbody> element
-  const tbl = document.createElement("table");
-  // add classes in this case for bootstrap 5
-  tbl.classList.add(
-    "table",
-    "table-striped",
-    "table-hover",
-    "table-bordered",
-    "table-sm",
-    "caption-top"
-  );
-  tbl.innerHTML = `<caption class="text-center">Summary</caption>`;
-  const tblBody = document.createElement("tbody");
-  const tblHeader = document.createElement("thead");
-  // const row = document.createElement("tr");
-  const trFirst = document.createElement("tr");
-  tblHeader.innerHTML = `
-              <tr>  
-              <th class="text-center">Years ${years}</th>
-              <th class="text-center">Contributing ${monthlySaved}</th>
-              <th class="text-center">Contributing ${ppmt} to get to goal</th> 
-              </tr>`;
-  trFirst.innerHTML = `<tr>  
-              <td></td>
-              <td class="text-end">$${growthByYear[0]} Starting Balance</td>
-              <td class="text-end">$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
-              </tr>`;
-  // creating all cells
-  for (let i = 1; i < yearsToGrow.length; i++) {
-    // creates a table row
-    const row = document.createElement("tr");
-    let trs = `<tr>  
-                <td class="text-end">${yearsToGrow[i]}</td>
-                <td class="text-end">$ ${growthByYear[i]}</td>
-                <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td> 
-                </tr>`;
-    row.innerHTML = trs;
-    // prepend adds to front append adds to end
-    tblBody.prepend(trFirst);
-    // add the row to the end of the table body
-    tblBody.appendChild(row);
-  }
-  // put tblHeader into the table
-  tbl.appendChild(tblHeader);
-  // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
-  // put the table into the table responsive container for bootstrap
-  cont.appendChild(tbl);
-  // appends <table> to the hard coded div >
-  dynamicGenerateTable.appendChild(cont);
-}
+// function generateTable() {
+//   // create teh bootstrap responsive table container
+//   const cont = document.createElement("div");
+//   cont.classList.add("table-responsive", "container");
+//   cont.id = "tableDiv";
+//   // creates a <table> element and a <tbody> element
+//   const tbl = document.createElement("table");
+//   // add classes in this case for bootstrap 5
+//   tbl.classList.add(
+//     "table",
+//     "table-striped",
+//     "table-hover",
+//     "table-bordered",
+//     "table-sm",
+//     "caption-top"
+//   );
+//   tbl.innerHTML = `<caption class="text-center">Summary</caption>`;
+//   const tblBody = document.createElement("tbody");
+//   const tblHeader = document.createElement("thead");
+//   // const row = document.createElement("tr");
+//   const trFirst = document.createElement("tr");
+//   tblHeader.innerHTML = `
+//               <tr>
+//               <th class="text-center">Years ${years}</th>
+//               <th class="text-center">Contributing ${monthlySaved}</th>
+//               <th class="text-center">Contributing ${ppmt} to get to goal</th>
+//               </tr>`;
+//   trFirst.innerHTML = `<tr>
+//               <td></td>
+//               <td class="text-end">$${growthByYear[0]} Starting Balance</td>
+//               <td class="text-end">$${growthByYearNeededToBeSaved[0]} Starting Balance</td>
+//               </tr>`;
+//   // creating all cells
+//   for (let i = 1; i < yearsToGrow.length; i++) {
+//     // creates a table row
+//     const row = document.createElement("tr");
+//     let trs = `<tr>
+//                 <td class="text-end">${yearsToGrow[i]}</td>
+//                 <td class="text-end">$ ${growthByYear[i]}</td>
+//                 <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td>
+//                 </tr>`;
+//     row.innerHTML = trs;
+//     // prepend adds to front append adds to end
+//     tblBody.prepend(trFirst);
+//     // add the row to the end of the table body
+//     tblBody.appendChild(row);
+//   }
+//   // put tblHeader into the table
+//   tbl.appendChild(tblHeader);
+//   // put the <tbody> in the <table>
+//   tbl.appendChild(tblBody);
+//   // put the table into the table responsive container for bootstrap
+//   cont.appendChild(tbl);
+//   // appends <table> to the hard coded div >
+//   dynamicGenerateTable.appendChild(cont);
+// }
