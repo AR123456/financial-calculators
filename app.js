@@ -190,7 +190,8 @@ const calculate = () => {
   chartDiv.innerHTML = `<span>    Actual monthly savings according to plan vs needed monthly saving to
   get to goal in plan years.<span>`;
   // ///////////////////
-  // create teh bootstrap responsive table container
+
+  // create The bootstrap responsive table container
   const cont = document.createElement("div");
   cont.classList.add("table-responsive", "container");
   // create the main table element
@@ -455,7 +456,7 @@ function clearPriorTable() {
   tableDiv.innerHTML = "";
 }
 function generateTables() {
-  // clearPriorTable();
+  clearPriorTable();
   tableDiv.scrollIntoView();
   // generateResultSummary();
 }
