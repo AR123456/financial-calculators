@@ -17,6 +17,9 @@ const actualTime = document.getElementById("actualTime");
 const chartDiv = document.getElementById("chartDiv");
 const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
+const backToTop = document.getElementById("top-of-page");
+const backToPlanButton = document.getElementById("plan");
+
 // TODO put chart in its own file need to declare since using module syntax
 let myChart;
 // display monthly expected rate of return to user
@@ -260,7 +263,7 @@ calculateButton.onclick = function () {
   growthByYear.length = 0;
   yearsToGrow.length = 0;
   growthByYearNeededToBeSaved.length = 0;
-
+  clearPriorTable();
   calculate();
   displayChart();
 };
@@ -456,7 +459,10 @@ function clearPriorTable() {
   tableDiv.innerHTML = "";
 }
 function generateTables() {
-  clearPriorTable();
   tableDiv.scrollIntoView();
   // generateResultSummary();
 }
+function scrollToPlan() {
+  backToTop.scrollIntoView();
+}
+backToPlanButton.addEventListener("click", scrollToPlan);
