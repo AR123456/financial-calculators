@@ -18,7 +18,7 @@ const chartDiv = document.getElementById("chartDiv");
 const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 const backToTop = document.getElementById("top-of-page");
-const backToPlanButton = document.getElementById("plan");
+
 const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
 
 // TODO put chart in its own file need to declare since using module syntax
@@ -34,6 +34,8 @@ const yearsToGrow = [];
 // Buttons
 const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
+const backToPlanButton = document.getElementById("plan");
+const viewChartButton = document.getElementById("viewChart");
 
 // TODO Function to format input boxes as currency
 // the initial values, any changes and slider inputs should all be formated
@@ -521,3 +523,7 @@ function scrollToPlan() {
   backToTop.scrollIntoView();
 }
 backToPlanButton.addEventListener("click", scrollToPlan);
+function scrollToChart() {
+  chartDiv.scrollIntoView();
+}
+viewChartButton.addEventListener("click", scrollToChart);
