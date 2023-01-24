@@ -511,6 +511,7 @@ const displayChart = () => {
 viewReportButton.addEventListener("click", generateTables);
 function clearPriorTable() {
   tableDiv.innerHTML = "";
+  dynamicGenerateTable.innerHTML = "";
 }
 function generateTables() {
   tableDiv.scrollIntoView();
