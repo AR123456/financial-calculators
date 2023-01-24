@@ -19,6 +19,7 @@ const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 const backToTop = document.getElementById("top-of-page");
 const backToPlanButton = document.getElementById("plan");
+const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
 
 // TODO put chart in its own file need to declare since using module syntax
 let myChart;
@@ -255,8 +256,6 @@ const calculate = () => {
   cont.appendChild(tbl);
   // appends <table> to div >
   tableDiv.appendChild(cont);
-
-  // /////////////
 };
 
 calculateButton.onclick = function () {

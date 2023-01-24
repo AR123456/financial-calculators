@@ -1,12 +1,12 @@
 function generateTable() {
   // create teh bootstrap responsive table container
-  const cont = document.createElement("div");
-  cont.classList.add("table-responsive", "container");
-  cont.id = "tableDiv";
+  const contB = document.createElement("div");
+  contB.classList.add("table-responsive", "container");
+  contB.id = "tableDiv";
   // creates a <table> element and a <tbody> element
-  const tbl = document.createElement("table");
+  const tblB = document.createElement("table");
   // add classes in this case for bootstrap 5
-  tbl.classList.add(
+  tblB.classList.add(
     "table",
     "table-striped",
     "table-hover",
@@ -14,18 +14,18 @@ function generateTable() {
     "table-sm",
     "caption-top"
   );
-  tbl.innerHTML = `<caption class="text-center">Summary</caption>`;
-  const tblBody = document.createElement("tbody");
-  const tblHeader = document.createElement("thead");
+  tblB.innerHTML = `<caption class="text-center">Summary</caption>`;
+  const tblBodyB = document.createElement("tbody");
+  const tblHeaderB = document.createElement("thead");
   // const row = document.createElement("tr");
-  const trFirst = document.createElement("tr");
-  tblHeader.innerHTML = `
+  const trFirstB = document.createElement("tr");
+  tblHeaderB.innerHTML = `
               <tr>  
               <th class="text-center">Years ${years}</th>
               <th class="text-center">Contributing ${monthlySaved}</th>
               <th class="text-center">Contributing ${ppmt} to get to goal</th> 
               </tr>`;
-  trFirst.innerHTML = `<tr>  
+  trFirstB.innerHTML = `<tr>  
               <td></td>
               <td class="text-end">$${growthByYear[0]} Starting Balance</td>
               <td class="text-end">$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
@@ -33,26 +33,26 @@ function generateTable() {
   // creating all cells
   for (let i = 1; i < yearsToGrow.length; i++) {
     // creates a table row
-    const row = document.createElement("tr");
-    let trs = `<tr>  
+    const rowB = document.createElement("tr");
+    let trsB = `<tr>  
                 <td class="text-end">${yearsToGrow[i]}</td>
                 <td class="text-end">$ ${growthByYear[i]}</td>
                 <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td> 
                 </tr>`;
-    row.innerHTML = trs;
+    rowB.innerHTML = trsB;
     // prepend adds to front append adds to end
-    tblBody.prepend(trFirst);
+    tblBodyB.prepend(trFirstB);
     // add the row to the end of the table body
-    tblBody.appendChild(row);
+    tblBodyB.appendChild(rowB);
   }
   // put tblHeader into the table
-  tbl.appendChild(tblHeader);
+  tblB.appendChild(tblHeaderB);
   // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
+  tblB.appendChild(tblBodyB);
   // put the table into the table responsive container for bootstrap
-  cont.appendChild(tbl);
+  contB.appendChild(tblB);
   // appends <table> to the hard coded div >
-  dynamicGenerateTable.appendChild(cont);
+  dynamicGenerateTable.appendChild(contB);
 }
 function generateResultSummary() {
   // create teh bootstrap responsive table container
