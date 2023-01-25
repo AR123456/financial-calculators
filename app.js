@@ -20,7 +20,7 @@ const backToTop = document.getElementById("top-of-page");
 const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
 
 // TODO put chart in its own file need to declare since using module syntax
-let myChart;
+let myChart = document.getElementById("myChart");
 // display monthly expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // what would be saved give plan inputs
@@ -38,16 +38,26 @@ const viewChartButton = document.getElementById("viewChart");
 // TODO Function to format input boxes as currency
 // the initial values, any changes and slider inputs should all be formated
 // target values on page load or with a change call this function
-// function formatCurrency(num) {
-//   console.log(
-//     new Intl.NumberFormat("en-IN", {
-//       style: "currency",
-//       currency: "USD",
-//       minimumFractionDigits: 2,
-//     }).format(num)
-//   );
-// }
-// formatCurrency(inputGoal.value);
+const formatCurrency = (num) => {
+  const USDollar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+  return USDollar.format(num);
+};
+inputGoal.addEventListener("keyup", () => {
+  formatCurrency(inputGoal.value);
+  console.log(formatCurrency(inputGoal.value));
+});
+
+// https://www.freecodecamp.org/news/how-to-format-number-as-currency-in-javascript-one-line-of-code/
+// let USDollar = new Intl.NumberFormat("en-US", {
+//   style: "currency",
+//   currency: "USD",
+// });
+
+// console.log(formatCurrency(inputGoal.value));
+
 // TODO can this be in its own file ?function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
@@ -108,13 +118,13 @@ syncInputs();
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // calculate  function
 const calculate = () => {
-  chartDiv.scrollIntoView();
   const goal = parseFloat(inputGoal.value);
   const years = parseFloat(inputYears.value);
   const currentSaved = parseFloat(inputCurrentSaved.value);
   const monthlySaved = parseFloat(inputMonthlySavings.value);
   const expectedReturn = parseFloat(inputExpectedRate.value);
   const expectedInflation = parseFloat(inputInflationRate.value);
+
   // Assuming compounding monthly payment at ebd of month- type 0
   // nper - The total number of payment periods.
   const nper = years * 12;
@@ -225,7 +235,7 @@ const calculate = () => {
     tblBody.innerHTML = `
     <tr>  
     <td class="text-end">Savings goal </td>
-    <td class="text-end"> ${goal}</td>
+    <td class="text-end"> ${formatCurrency(goal)}</td>
     </tr>
     <tr>  
     <td class="text-end">Target years to save </td>
@@ -233,25 +243,27 @@ const calculate = () => {
      </tr>
     <tr>  
     <td class="text-end">Amount currently saved </td> 
-    <td class="text-end"> ${currentSaved}</td> 
+    <td class="text-end"> ${formatCurrency(currentSaved)}</td> 
      </tr>
     <tr>  
-    <td class="text-end">Expected rate of return</td>
-     <td class="text-end"> ${rate}</td>
+    <td class="text-end">Expected rate of return(MPR)</td>
+     <td class="text-end"> ${DisplayExpectedRate}%</td>
       </tr>
     <tr>  
     <td class="text-end">Inflation rate  </td>
-      <td class="text-end"> ${expectedInflation}</td>
+      <td class="text-end"> ${expectedInflation}%</td>
       </tr>   
      `;
     tblFooter.innerHTML = `
     <tr> 
       <td class="text-end">Total after 10 years </td>
-      <td class="text-end"> ${growthByYearNeededToBeSaved[10]}</td>
+      <td class="text-end"> ${formatCurrency(
+        growthByYearNeededToBeSaved[10]
+      )}</td>
     </tr>
     <tr>    
       <td class="text-end">Amount required to meet goal in ${years} years</td>
-      <td class="text-end"> ${Ppmt} monthly</td>
+      <td class="text-end"> ${formatCurrency(Ppmt)} monthly</td>
     </tr> `;
     // put tblHeader into the table
     tbl.appendChild(tblHeader);
@@ -289,13 +301,21 @@ const calculate = () => {
     tblHeaderB.innerHTML = `
                     <tr>  
                     <th class="text-center">Years ${years}</th>
-                    <th class="text-center">Contributing ${monthlySaved}</th>
-                    <th class="text-center">Contributing ${Ppmt} to get to goal</th> 
+                    <th class="text-center">Contributing ${formatCurrency(
+                      monthlySaved
+                    )}</th>
+                    <th class="text-center">Contributing ${formatCurrency(
+                      Ppmt
+                    )} to get to goal</th> 
                     </tr>`;
     trFirstB.innerHTML = `<tr>  
                     <td></td>
-                    <td class="text-end">$${growthByYear[0]} Starting Balance</td>
-                    <td class="text-end">$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
+                    <td class="text-end">${formatCurrency(
+                      growthByYear[0]
+                    )} Starting Balance</td>
+                    <td class="text-end">${formatCurrency(
+                      growthByYearNeededToBeSaved[0]
+                    )} Starting Balance</td> 
                     </tr>`;
     // creating all cells
     for (let i = 1; i < yearsToGrow.length; i++) {
@@ -303,8 +323,12 @@ const calculate = () => {
       const rowB = document.createElement("tr");
       let trsB = `<tr>  
                       <td class="text-end">${yearsToGrow[i]}</td>
-                      <td class="text-end">$ ${growthByYear[i]}</td>
-                      <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td> 
+                      <td class="text-end">${formatCurrency(
+                        growthByYear[i]
+                      )}</td>
+                      <td class="text-end">${formatCurrency(
+                        growthByYearNeededToBeSaved[i]
+                      )}</td> 
                       </tr>`;
       rowB.innerHTML = trsB;
       // prepend adds to front append adds to end
@@ -332,6 +356,7 @@ calculateButton.onclick = function () {
   clearPriorTable();
   calculate();
   displayChart();
+  scrollToChart();
 };
 
 // TODO put in its own file adding JS to get the range track and ticks working
@@ -432,7 +457,7 @@ const displayChart = () => {
       datasets: [
         {
           // TODO use JS to show  monthlySaved
-          label: "Plan monthly",
+          label: "Plan monthly $",
           // thousands of dollars scaled to goal
           data: growthByYear,
           // data: [
@@ -470,7 +495,7 @@ const displayChart = () => {
         },
         {
           // TODO use JS to show  monthlySaved
-          label: "Needed monthly",
+          label: "Needed monthly $",
           // thousands of dollars scaled to goal
           data: growthByYearNeededToBeSaved,
           // data: [
