@@ -38,13 +38,21 @@ const viewChartButton = document.getElementById("viewChart");
 // TODO Function to format input boxes as currency
 // the initial values, any changes and slider inputs should all be formated
 // target values on page load or with a change call this function
-const formatCurrency = (num) => {
-  new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  }).format(num);
-};
+// function formatCurrency(num) {
+//   new Intl.NumberFormat("en-US", {
+//     style: "currency",
+//     currency: "USD",
+//     minimumFractionDigits: 2,
+//   })
+// }
+
+// https://www.freecodecamp.org/news/how-to-format-number-as-currency-in-javascript-one-line-of-code/
+let USDollar = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+// console.log(USDollar.format(inputGoal.value));
 
 // TODO can this be in its own file ?function to sync range and  text box inputs
 function syncInputs() {
