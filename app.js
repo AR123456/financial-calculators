@@ -1,5 +1,4 @@
 import { calcFV, PMT, IPMT, NPER } from "./calculations.js";
-
 // range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
 const inputGoal = document.getElementById("savingsInput");
@@ -18,7 +17,6 @@ const chartDiv = document.getElementById("chartDiv");
 const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 const backToTop = document.getElementById("top-of-page");
-
 const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
 
 // TODO put chart in its own file need to declare since using module syntax
