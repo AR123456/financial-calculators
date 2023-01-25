@@ -186,10 +186,17 @@ const calculate = () => {
     actMonths
   );
   // Message to user based on calculations
-  actualTime.innerHTML = `<span> After years to save of ${years} you will have $ ${FV}</span><br>
+  if (years > 1) {
+    actualTime.innerHTML = ` <span> After ${years} years you will have $ ${FV}</span><br>
   <span>The actual amount of time needed to save $${goal} saving $${monthlySaved} per month is ${actYears} years and ${actMonths} months </span><br>
   <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
   `;
+  } else {
+    actualTime.innerHTML = ` <span> After ${years} year you will have $ ${FV}</span><br>
+  <span>The actual amount of time needed to save $${goal} saving $${monthlySaved} per month is ${actYears} years and ${actMonths} months </span><br>
+  <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
+  `;
+  }
   chartDiv.innerHTML = `<span>    Actual monthly savings according to plan vs needed monthly saving to
   get to goal in plan years.<span>`;
   summaryTable();
