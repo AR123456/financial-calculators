@@ -20,7 +20,7 @@ const backToTop = document.getElementById("top-of-page");
 const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
 
 // TODO put chart in its own file need to declare since using module syntax
-let myChart;
+let myChart = document.getElementById("myChart");
 // display monthly expected rate of return to user
 let DisplayExpectedRate = inputExpectedRate.value / 12;
 // what would be saved give plan inputs
@@ -35,9 +35,6 @@ const viewReportButton = document.getElementById("viewReport");
 const backToPlanButton = document.getElementById("plan");
 const viewChartButton = document.getElementById("viewChart");
 
-// TODO Function to format input boxes as currency
-// the initial values, any changes and slider inputs should all be formated
-// target values on page load or with a change call this function
 const formatCurrency = (num) => {
   const USDollar = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -49,14 +46,6 @@ inputGoal.addEventListener("keyup", () => {
   formatCurrency(inputGoal.value);
   console.log(formatCurrency(inputGoal.value));
 });
-
-// https://www.freecodecamp.org/news/how-to-format-number-as-currency-in-javascript-one-line-of-code/
-// let USDollar = new Intl.NumberFormat("en-US", {
-//   style: "currency",
-//   currency: "USD",
-// });
-
-// console.log(formatCurrency(inputGoal.value));
 
 // TODO can this be in its own file ?function to sync range and  text box inputs
 function syncInputs() {
@@ -118,7 +107,6 @@ syncInputs();
 displayExpectedRate.innerHTML = `<p>(MPR ${DisplayExpectedRate}%)</p>`;
 // calculate  function
 const calculate = () => {
-  chartDiv.scrollIntoView();
   const goal = parseFloat(inputGoal.value);
   const years = parseFloat(inputYears.value);
   const currentSaved = parseFloat(inputCurrentSaved.value);
@@ -357,6 +345,7 @@ calculateButton.onclick = function () {
   clearPriorTable();
   calculate();
   displayChart();
+  scrollToChart();
 };
 
 // TODO put in its own file adding JS to get the range track and ticks working
