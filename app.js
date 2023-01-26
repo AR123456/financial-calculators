@@ -236,7 +236,7 @@ const calculate = () => {
     tblBody.innerHTML = `
     <tr>  
     <td class="text-end">Savings goal </td>
-    <td class="text-end"> ${goal}</td>
+    <td class="text-end"> ${formatCurrency(goal)}</td>
     </tr>
     <tr>  
     <td class="text-end">Target years to save </td>
@@ -244,25 +244,27 @@ const calculate = () => {
      </tr>
     <tr>  
     <td class="text-end">Amount currently saved </td> 
-    <td class="text-end"> ${currentSaved}</td> 
+    <td class="text-end"> ${formatCurrency(currentSaved)}</td> 
      </tr>
     <tr>  
-    <td class="text-end">Expected rate of return</td>
-     <td class="text-end"> ${rate}</td>
+    <td class="text-end">Expected rate of return(MPR)</td>
+     <td class="text-end"> ${DisplayExpectedRate}%</td>
       </tr>
     <tr>  
     <td class="text-end">Inflation rate  </td>
-      <td class="text-end"> ${expectedInflation}</td>
+      <td class="text-end"> ${expectedInflation}%</td>
       </tr>   
      `;
     tblFooter.innerHTML = `
     <tr> 
       <td class="text-end">Total after 10 years </td>
-      <td class="text-end"> ${growthByYearNeededToBeSaved[10]}</td>
+      <td class="text-end"> ${formatCurrency(
+        growthByYearNeededToBeSaved[10]
+      )}</td>
     </tr>
     <tr>    
       <td class="text-end">Amount required to meet goal in ${years} years</td>
-      <td class="text-end"> ${Ppmt} monthly</td>
+      <td class="text-end"> ${formatCurrency(Ppmt)} monthly</td>
     </tr> `;
     // put tblHeader into the table
     tbl.appendChild(tblHeader);
@@ -300,13 +302,21 @@ const calculate = () => {
     tblHeaderB.innerHTML = `
                     <tr>  
                     <th class="text-center">Years ${years}</th>
-                    <th class="text-center">Contributing ${monthlySaved}</th>
-                    <th class="text-center">Contributing ${Ppmt} to get to goal</th> 
+                    <th class="text-center">Contributing ${formatCurrency(
+                      monthlySaved
+                    )}</th>
+                    <th class="text-center">Contributing ${formatCurrency(
+                      Ppmt
+                    )} to get to goal</th> 
                     </tr>`;
     trFirstB.innerHTML = `<tr>  
                     <td></td>
-                    <td class="text-end">$${growthByYear[0]} Starting Balance</td>
-                    <td class="text-end">$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
+                    <td class="text-end">${formatCurrency(
+                      growthByYear[0]
+                    )} Starting Balance</td>
+                    <td class="text-end">${formatCurrency(
+                      growthByYearNeededToBeSaved[0]
+                    )} Starting Balance</td> 
                     </tr>`;
     // creating all cells
     for (let i = 1; i < yearsToGrow.length; i++) {
@@ -314,8 +324,12 @@ const calculate = () => {
       const rowB = document.createElement("tr");
       let trsB = `<tr>  
                       <td class="text-end">${yearsToGrow[i]}</td>
-                      <td class="text-end">$ ${growthByYear[i]}</td>
-                      <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td> 
+                      <td class="text-end">${formatCurrency(
+                        growthByYear[i]
+                      )}</td>
+                      <td class="text-end">${formatCurrency(
+                        growthByYearNeededToBeSaved[i]
+                      )}</td> 
                       </tr>`;
       rowB.innerHTML = trsB;
       // prepend adds to front append adds to end
@@ -443,7 +457,7 @@ const displayChart = () => {
       datasets: [
         {
           // TODO use JS to show  monthlySaved
-          label: "Plan monthly",
+          label: "Plan monthly $",
           // thousands of dollars scaled to goal
           data: growthByYear,
           // data: [
@@ -481,7 +495,7 @@ const displayChart = () => {
         },
         {
           // TODO use JS to show  monthlySaved
-          label: "Needed monthly",
+          label: "Needed monthly $",
           // thousands of dollars scaled to goal
           data: growthByYearNeededToBeSaved,
           // data: [
