@@ -14,3 +14,7 @@ input {
 p {
   font-size: x-small;
 }
+.piggy {
+  height: 70px;
+  width: 70px;
+}

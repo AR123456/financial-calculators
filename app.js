@@ -47,14 +47,6 @@ inputGoal.addEventListener("keyup", () => {
   console.log(formatCurrency(inputGoal.value));
 });
 
-// https://www.freecodecamp.org/news/how-to-format-number-as-currency-in-javascript-one-line-of-code/
-// let USDollar = new Intl.NumberFormat("en-US", {
-//   style: "currency",
-//   currency: "USD",
-// });
-
-// console.log(formatCurrency(inputGoal.value));
-
 // TODO can this be in its own file ?function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
@@ -541,7 +533,6 @@ const displayChart = () => {
 };
 
 // ////////////////////////////// getting report on page ////////////
-
 viewReportButton.addEventListener("click", generateTables);
 function clearPriorTable() {
   tableDiv.innerHTML = "";
