@@ -186,14 +186,28 @@ const calculate = () => {
   );
   // Message to user based on calculations
   if (years > 1) {
-    actualTime.innerHTML = ` <span> After ${years} years you will have $ ${FV}</span><br>
-  <span>The actual amount of time needed to save $${goal} saving $${monthlySaved} per month is ${actYears} years and ${actMonths} months </span><br>
-  <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
+    actualTime.innerHTML = ` <span> After ${years} years you will have $${FV}</span><br>
+  <span>The actual amount of time needed to save ${formatCurrency(
+    goal
+  )} saving ${formatCurrency(
+      monthlySaved
+    )} per month is ${actYears} years and ${actMonths} months </span><br>
+  <span>Saving ${formatCurrency(
+    Ppmt
+  )} per month will get you to your savings goal in ${years} years.
   `;
   } else {
-    actualTime.innerHTML = ` <span> After ${years} year you will have $ ${FV}</span><br>
-  <span>The actual amount of time needed to save $${goal} saving $${monthlySaved} per month is ${actYears} years and ${actMonths} months </span><br>
-  <span>Saving $${Ppmt} per month will get you to your savings goal in ${years} years.
+    actualTime.innerHTML = ` <span> After ${years} year you will have ${formatCurrency(
+      FV
+    )}</span><br>
+  <span>The actual amount of time needed to save ${formatCurrency(
+    goal
+  )} saving ${formatCurrency(
+      monthlySaved
+    )} per month is ${actYears} years and ${actMonths} months </span><br>
+  <span>Saving ${formatCurrency(
+    Ppmt
+  )} per month will get you to your savings goal in ${years} years.
   `;
   }
   chartDiv.innerHTML = `<span>    Actual monthly savings according to plan vs needed monthly saving to
@@ -245,10 +259,8 @@ const calculate = () => {
      `;
     tblFooter.innerHTML = `
     <tr> 
-      <td class="text-end">Total after 10 years </td>
-      <td class="text-end"> ${formatCurrency(
-        growthByYearNeededToBeSaved[10]
-      )}</td>
+      <td class="text-end">Total after ${years} years </td>
+      <td class="text-end"> ${formatCurrency(growthByYear[years])}</td>
     </tr>
     <tr>    
       <td class="text-end">Amount required to meet goal in ${years} years</td>
