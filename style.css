@@ -20,10 +20,10 @@ p {
   width: 70px;
 }
 .border {
-  border: 1px solid rgba(54, 162, 235, 0.1) !important;
+  border: 1px solid rgba(54, 162, 235, 0.3) !important;
 }
 .card {
-  border: 1px solid rgba(54, 162, 235, 0.1) !important;
+  border: 1px solid rgba(54, 162, 235, 0.3) !important;
 }
 /* .table {
   border: 1px solid rgba(54, 162, 235, 0.1) !important;
@@ -34,5 +34,5 @@ tfoot,
 th,
 thead,
 tr {
-  border-color: rgba(54, 162, 235, 0.1) !important;
+  border-color: rgba(54, 162, 235, 0.3) !important;
 }
