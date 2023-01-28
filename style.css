@@ -19,3 +19,20 @@ p {
   height: 70px;
   width: 70px;
 }
+.border {
+  border: 1px solid rgba(54, 162, 235, 0.1) !important;
+}
+.card {
+  border: 1px solid rgba(54, 162, 235, 0.1) !important;
+}
+/* .table {
+  border: 1px solid rgba(54, 162, 235, 0.1) !important;
+} */
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-color: rgba(54, 162, 235, 0.1) !important;
+}
