@@ -1,8 +1,6 @@
 body {
-  /* font-family: "Helvetica Neue", sans-serif; */
   font-family: "Roboto", sans-serif;
 }
-
 /* blue  #053E6A */
 /* green #2fa22f */
 /* background #ffffff */
@@ -25,9 +23,7 @@ p {
 .card {
   border: 1px solid rgba(54, 162, 235, 0.3) !important;
 }
-/* .table {
-  border: 1px solid rgba(54, 162, 235, 0.1) !important;
-} */
+
 tbody,
 td,
 tfoot,

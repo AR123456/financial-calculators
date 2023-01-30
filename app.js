@@ -12,17 +12,17 @@ const sliderExpectedRate = document.getElementById("expectedRateRange");
 const inputExpectedRate = document.getElementById("expectedRateInput");
 const sliderInflationRate = document.getElementById("expectedInflationRange");
 const inputInflationRate = document.getElementById("expectedInflationInput");
+const DisplayExpectedRate = inputExpectedRate.value / 12;
 const actualTime = document.getElementById("actualTime");
 const chartDiv = document.getElementById("chartDiv");
 const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 const backToTop = document.getElementById("top-of-page");
 const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
-
-// TODO put chart in its own file need to declare since using module syntax
+//TODO add print button to tables maybe chart
+//TODO put definitions in hover bubbles in inputs between text and input box
+// TODO can any of this be in its own file?
 let myChart = document.getElementById("myChart");
-// display monthly expected rate of return to user
-let DisplayExpectedRate = inputExpectedRate.value / 12;
 // what would be saved give plan inputs
 const growthByYear = [];
 // growth by year using monthly payment needed to reach savings goal
@@ -34,7 +34,7 @@ const calculateButton = document.getElementById("calculate");
 const viewReportButton = document.getElementById("viewReport");
 const backToPlanButton = document.getElementById("plan");
 const viewChartButton = document.getElementById("viewChart");
-
+// Utility
 const formatCurrency = (num) => {
   const USDollar = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -44,10 +44,7 @@ const formatCurrency = (num) => {
 };
 inputGoal.addEventListener("keyup", () => {
   formatCurrency(inputGoal.value);
-  console.log(formatCurrency(inputGoal.value));
 });
-
-// TODO can this be in its own file ?function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
 
