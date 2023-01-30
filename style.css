@@ -32,3 +32,7 @@ thead,
 tr {
   border-color: rgba(54, 162, 235, 0.3) !important;
 }
+button {
+  border-radius: 3%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}

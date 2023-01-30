@@ -19,9 +19,11 @@ const tableDiv = document.getElementById("tableDiv");
 const displayExpectedRate = document.getElementById("displayExpectedRate");
 const backToTop = document.getElementById("top-of-page");
 const dynamicGenerateTable = document.getElementById("dynamic-generatedTable");
+//TODO look at making fields in form required
 //TODO add print button to tables maybe chart
 //TODO put definitions in hover bubbles in inputs between text and input box
 // TODO can any of this be in its own file?
+//TODO look at solving with constructor and object vs function and arrays 
 let myChart = document.getElementById("myChart");
 // what would be saved give plan inputs
 const growthByYear = [];
