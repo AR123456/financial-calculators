@@ -113,6 +113,7 @@ const calculate = () => {
   const monthlySaved = parseFloat(inputMonthlySavings.value);
   const expectedReturn = parseFloat(inputExpectedRate.value);
   const expectedInflation = parseFloat(inputInflationRate.value);
+  const DisplayRate = (expectedReturn / 12).toFixed(2);
 
   // Assuming compounding monthly payment at ebd of month- type 0
   // nper - The total number of payment periods.
@@ -250,7 +251,7 @@ const calculate = () => {
      </tr>
     <tr>  
     <td class="text-end">Expected rate of return(MPR)</td>
-     <td class="text-end"> ${DisplayExpectedRate}%</td>
+     <td class="text-end"> ${DisplayRate}%</td>
       </tr>
     <tr>  
     <td class="text-end">Inflation rate  </td>
